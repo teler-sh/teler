@@ -11,6 +11,8 @@ Teler is an **real-time threat alert** and huting based on web log that runs in 
 
 ## Features _(read: TODO, LMAO)_
 
+<img src="https://user-images.githubusercontent.com/25837540/88281608-33c6e680-cd12-11ea-91d0-ad4a67ee1a3f.gif" height="350" />
+
 * **Completely Real Time**<br>
   Hunts are timed to be processed every 20 line-buffer _(can be configured)_ on the terminal
   input and every second on the output. Wagelaseh!
