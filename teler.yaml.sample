@@ -2,40 +2,34 @@ configs:
   format:
     |
     "$remote_addr - [$remote_addr] - - [$time_local]
-    "$method $request_uri $protocol" $status $body_bytes_sent
+    "$request_method $request_uri $request_protocol" $status $body_bytes_sent
     "$http_referer" "$http_user_agent" $request_length $request_time
     [$proxy_upstream_name] $upstream_addr $upstream_response_length
     $upstream_response_time $upstream_status $req_id"
 
   rules:
-    - threat:
+    threat:
       active: true
-      exclude: []
-    - filter:
+    filter:
       active: true
-      exclude: [
-        "Bad IP Address",
-        # "Bad Referrer",
-        # "Bad Crawler",
-        # "Directory Bruteforce"
-      ]
+      excludes:
+        - "Bad IP Address"
+        # - "Bad Referrer"
+        # - "Bad Crawler"
+        # - "Directory Bruteforce"
 
   notification:
     active: true
     provider: "slack"
 
 notifications:
-  - slack:
-    text: null
+  slack:
+    token: "xoxb-..."
     color: "#ffd21a"
-    token: "xoxo-..."
     channel: "G30SPKI"
-    url: "https://slack.com/api/chat.postMessage"
 
-  - telegram:
-    token: "bot123456:ABC-DEF1234...-..."
-    chat_id: 
-    text: null
-    url: "https://api.telegram.org/:token/sendMessage"
+  telegram:
+    token: "123456:ABC-DEF1234...-..."
+    chat_id: "111000"
     silent: false
     parse_mode: "MarkdownV2"
