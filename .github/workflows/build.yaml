@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - development
   pull_request:
   
 jobs:          
@@ -16,7 +17,7 @@ jobs:
           go-version: 1.14
 
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
 
       - name: Test
         run: go test .
