@@ -1,0 +1,23 @@
+name: Review
+on:
+  push:
+    branches:
+      - master
+      - development
+  pull_request:
+
+jobs:
+  review:
+    name: Review
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@master
+
+    - name: SonarQube Scanner
+      uses: kitabisa/sonarqube-action@master
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
+        projectKey: "teler"
+        projectName: "teler"
