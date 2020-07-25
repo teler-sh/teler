@@ -1,10 +1,6 @@
 package parsers
 
-import (
-	"io/ioutil"
-
-	"gopkg.in/yaml.v2"
-)
+import "io/ioutil"
 
 type options struct {
 	Active   bool     `yaml:"active"`
@@ -53,11 +49,11 @@ type Config struct {
 // GetConfig will parse the config file
 func GetConfig(f string) (*Config, error) {
 	config := &Config{}
-	yamlFile, err := ioutil.ReadFile(f)
+	file, err := ioutil.ReadFile(f)
 	if err != nil {
 		return nil, err
 	}
-	err = yaml.Unmarshal(yamlFile, config)
+	err = GetYaml(file, config)
 	if err != nil {
 		return nil, err
 	}
