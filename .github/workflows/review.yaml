@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: SonarQube Scanner
-      uses: kitabisa/sonarqube-action@master
+      uses: kitabisa/sonarqube-action@development
       with:
         host: ${{ secrets.SONARQUBE_HOST }}
         login: ${{ secrets.SONARQUBE_TOKEN }}
