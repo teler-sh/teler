@@ -44,3 +44,12 @@ func IsParseMode(s string) error {
 
 	return nil
 }
+
+// IsChannel validates the channel for Slack
+func IsChannel(s string) error {
+	if regexp := regExp(PatternChannel, s); !regexp {
+		return errValidate("Slack channel")
+	}
+
+	return nil
+}
