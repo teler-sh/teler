@@ -35,3 +35,12 @@ func IsHexcolor(s string) error {
 
 	return nil
 }
+
+// IsParseMode validates the parse mode for Telegram
+func IsParseMode(s string) error {
+	if regexp := regExp(PatternParseMode, s); !regexp {
+		return errValidate("parse mode [Mardown(v2), or HTML]")
+	}
+
+	return nil
+}
