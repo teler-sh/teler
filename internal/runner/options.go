@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	e "github.com/kitabisa/teler/pkg/errors"
+	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/kitabisa/teler/pkg/parsers"
 )
 
@@ -74,7 +74,7 @@ func ParseOptions() *Options {
 
 	val := validate(options)
 	if val != nil {
-		e.Err(val)
+		errors.Exit(val)
 	}
 
 	return options
