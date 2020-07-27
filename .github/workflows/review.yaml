@@ -15,7 +15,7 @@ jobs:
     - name: SonarQube Scanner
       uses: kitabisa/sonarqube-action@development
       with:
-        host: ${{ secrets.SONARQUBE_HOST_TEST }}
-        login: ${{ secrets.SONARQUBE_TOKEN_TEST }}
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
         projectKey: "teler"
         projectName: "teler"
