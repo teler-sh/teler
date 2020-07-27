@@ -49,32 +49,30 @@ func (options *Options) notification() error {
 		switch provider {
 		case "Slack":
 			field.FieldByName("URL").SetString(SlackAPI)
-			if errHexcolor := notHexcolor(field.FieldByName("Color").String()); errHexcolor != nil {
+
+			if errHexcolor := matchers.IsHexcolor(field.FieldByName("Color").String()); errHexcolor != nil {
 				return errHexcolor
 			}
 		case "Telegram":
 			field.FieldByName("URL").SetString(strings.Replace(TelegramAPI, ":token", field.FieldByName("Token").String(), -1))
+
 			if field.FieldByName("ChatID").String() == "" {
 				return errors.New("Telegram \"chat_id\" is not set")
+			}
+
+			if errParseMode := matchers.IsParseMode(field.FieldByName("ParseMode").String()); errParseMode != nil {
+				return errParseMode
 			}
 		default:
 			return errors.New("Provider \"" + config.Notification.Provider + "\" not available")
 		}
 
-		if errToken := notToken(field.FieldByName("Token").String()); errToken != nil {
+		if errToken := matchers.IsToken(field.FieldByName("Token").String()); errToken != nil {
 			return errToken
 		}
 	}
 
 	return nil
-}
-
-func notToken(s string) error {
-	return matchers.IsToken(s)
-}
-
-func notHexcolor(s string) error {
-	return matchers.IsHexcolor(s)
 }
 
 func hasStdin() bool {
