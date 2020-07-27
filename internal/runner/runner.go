@@ -6,10 +6,19 @@ import (
 	"os"
 	"sync"
 
-	gonx "github.com/satyrius/gonx"
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/pkg/errors"
+	"github.com/satyrius/gonx"
 )
 
-func New(options *Options) {
+func init() {
+	showBanner()
+	if !isConnected() {
+		errors.Exit("Check your internet connection")
+	}
+}
+
+func New(options *common.Options) {
 	jobs := make(chan *gonx.Entry)
 	var wg sync.WaitGroup
 

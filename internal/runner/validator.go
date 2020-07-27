@@ -5,13 +5,14 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/kitabisa/teler/common"
 	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/kitabisa/teler/pkg/matchers"
 	"github.com/kitabisa/teler/pkg/parsers"
 	"gopkg.in/validator.v2"
 )
 
-func validate(options *Options) {
+func validate(options *common.Options) {
 	if !options.Stdin {
 		errors.Exit("No stdin log to processed")
 	}
@@ -28,14 +29,14 @@ func validate(options *Options) {
 	options.Config = config
 
 	// Validates notification parts on configuration files
-	options.notification()
+	notification(options)
 
 	if errVal := validator.Validate(options); errVal != nil {
 		errors.Exit(errVal.Error())
 	}
 }
 
-func (options *Options) notification() {
+func notification(options *common.Options) {
 	config := options.Config.Configs
 
 	if config.Notification.Active {
