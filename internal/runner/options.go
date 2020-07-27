@@ -6,7 +6,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/kitabisa/teler/pkg/parsers"
 )
 
@@ -72,10 +71,8 @@ func ParseOptions() *Options {
 	// Check if stdin pipe was given
 	options.Stdin = hasStdin()
 
-	val := validate(options)
-	if val != nil {
-		errors.Exit(val)
-	}
+	// Validates all given args/opts also for user teler config
+	validate(options)
 
 	return options
 }
