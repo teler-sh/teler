@@ -1,7 +1,6 @@
 package requests
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"reflect"
@@ -18,7 +17,6 @@ var hasExclude bool
 func Get(options *common.Options) {
 	getThreat(options)
 	getFilter(options)
-	fmt.Println(resource)
 }
 
 func getThreat(options *common.Options) {
