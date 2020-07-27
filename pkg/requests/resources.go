@@ -7,6 +7,7 @@ import (
 
 	"github.com/kitabisa/teler/common"
 	"github.com/kitabisa/teler/configs"
+	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/kitabisa/teler/pkg/parsers"
 	log "github.com/projectdiscovery/gologger"
 )
@@ -21,9 +22,14 @@ func Get(options *common.Options) {
 }
 
 func getThreat(options *common.Options) {
+	log.Infof("DEBUG: Get all threat resources....")
 	client := Client()
 	excludes := options.Configs.Rules.Threat.Excludes
-	resource, _ = parsers.GetResources()
+	resource, err := parsers.GetResources()
+
+	if err != nil {
+		errors.Exit(err.Error())
+	}
 
 	for i := 0; i < len(resource.Threat); i++ {
 		hasExclude = false
@@ -50,9 +56,14 @@ func getThreat(options *common.Options) {
 }
 
 func getFilter(options *common.Options) {
+	log.Infof("DEBUG: Get all threat resources....")
 	client := Client()
 	excludes := options.Configs.Rules.Filter.Excludes
-	resource, _ = parsers.GetResources()
+	resource, err := parsers.GetResources()
+
+	if err != nil {
+		errors.Exit(err.Error())
+	}
 
 	for i := 0; i < len(resource.Filter); i++ {
 		hasExclude = false
