@@ -37,11 +37,10 @@ func validate(options *Options) {
 
 func (options *Options) notification() {
 	config := options.Config.Configs
-	notif := reflect.ValueOf(&options.Config.Notifications)
 
 	if config.Notification.Active {
 		provider := strings.Title(config.Notification.Provider)
-		field := notif.Elem().FieldByName(provider)
+		field := reflect.ValueOf(&options.Config.Notifications).Elem().FieldByName(provider)
 
 		switch provider {
 		case "Slack":
