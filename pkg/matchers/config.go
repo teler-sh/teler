@@ -2,6 +2,7 @@ package matchers
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/kitabisa/teler/pkg/errors"
@@ -42,5 +43,12 @@ func IsParseMode(s string) {
 func IsChannel(s string) {
 	if regexp := regExp(PatternChannel, s); !regexp {
 		errValidate("Slack channel")
+	}
+}
+
+// IsChatID validates the chat_id for Slack
+func IsChatID(s string) {
+	if _, float := strconv.ParseFloat(s, 8); float != nil {
+		errValidate("chat_id")
 	}
 }
