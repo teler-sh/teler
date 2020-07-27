@@ -1,44 +1,41 @@
 package runner
 
 import (
-	"errors"
 	"os"
 	"reflect"
 	"strings"
 
+	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/kitabisa/teler/pkg/matchers"
 	"github.com/kitabisa/teler/pkg/parsers"
 	"gopkg.in/validator.v2"
 )
 
-func validate(options *Options) error {
+func validate(options *Options) {
 	if !options.Stdin {
-		return errors.New("No stdin log to processed")
+		errors.Exit("No stdin log to processed")
 	}
 
 	if options.ConfigFile == "" {
-		return errors.New("No config file specified")
+		errors.Exit("No config file specified")
 	}
 
-	config, errConf := parsers.GetConfig(options.ConfigFile)
-	if errConf != nil {
-		return errConf
+	config, errConfig := parsers.GetConfig(options.ConfigFile)
+	if errConfig != nil {
+		errors.Exit(errConfig.Error())
 	}
 
 	options.Config = config
 
-	if notif := options.notification(); notif != nil {
-		return notif
-	}
+	// Validates notification parts on configuration files
+	options.notification()
 
 	if errVal := validator.Validate(options); errVal != nil {
-		return errVal
+		errors.Exit(errVal.Error())
 	}
-
-	return nil
 }
 
-func (options *Options) notification() error {
+func (options *Options) notification() {
 	config := options.Config.Configs
 	notif := reflect.ValueOf(&options.Config.Notifications)
 
@@ -49,30 +46,23 @@ func (options *Options) notification() error {
 		switch provider {
 		case "Slack":
 			field.FieldByName("URL").SetString(SlackAPI)
-
-			if errHexcolor := matchers.IsHexcolor(field.FieldByName("Color").String()); errHexcolor != nil {
-				return errHexcolor
-			}
+			matchers.IsHexcolor(field.FieldByName("Color").String())
+			matchers.IsChannel(field.FieldByName("Channel").String())
 		case "Telegram":
 			field.FieldByName("URL").SetString(strings.Replace(TelegramAPI, ":token", field.FieldByName("Token").String(), -1))
 
+			// TODO
 			if field.FieldByName("ChatID").String() == "" {
-				return errors.New("Telegram \"chat_id\" is not set")
+				errors.Exit("Telegram \"chat_id\" is not set")
 			}
 
-			if errParseMode := matchers.IsParseMode(field.FieldByName("ParseMode").String()); errParseMode != nil {
-				return errParseMode
-			}
+			matchers.IsParseMode(field.FieldByName("ParseMode").String())
 		default:
-			return errors.New("Provider \"" + config.Notification.Provider + "\" not available")
+			errors.Exit(strings.Replace(errors.ErrNotificationProvider, ":platform", config.Notification.Provider, -1))
 		}
 
-		if errToken := matchers.IsToken(field.FieldByName("Token").String()); errToken != nil {
-			return errToken
-		}
+		matchers.IsToken(field.FieldByName("Token").String())
 	}
-
-	return nil
 }
 
 func hasStdin() bool {
