@@ -13,7 +13,7 @@ func Client() *http.Client {
 		IdleConnTimeout: time.Second,
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		DialContext: (&net.Dialer{
-			Timeout:   time.Second * 10,
+			Timeout:   time.Second * 30,
 			KeepAlive: time.Second,
 		}).DialContext,
 	}
@@ -25,6 +25,6 @@ func Client() *http.Client {
 	return &http.Client{
 		Transport:     tr,
 		CheckRedirect: re,
-		Timeout:       time.Second * 10,
+		Timeout:       time.Second * 30,
 	}
 }
