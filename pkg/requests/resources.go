@@ -42,7 +42,6 @@ func getThreat(options *common.Options) {
 
 		req, _ := http.NewRequest("GET", threat.FieldByName("URL").String(), nil)
 		resp, _ := client.Do(req)
-		defer resp.Body.Close()
 
 		body, _ := ioutil.ReadAll(resp.Body)
 		threat.FieldByName("Content").SetString(string(body))
@@ -72,7 +71,6 @@ func getFilter(options *common.Options) {
 
 		req, _ := http.NewRequest("GET", threat.FieldByName("URL").String(), nil)
 		resp, _ := client.Do(req)
-		defer resp.Body.Close()
 
 		body, _ := ioutil.ReadAll(resp.Body)
 		threat.FieldByName("Content").SetString(string(body))
