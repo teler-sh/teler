@@ -24,21 +24,19 @@ type telegram struct {
 	ParseMode string `yaml:"parse_mode"`
 }
 
-// Config default structure for config
-type Config struct {
-	Configs struct {
-		Format string `yaml:"format" validate:"nonzero"`
+// Configs default structure for config
+type Configs struct {
+	Format string `yaml:"format" validate:"nonzero"`
 
-		Rules struct {
-			Threat options `yaml:"threat" validate:"nonzero"`
-			Filter options `yaml:"filter" validate:"nonzero"`
-		} `yaml:"rules" validate:"nonzero"`
+	Rules struct {
+		Threat options `yaml:"threat" validate:"nonzero"`
+		Filter options `yaml:"filter" validate:"nonzero"`
+	} `yaml:"rules" validate:"nonzero"`
 
-		Notification struct {
-			Active   bool   `yaml:"active"`
-			Provider string `yaml:"provider"`
-		} `yaml:"notification" validate:"nonzero"`
-	} `yaml:"configs" validate:"nonzero"`
+	Alert struct {
+		Active   bool   `yaml:"active"`
+		Provider string `yaml:"provider"`
+	} `yaml:"notification" validate:"nonzero"`
 
 	Notifications struct {
 		Slack    slack    `yaml:"slack"`
@@ -47,8 +45,8 @@ type Config struct {
 }
 
 // GetConfig will parse the config file
-func GetConfig(f string) (*Config, error) {
-	config := &Config{}
+func GetConfig(f string) (*Configs, error) {
+	config := &Configs{}
 	file, err := ioutil.ReadFile(f)
 	if err != nil {
 		return nil, err

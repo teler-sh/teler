@@ -14,6 +14,7 @@ import (
 var resource *configs.Resources
 var hasExclude bool
 
+// Get all resources and saved all to memory
 func Get(options *common.Options) {
 	getThreat(options)
 	getFilter(options)
@@ -21,7 +22,7 @@ func Get(options *common.Options) {
 
 func getThreat(options *common.Options) {
 	client := Client()
-	excludes := options.Config.Configs.Rules.Threat.Excludes
+	excludes := options.Configs.Rules.Threat.Excludes
 	resource, _ = parsers.GetResources()
 
 	for i := 0; i < len(resource.Threat); i++ {
@@ -50,7 +51,7 @@ func getThreat(options *common.Options) {
 
 func getFilter(options *common.Options) {
 	client := Client()
-	excludes := options.Config.Configs.Rules.Filter.Excludes
+	excludes := options.Configs.Rules.Filter.Excludes
 	resource, _ = parsers.GetResources()
 
 	for i := 0; i < len(resource.Filter); i++ {

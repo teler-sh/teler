@@ -26,7 +26,7 @@ func validate(options *common.Options) {
 		errors.Exit(errConfig.Error())
 	}
 
-	options.Config = config
+	options.Configs = config
 
 	// Validates notification parts on configuration files
 	notification(options)
@@ -37,11 +37,11 @@ func validate(options *common.Options) {
 }
 
 func notification(options *common.Options) {
-	config := options.Config.Configs
+	config := options.Configs
 
-	if config.Notification.Active {
-		provider := strings.Title(config.Notification.Provider)
-		field := reflect.ValueOf(&options.Config.Notifications).Elem().FieldByName(provider)
+	if config.Alert.Active {
+		provider := strings.Title(config.Alert.Provider)
+		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
 
 		switch provider {
 		case "Slack":
@@ -53,7 +53,7 @@ func notification(options *common.Options) {
 			matchers.IsChatID(field.FieldByName("ChatID").String())
 			matchers.IsParseMode(field.FieldByName("ParseMode").String())
 		default:
-			errors.Exit(strings.Replace(errors.ErrNotificationProvider, ":platform", config.Notification.Provider, -1))
+			errors.Exit(strings.Replace(errors.ErrAlertProvider, ":platform", config.Alert.Provider, -1))
 		}
 
 		matchers.IsToken(field.FieldByName("Token").String())

@@ -18,6 +18,7 @@ func init() {
 	}
 }
 
+// New read & pass stdin log
 func New(options *common.Options) {
 	jobs := make(chan *gonx.Entry)
 	var wg sync.WaitGroup
@@ -28,14 +29,14 @@ func New(options *common.Options) {
 		wg.Add(1)
 		go func() {
 			for log := range jobs {
-				fmt.Println(log)
+				fmt.Printf("%+v", log)
 				// Superman flying starts here
 			}
 			wg.Done()
 		}()
 	}
 
-	config := options.Config.Configs
+	config := options.Configs
 	format := config.Format
 	buffer := gonx.NewReader(os.Stdin, format)
 	for {
