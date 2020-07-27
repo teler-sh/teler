@@ -48,7 +48,7 @@ func IsChannel(s string) {
 
 // IsChatID validates the chat_id for Slack
 func IsChatID(s string) {
-	if _, float := strconv.ParseFloat(s, 8); float != nil {
+	if _, isFloat := strconv.ParseFloat(s, 8); isFloat != nil {
 		errValidate("chat_id")
 	}
 }
