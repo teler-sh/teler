@@ -8,10 +8,9 @@ import (
 )
 
 // Exit will display error details and stop the program
-func Exit(err error) {
-	if err != nil {
-		s := err.Error()
-		for _, e := range strings.Split(strings.TrimSuffix(s, "\n"), "\n") {
+func Exit(err string) {
+	if err != "" {
+		for _, e := range strings.Split(strings.TrimSuffix(err, "\n"), "\n") {
 			log.Errorf("Error! %s.\n", e)
 		}
 		os.Exit(1)
