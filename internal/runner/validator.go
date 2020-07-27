@@ -50,12 +50,7 @@ func (options *Options) notification() {
 			matchers.IsChannel(field.FieldByName("Channel").String())
 		case "Telegram":
 			field.FieldByName("URL").SetString(strings.Replace(TelegramAPI, ":token", field.FieldByName("Token").String(), -1))
-
-			// TODO
-			if field.FieldByName("ChatID").String() == "" {
-				errors.Exit("Telegram \"chat_id\" is not set")
-			}
-
+			matchers.IsChatID(field.FieldByName("ChatID").String())
 			matchers.IsParseMode(field.FieldByName("ParseMode").String())
 		default:
 			errors.Exit(strings.Replace(errors.ErrNotificationProvider, ":platform", config.Notification.Provider, -1))
