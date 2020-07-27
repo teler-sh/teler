@@ -49,6 +49,9 @@ func (options *Options) notification() error {
 		switch provider {
 		case "Slack":
 			field.FieldByName("URL").SetString(SlackAPI)
+			if errHexcolor := notHexcolor(field.FieldByName("Color").String()); errHexcolor != nil {
+				return errHexcolor
+			}
 		case "Telegram":
 			field.FieldByName("URL").SetString(strings.Replace(TelegramAPI, ":token", field.FieldByName("Token").String(), -1))
 			if field.FieldByName("ChatID").String() == "" {
