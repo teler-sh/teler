@@ -14,5 +14,6 @@ const (
 	usage = `  [buffers] | teler [options]
   teler -c [...] [options]`
 	example = `  teler -c [...] -i /var/log/nginx/access.log
-  [kubectl logs|tail -f|cat] ... | teler -c [...] -x 25`
+  [kubectl logs|tail -f|cat] ... | teler -c [...] -x 25
+  `
 )
