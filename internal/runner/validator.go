@@ -13,16 +13,19 @@ import (
 )
 
 func validate(options *common.Options) {
-	if options.Input == "" {
-		if !options.Stdin {
-			errors.Exit(errors.ErrNoInputLog)
-		} else {
+	if !options.Stdin {
+		if options.Input == "" {
 			errors.Exit(errors.ErrNoInputLog)
 		}
 	}
 
 	if options.ConfigFile == "" {
-		errors.Exit(errors.ErrNoInputConfig)
+		telerEnv := os.Getenv("TELER_CONFIG")
+		if telerEnv == "" {
+			errors.Exit(errors.ErrNoInputConfig)
+		} else {
+			options.ConfigFile = telerEnv
+		}
 	}
 
 	config, errConfig := parsers.GetConfig(options.ConfigFile)
