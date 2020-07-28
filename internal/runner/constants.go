@@ -1,9 +1,10 @@
 package runner
 
 const (
-	email   = "secinfo@kitabisa.com"
-	version = "0.0.3-dev2"
-	banner  = `
+	email       = "secinfo@kitabisa.com"
+	version     = "0.0.3-dev2"
+	development = true
+	banner      = `
 	  __      __       
 	 / /____ / /__ ____
 	/ __/ -_) / -_) __/
