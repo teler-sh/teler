@@ -7,75 +7,35 @@ import (
 
 	"github.com/kitabisa/teler/common"
 	"github.com/kitabisa/teler/configs"
-	"github.com/kitabisa/teler/pkg/errors"
-	"github.com/kitabisa/teler/pkg/parsers"
 	log "github.com/projectdiscovery/gologger"
+	// "fmt"
+	// "os"
 )
 
 var resource *configs.Resources
-var hasExclude bool
+var exclude bool
 
-// Get all resources and saved all to memory
-func Get(options *common.Options) {
-	getThreat(options)
-	getFilter(options)
+// Resources is to getting all available resources
+func Resources(options *common.Options) {
+	resource = configs.Init()
+	getRules(options)
 }
 
-func getThreat(options *common.Options) {
-	log.Infof("DEBUG: Get all threat resources....")
+func getRules(options *common.Options) {
 	client := Client()
 	excludes := options.Configs.Rules.Threat.Excludes
-	resource, err := parsers.GetResources()
-
-	if err != nil {
-		errors.Exit(err.Error())
-	}
 
 	for i := 0; i < len(resource.Threat); i++ {
-		hasExclude = false
+		exclude = false
 		threat := reflect.ValueOf(&resource.Threat[i]).Elem()
 
-		for j := 0; j < len(excludes); j++ {
-			if excludes[j] == threat.FieldByName("Category").String() {
-				hasExclude = true
+		for x := 0; x < len(excludes); x++ {
+			if excludes[x] == threat.FieldByName("Category").String() {
+				exclude = true
 			}
 		}
 
-		if hasExclude {
-			continue
-		}
-
-		log.Infof("Getting \"%s\" resource...\n", threat.FieldByName("Category").String())
-
-		req, _ := http.NewRequest("GET", threat.FieldByName("URL").String(), nil)
-		resp, _ := client.Do(req)
-
-		body, _ := ioutil.ReadAll(resp.Body)
-		threat.FieldByName("Content").SetString(string(body))
-	}
-}
-
-func getFilter(options *common.Options) {
-	log.Infof("DEBUG: Get all threat resources....")
-	client := Client()
-	excludes := options.Configs.Rules.Filter.Excludes
-	resource, err := parsers.GetResources()
-
-	if err != nil {
-		errors.Exit(err.Error())
-	}
-
-	for i := 0; i < len(resource.Filter); i++ {
-		hasExclude = false
-		threat := reflect.ValueOf(&resource.Filter[i]).Elem()
-
-		for j := 0; j < len(excludes); j++ {
-			if excludes[j] == threat.FieldByName("Category").String() {
-				hasExclude = true
-			}
-		}
-
-		if hasExclude {
+		if exclude {
 			continue
 		}
 

@@ -30,7 +30,6 @@ type Configs struct {
 
 	Rules struct {
 		Threat options `yaml:"threat" validate:"nonzero"`
-		Filter options `yaml:"filter" validate:"nonzero"`
 	} `yaml:"rules" validate:"nonzero"`
 
 	Alert struct {
