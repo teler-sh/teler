@@ -14,10 +14,13 @@ import (
 func ParseOptions() *common.Options {
 	options := &common.Options{}
 
-	flag.StringVar(&options.ConfigFile, "f", "", "")
-	flag.StringVar(&options.ConfigFile, "file", "", "")
+	flag.StringVar(&options.ConfigFile, "c", "", "")
+	flag.StringVar(&options.ConfigFile, "config", "", "")
 
-	flag.IntVar(&options.Concurrency, "c", 20, "")
+	flag.StringVar(&options.Input, "i", "", "")
+	flag.StringVar(&options.Input, "input", "", "")
+
+	flag.IntVar(&options.Concurrency, "x", 20, "")
 	flag.IntVar(&options.Concurrency, "concurrent", 20, "")
 
 	flag.BoolVar(&options.Version, "v", false, "")
@@ -25,13 +28,20 @@ func ParseOptions() *common.Options {
 
 	// Override help flag
 	flag.Usage = func() {
+		showBanner()
 		h := []string{
-			banner,
+			"",
+			"Usage:",
+			usage,
 			"",
 			"Options:",
-			"  -f, --file <FILE>           teler configuration file",
-			"  -c, --concurrent <i>        Set the concurrency level to process log (default: 20)",
+			"  -c, --config <FILE>         teler configuration file",
+			"  -i, --input <FILE>          Analyze from data persistence rather than buffer stream",
+			"  -x, --concurrent <i>        Set the concurrency level to process log (default: 20)",
 			"  -v, --version               Show current teler version",
+			"",
+			"Examples:",
+			example,
 			"",
 		}
 
