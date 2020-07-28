@@ -18,6 +18,13 @@ func errValidate(key string) {
 	errors.Exit(err)
 }
 
+// IsLogformat validates structured log format
+func IsLogformat(s string) {
+	if regexp := regExp(PatternLogformat, s); !regexp {
+		errValidate("log format")
+	}
+}
+
 // IsToken validates the token
 func IsToken(s string) {
 	if regexp := regExp(PatternToken, s); !regexp {

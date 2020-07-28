@@ -26,6 +26,8 @@ func validate(options *common.Options) {
 		errors.Exit(errConfig.Error())
 	}
 
+	// Validates log format
+	matchers.IsLogformat(config.Logformat)
 	options.Configs = config
 
 	// Validates notification parts on configuration files

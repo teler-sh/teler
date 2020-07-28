@@ -36,7 +36,7 @@ func New(options *common.Options) {
 	}
 
 	config := options.Configs
-	format := config.Format
+	format := config.Logformat
 	buffer := gonx.NewReader(os.Stdin, format)
 	for {
 		line, err := buffer.Read()
