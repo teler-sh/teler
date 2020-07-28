@@ -9,4 +9,9 @@ const (
 	/ __/ -_) / -_) __/
 	\__/\__/_/\__/_/   
 	                v` + version
+
+	usage = `  [buffers] | teler [options]
+  teler -f [...] [options]`
+	example = `  teler -f [...] -i /var/log/nginx/access.log
+  [kubectl logs|tail -f|cat] ... | teler -f [...] -c 25`
 )
