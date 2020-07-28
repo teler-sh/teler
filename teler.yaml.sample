@@ -1,4 +1,4 @@
-format: "$remote_addr - [$remote_addr] - - [$time_local] \"$request_method $request_uri $request_protocol\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" $request_length $request_time [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id"
+log_format: "$remote_addr - [$remote_addr] - - [$time_local] \"$request_method $request_uri $request_protocol\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" $request_length $request_time [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id"
 
 rules:
   threat:

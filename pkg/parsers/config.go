@@ -26,7 +26,7 @@ type telegram struct {
 
 // Configs default structure for config
 type Configs struct {
-	Format string `yaml:"format" validate:"nonzero"`
+	Logformat string `yaml:"log_format" validate:"nonzero"`
 
 	Rules struct {
 		Threat options `yaml:"threat" validate:"nonzero"`
