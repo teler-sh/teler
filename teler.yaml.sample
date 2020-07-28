@@ -3,9 +3,8 @@ format: "$remote_addr - [$remote_addr] - - [$time_local] \"$request_method $requ
 rules:
   threat:
     active: true
-  filter:
-    active: true
     excludes:
+      # - "Common Web Attack"
       - "Bad IP Address"
       # - "Bad Referrer"
       # - "Bad Crawler"
