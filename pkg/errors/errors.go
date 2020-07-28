@@ -13,6 +13,7 @@ func Exit(err string) {
 		for _, e := range strings.Split(strings.TrimSuffix(err, "\n"), "\n") {
 			log.Errorf("Error! %s.\n", e)
 		}
+		log.Infof("Use \"-h\" flag for more information about a command.")
 		os.Exit(1)
 	}
 }
