@@ -12,7 +12,6 @@ import (
 )
 
 func init() {
-	showBanner()
 	if !isConnected() {
 		errors.Exit("Check your internet connection")
 	}

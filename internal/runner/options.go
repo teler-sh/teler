@@ -26,6 +26,7 @@ func ParseOptions() *common.Options {
 	// Override help flag
 	flag.Usage = func() {
 		h := []string{
+			banner,
 			"",
 			"Options:",
 			"  -f, --file <FILE>           teler configuration file",
@@ -44,6 +45,9 @@ func ParseOptions() *common.Options {
 		showVersion()
 	}
 
+	// Show the banner to user
+	showBanner()
+
 	// Check if stdin pipe was given
 	options.Stdin = hasStdin()
 
@@ -51,7 +55,7 @@ func ParseOptions() *common.Options {
 	validate(options)
 
 	// Getting all resources
-	requests.Get(options)
+	requests.Resources(options)
 
 	return options
 }
