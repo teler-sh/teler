@@ -19,10 +19,10 @@ func init() {
 
 // New read & pass stdin log
 func New(options *common.Options) {
-	jobs := make(chan *gonx.Entry)
 	var wg sync.WaitGroup
+	var input *os.File
 
-	fmt.Println()
+	jobs := make(chan *gonx.Entry)
 
 	for i := 0; i < options.Concurrency; i++ {
 		wg.Add(1)
@@ -35,9 +35,19 @@ func New(options *common.Options) {
 		}()
 	}
 
+	if options.Stdin {
+		input = os.Stdin
+	} else {
+		f, e := os.Open(options.Input)
+		if e != nil {
+			errors.Exit(e.Error())
+		}
+		input = f
+	}
+
 	config := options.Configs
 	format := config.Logformat
-	buffer := gonx.NewReader(os.Stdin, format)
+	buffer := gonx.NewReader(input, format)
 	for {
 		line, err := buffer.Read()
 		if err == io.EOF {

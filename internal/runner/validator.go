@@ -13,12 +13,16 @@ import (
 )
 
 func validate(options *common.Options) {
-	if !options.Stdin {
-		errors.Exit("No stdin log to processed")
+	if options.Input == "" {
+		if !options.Stdin {
+			errors.Exit(errors.ErrNoInputLog)
+		} else {
+			errors.Exit(errors.ErrNoInputLog)
+		}
 	}
 
 	if options.ConfigFile == "" {
-		errors.Exit("No config file specified")
+		errors.Exit(errors.ErrNoInputConfig)
 	}
 
 	config, errConfig := parsers.GetConfig(options.ConfigFile)
