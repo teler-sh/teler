@@ -15,6 +15,16 @@ teler
 	  - [Config](#config)
 	  - [Input](#input)
 	  - [Concurrency](#concurrency)
+- [Configuration](#configuration)
+  - [Log format](#log-format)
+    - [Apache](#apache)
+    - [Nginx](#nginx)
+    - [Nginx Ingress](#nginx-ingress)
+    - [Amazon S3](#amazon-s3)
+    - [Elastic LB](#elastic-lb)
+    - [CloudFront](#cloudfront)
+  - [Rules](#rules)
+  - [Notification](#notification)
 - [Pronunciation](#pronunciation)
 
 ## What is it?
@@ -34,21 +44,20 @@ teler is an **real-time threat alert** and huting based on web log that runs in 
   teler analyze the log and show you the threats!
 
 * **Nearly All Web Log Formats**<br>
-  teler allows any custom log format string. Predefined options include,
-  Apache, Nginx, Amazon S3, Elastic Load Balancing, CloudFront, etc.
+  teler allows any custom log format string!
 
 * **Incremental Log Processing**<br>
   Need data persistence rather than [buffer stream](https://linux.die.net/man/1/stdbuf)?
   teler has the ability to process logs incrementally through the on-disk persistence options.
 
 ### Nearly all web log formats...
-teler allows any custom log format string. Predefined options include, but
+teler allows any custom log format string. Predefined options include _(see [Configuration](#configuration))_, but
 not limited to:
 
 * Amazon CloudFront (Download Distribution).
 * Amazon Simple Storage Service (S3)
 * AWS Elastic Load Balancing
-* Combined Log Format (XLF/ELF) Apache | Nginx
+* Combined Log Format (XLF/ELF) Apache | Nginx (and/ Ingress)
 * Common Log Format (CLF) Apache
 * Google Cloud Storage.
 * Apache virtual hosts
@@ -88,16 +97,16 @@ This will display help for the tool.
 
 Here are all the switches it supports.
 
-| Flag             	| Description                                                 	| Examples                                                	|
-|------------------	|-------------------------------------------------------------	|---------------------------------------------------------	|
-| -c, --config     	| teler configuration file                                    	| kubectl logs nginx \| teler -c /path/to/config/teler.yaml |
-| -i, --input      	| Analyze logs from data persistence rather than buffer stream 	| teler -i /var/log/nginx/access.log                      	|
-| -x, --concurrent 	| Set the concurrency level to analyze logs (default: 20)      	| tail -f /var/log/nginx/access.log \| teler -x 50        	|
-| -v, --version    	| Show current teler version                                  	| teler -v                                                	|
+| Flag                	| Description                                                 	| Examples                                                	|
+|----------------------	|-------------------------------------------------------------	|---------------------------------------------------------	|
+| -c,<br> --config     	| teler configuration file                                    	| kubectl logs nginx \| teler -c /path/to/config/teler.yaml |
+| -i,<br> --input      	| Analyze logs from data persistence rather than buffer stream 	| teler -i /var/log/nginx/access.log                      	|
+| -x,<br> --concurrent 	| Set the concurrency level to analyze logs (default: 20)      	| tail -f /var/log/nginx/access.log \| teler -x 50        	|
+| -v,<br> --version    	| Show current teler version                                  	| teler -v                                                	|
 
 #### Config
 
-The `-c` flag is to specify teler configuration file. See [teler.yaml.sample](https://github.com/kitabisa/teler/blob/development/teler.yaml.sample) for an example.
+The `-c` flag is to specify teler configuration file.
 
 ```bash
 ▶ tail -f /var/log/nginx/access.log | teler -c /path/to/config/teler.yaml
@@ -126,6 +135,89 @@ Concurrency is the number of logs analyzed at the same time. Default value teler
 
 ```bash
 ▶ teler -i /var/log/nginx/access.log -x 50
+```
+
+## Configuration
+
+`teler` requires a minimum of configuration to process and/ log analysis, and execute threats and/ alerts. See [teler.yaml.sample](https://github.com/kitabisa/teler/blob/development/teler.yaml.sample) for an example.
+
+### Log Format
+
+Because we use `gonx` package to parse the log, you can write any log format. As an example:
+
+#### Apache
+```bash
+"$remote_addr - $remote_user [$time_local] \"$request_method $request_uri $request_protocol\" $status $body_bytes_sent"
+```
+
+#### Nginx
+```bash
+"$remote_addr - $remote_user - [$time_local] \"$request_method $request_uri $request_protocol\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\""
+```
+
+#### Nginx Ingress
+```bash
+"$remote_addr - [$remote_addr] $remote_user - [$time_local] \"$request_method $request_uri $request_protocol\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" $request_length $request_time [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id"
+```
+
+#### Amazon S3
+```bash
+"$bucket_owner $bucket [$time_local] $remote_addr $requester $req_id $operationration $key \"$request_method $request_uri $request_protocol\" $status $error_code $body_bytes_sent - $total_time - \"$http_referer\" \"$http_user_agent\" $version_id $host_id $signature_version $cipher_suite $http_auth_type $http_host_header $tls_version"
+```
+
+#### Elastic LB
+```bash
+"$time_loal $elb_name $remote_addr $upstream_addr $request_processing_time $upstream_processing_time $response_processing_time $status $upstream_status $body_received_bytes $body_bytes_sent \"$request_method $request_uri $request_protocol\" \"$http_user_agent\" $cipher_suite $tls_version"
+```
+
+#### CloudFront
+```bash
+"$date $time $edge_location  $body_bytes_sent  $remote_addr  $request_method $http_host_header $requst_uri $status $http_referer $http_user_agent  $request_query  $http_cookie  $edge_type  $req_id $http_host_header $ssl_protocol $body_bytes_sent  $response_processing_time $http_host_forwarded  $tls_version  $cipher_suite $edge_result_type $request_protocol $fle_status $fle_encrypted_fields $http_port  $time_first_byte  $edge_detail_result_type  $http_content_type  $request_length $request_length_start $request_length_end"
+```
+
+### Rules
+
+We include resources for predetermined threats, including:
+- Common Web Attack
+- Bad IP Address
+- Bad Referrer
+- Bad Crawler
+- Directory Bruteforce
+
+You can disable any type of threat in the `excludes` configuration.
+
+```yaml
+rules:
+  threat:
+    active: true
+    excludes:
+      - "Bad IP Address"
+```
+
+The above format detects threats that are not included as bad IP address, and will not analyze logs/ send alerts for that type.
+
+### Notification
+
+We provide alert notification options:
+- Slack
+- or Telegram
+
+Configure the notification alerts needed on:
+
+```yaml
+notifications:
+  slack:
+    token: "xoxb-..."
+    color: "#ffd21a"
+    channel: "G30SPKI"
+```
+
+You can also choose to disable alerts or want to be sent where the alerts are.
+
+```yaml
+alert:
+  active: true
+  provider: "slack"
 ```
 
 ## Pronunciation
