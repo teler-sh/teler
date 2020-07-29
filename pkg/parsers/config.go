@@ -35,7 +35,7 @@ type Configs struct {
 	Alert struct {
 		Active   bool   `yaml:"active"`
 		Provider string `yaml:"provider"`
-	} `yaml:"notification" validate:"nonzero"`
+	} `yaml:"alert" validate:"nonzero"`
 
 	Notifications struct {
 		Slack    slack    `yaml:"slack"`
