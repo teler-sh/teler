@@ -10,6 +10,9 @@
   - [Nearly all web log formats...](#nearly-all-web-log-formats)
 - [Why teler?](#why-teler)
 - [Installation](#installation)
+  - [from Binary](#from-binary)
+  - [from Source](#from-source)
+  - [from GitHub](#from-github)
 - [Usage](#usage)
   - [Flags](#flags)
 	  - [Config](#config)
@@ -79,16 +82,31 @@ access log via SSH, or if you simply love working in the terminal_).
 
 ## Installation
 
-- Download a prebuilt binary from [releases page](https://github.com/kitabisa/teler/releases), unpack and run! or run with
+### from Binary
+
+The installation is easy. You can download a prebuilt binary from [releases page](https://github.com/kitabisa/teler/releases), unpack and run! or run with
 
 ```bash
-▶ curl -sfL 'https://github.com/kitabisa/teler/raw/master/install.sh' | sh -
+▶ curl -sSfL 'https://github.com/kitabisa/teler/raw/master/install.sh' | sh -s -- -b /usr/local/bin
 ```
 
-- If you have go compiler installed and configured:
+### from Source
+
+If you have go1.13+ compiler installed and configured:
 
 ```bash
 ▶ GO111MODULE=on go get -v -u github.com/kitabisa/teler/cmd/teler
+```
+
+In order to update the tool, you can use `-u` flag with `go get` command.
+
+### from GitHub
+
+```bash
+▶ git clone https://github.com/kitabisa/teler
+▶ cd teler
+▶ make build
+▶ mv ./bin/teler /usr/local/bin
 ```
 
 ## Usage
