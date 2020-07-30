@@ -1,11 +1,15 @@
-# teler
+<p align="center">
+  <img alt="teler logo" src="https://user-images.githubusercontent.com/25837540/88009716-594ec700-cb3d-11ea-9863-0e44c2e9ea7c.jpg" height="150" />
+  <h3 align="center">teler</h3>
+  <p align="center">Real-time threat alert & hunting</p>
+</p>
 
-<img src="https://user-images.githubusercontent.com/25837540/88009716-594ec700-cb3d-11ea-9863-0e44c2e9ea7c.jpg" height="150">
+---
+
+`teler` is an **real-time threat alert** and huting based on web log that runs in a **terminal** on &ast;nix systems. teler is working like an [Intrusion Detection System](https://en.wikipedia.org/wiki/Intrusion_detection_system), with resources that are compact enough to "_dictate_" a threat.
 
 ## Resources
-<!-- TODO -->
 - [Resources](#resources)
-- [What is it?](#what-is-it)
 - [Features](#features)
   - [Nearly all web log formats...](#nearly-all-web-log-formats)
 - [Why teler?](#why-teler)
@@ -31,12 +35,6 @@
 - [Pronunciation](#pronunciation)
 - [Contributors](#contributors)
 - [Changes](#changes)
-
-## What is it?
-
-teler is an **real-time threat alert** and huting based on web log that runs in a **terminal** on &ast;nix systems. teler is working like an [Intrusion Detection System](https://en.wikipedia.org/wiki/Intrusion_detection_system), with resources that are compact enough to "_dictate_" a threat.
-
-<img src="https://user-images.githubusercontent.com/25837540/88009657-3e7c5280-cb3d-11ea-9b49-e301187ef21f.jpg" height="200">
 
 ## Features
 
@@ -306,4 +304,4 @@ For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/devel
 
 ## License
 
-teler is released under MIT. See [LICENSE.md](https://github.com/kitabisa/teler/blob/development/LICENSE).
+teler is released under MIT. See [LICENSE](https://github.com/kitabisa/teler/blob/development/LICENSE).
