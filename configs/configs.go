@@ -26,7 +26,7 @@ func Init() *Resources {
 				URL:      "https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/_generator_lists/bad-ip-addresses.list",
 			},
 			{
-				Category: "Bad Refferer",
+				Category: "Bad Referrer",
 				URL:      "https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/_generator_lists/bad-referrers.list",
 			},
 			{
