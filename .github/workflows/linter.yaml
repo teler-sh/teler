@@ -1,6 +1,13 @@
 name: Linter
 on:
   push:
+    paths-ignore:
+      - CHANGELOG.md
+      - CODE_OF_CONDUCT.md
+      - CONTRIBUTING.md
+      - CONTRIBUTION_LICENSE_AGREEMENT.md
+      - README.md
+      - .gitignore
     tags:
       - v*
     branches:
