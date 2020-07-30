@@ -16,6 +16,24 @@
         "test",
         "ideas"
       ]
+    },
+    {
+      "login": "projectdiscovery",
+      "name": "ProjectDiscovery",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/50994705?v=4",
+      "profile": "https://projectdiscovery.io/open-source",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "satyrius",
+      "name": "Anton Egorov",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/278630?v=4",
+      "profile": "https://twitter.com/satyrius",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,
