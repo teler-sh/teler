@@ -266,6 +266,8 @@ alert:
 
 To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/CONTRIBUTING.md).
 
+## Contributors
+
 ## Changes
 
 For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/development/CHANGELOG.md).
