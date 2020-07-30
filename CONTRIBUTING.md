@@ -43,6 +43,8 @@ Add your new or updated configuration to `teler.example.yaml` so they will be sh
 
 As you are ready with your code contribution, push your branch to your `teler` fork and open a pull request against the **development** branch.
 
+Please also update the [unreleased section](https://github.com/kitabisa/teler/blob/development/CHANGELOG.md#unreleased-aka-github-master) of the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/development/CHANGELOG.md) to note what you've added or fixed.
+
 ### Pull request checks
 
 First, please accept our [CLA](https://github.com/kitabisa/teler/blob/development/CONTRIBUTION_LICENSE_AGREEMENT.md).
