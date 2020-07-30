@@ -15,12 +15,11 @@ help:
 	@echo
 	@echo 'Usage:'
 	@echo '    make build            Compile the project.'
-	# @echo '    make package          Build final Docker image with just the Go binary inside.'
 	@echo '    make tag              Tag image created by package with latest, git commit and version.'
 	@echo '    make push             Push tagged images to registry.'
-	@echo '    make helm             Deploy to Kubernetes via Helm.'
 	@echo '    make run ARGS=        Run with supplied arguments.'
 	@echo '    make test             Run tests on a compiled project.'
+	@echo '    make test-extra       Run tests and run GolangCI-Lint.'
 	@echo '    make clean            Clean the directory tree.'
 
 	@echo
@@ -34,9 +33,11 @@ run: build
 	@echo "Running ${APP_NAME} ${VERSION}"
 	${APP_NAME} ${ARGS}
 
-test: golangci-lint
+test:
 	@echo "Testing ${APP_NAME} ${VERSION}"
 	go test ./...
+
+test-extra: golangci-lint test
 
 clean:
 	@echo "Removing ${APP_NAME} ${VERSION}"
