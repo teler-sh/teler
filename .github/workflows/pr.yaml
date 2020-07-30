@@ -34,12 +34,6 @@ jobs:
         with:
           version: v1.29
 
-      - name: Run sonar-scanner
-        uses: kitabisa/sonarqube-action@development
-        with:
-          host: ${{ secrets.SONARQUBE_HOST }}
-          login: ${{ secrets.SONARQUBE_TOKEN }}
-
       - name: Run tests
         run: make test
 

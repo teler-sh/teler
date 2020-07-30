@@ -1,0 +1,19 @@
+name: Review  
+on: 
+  pull_request:
+    branches:
+      - development 
+
+jobs:
+  review:
+    name: Code Review  
+    runs-on: ubuntu-latest  
+    steps:  
+    - name: Check out code  
+      uses: actions/checkout@master 
+
+    - name: Run sonar-scanner
+      uses: kitabisa/sonarqube-action@development 
+      with: 
+        host: ${{ secrets.SONARQUBE_HOST }} 
+        login: ${{ secrets.SONARQUBE_TOKEN }}
