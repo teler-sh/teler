@@ -16,6 +16,15 @@
         "test",
         "ideas"
       ]
+    },
+    {
+      "login": "projectdiscovery",
+      "name": "ProjectDiscovery",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/50994705?v=4",
+      "profile": "https://projectdiscovery.io/open-source",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,
