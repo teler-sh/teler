@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"regexp"
 	"sync"
 
 	"github.com/kitabisa/teler/common"
@@ -15,6 +16,11 @@ func init() {
 	if !isConnected() {
 		errors.Exit("Check your internet connection")
 	}
+}
+
+func removeLBR(s string) string {
+	re := regexp.MustCompile(`\x{000D}\x{000A}|[\x{000A}\x{000B}\x{000C}\x{000D}\x{0085}\x{2028}\x{2029}]`)
+	return re.ReplaceAllString(s, ``)
 }
 
 // New read & pass stdin log
@@ -46,8 +52,9 @@ func New(options *common.Options) {
 	}
 
 	config := options.Configs
-	format := config.Logformat
+	format := removeLBR(config.Logformat)
 	buffer := gonx.NewReader(input, format)
+	fmt.Println(format)
 	for {
 		line, err := buffer.Read()
 		if err == io.EOF {
