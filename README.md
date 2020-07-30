@@ -1,8 +1,4 @@
-teler
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-========
+# teler
 
 <img src="https://user-images.githubusercontent.com/25837540/88009716-594ec700-cb3d-11ea-9863-0e44c2e9ea7c.jpg" height="150">
 
@@ -30,7 +26,7 @@ teler
   - [Rules](#rules)
   - [Notification](#notification)
 - [Pronunciation](#pronunciation)
-- [Contributing](#contributing)
+- [Contributors](#contributors)
 - [Changes](#changes)
 
 ## What is it?
@@ -265,13 +261,12 @@ alert:
 
 /télér/ bagaimana bisa seorang pemuda itu teler hanya dengan meminum 1 sloki ciu _(?)_
 
-## Contributing
-
-To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/CONTRIBUTING.md).
-
 ## Contributors
 
-## Changes
+[![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitabisa/teler/issues)
+
+This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/CONTRIBUTING.md).
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -284,6 +279,8 @@ To learn how to setup a development environment and for contribution guidelines,
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## Changes
 
 For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/development/CHANGELOG.md).
 
