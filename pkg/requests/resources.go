@@ -8,8 +8,6 @@ import (
 	"github.com/kitabisa/teler/common"
 	"github.com/kitabisa/teler/configs"
 	log "github.com/projectdiscovery/gologger"
-	// "fmt"
-	// "os"
 )
 
 var resource *configs.Resources

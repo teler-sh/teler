@@ -9,6 +9,7 @@ import (
 
 	"github.com/kitabisa/teler/common"
 	"github.com/kitabisa/teler/pkg/errors"
+	"github.com/kitabisa/teler/pkg/teler"
 	"github.com/satyrius/gonx"
 )
 
@@ -34,8 +35,7 @@ func New(options *common.Options) {
 		wg.Add(1)
 		go func() {
 			for log := range jobs {
-				fmt.Printf("%+v", log)
-				// Superman flying starts here
+				teler.Analyze(options, log)
 			}
 			wg.Done()
 		}()
