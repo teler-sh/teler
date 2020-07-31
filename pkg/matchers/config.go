@@ -1,17 +1,11 @@
 package matchers
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
 	"github.com/kitabisa/teler/pkg/errors"
 )
-
-func regExp(pattern string, s string) bool {
-	match, _ := regexp.MatchString(pattern, s)
-	return match
-}
 
 func errValidate(key string) {
 	err := strings.Replace(errors.ErrConfigValidate, ":key", key, -1)
@@ -20,35 +14,35 @@ func errValidate(key string) {
 
 // IsLogformat validates structured log format
 func IsLogformat(s string) {
-	if regexp := regExp(PatternLogformat, s); !regexp {
+	if regexp := IsMatch(PatternLogformat, s); !regexp {
 		errValidate("log format")
 	}
 }
 
 // IsToken validates the token
 func IsToken(s string) {
-	if regexp := regExp(PatternToken, s); !regexp {
+	if regexp := IsMatch(PatternToken, s); !regexp {
 		errValidate("token")
 	}
 }
 
 // IsHexcolor validates the hex color code
 func IsHexcolor(s string) {
-	if regexp := regExp(PatternHexcolor, s); !regexp {
+	if regexp := IsMatch(PatternHexcolor, s); !regexp {
 		errValidate("hex color")
 	}
 }
 
 // IsParseMode validates the parse mode for Telegram
 func IsParseMode(s string) {
-	if regexp := regExp(PatternParseMode, s); !regexp {
+	if regexp := IsMatch(PatternParseMode, s); !regexp {
 		errValidate("parse mode [Mardown(v2), or HTML]")
 	}
 }
 
 // IsChannel validates the channel for Slack
 func IsChannel(s string) {
-	if regexp := regExp(PatternChannel, s); !regexp {
+	if regexp := IsMatch(PatternChannel, s); !regexp {
 		errValidate("Slack channel")
 	}
 }
