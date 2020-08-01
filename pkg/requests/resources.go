@@ -15,7 +15,7 @@ var exclude bool
 
 // Resources is to getting all available resources
 func Resources(options *common.Options) {
-	resource = configs.Init()
+	resource = configs.Get()
 	getRules(options)
 }
 
