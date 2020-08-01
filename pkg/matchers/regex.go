@@ -3,6 +3,14 @@ package matchers
 import "regexp"
 
 func IsMatch(pattern string, s string) bool {
-	match, _ := regexp.MatchString(pattern, s)
-	return match
+	defer func() {
+		recover()
+	}()
+
+	re := regexp.MustCompile(pattern)
+	if re.FindString(s) != "" {
+		return true
+	}
+
+	return false
 }
