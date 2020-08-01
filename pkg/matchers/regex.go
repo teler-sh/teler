@@ -4,13 +4,8 @@ import "regexp"
 
 func IsMatch(pattern string, s string) bool {
 	defer func() {
-		recover()
+		_ = recover()
 	}()
-
 	re := regexp.MustCompile(pattern)
-	if re.FindString(s) != "" {
-		return true
-	}
-
-	return false
+	return re.FindString(s) != ""
 }
