@@ -1,7 +1,6 @@
 package runner
 
 import (
-	"fmt"
 	"io"
 	"os"
 	"regexp"
@@ -10,6 +9,7 @@ import (
 	"github.com/kitabisa/teler/common"
 	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/kitabisa/teler/pkg/teler"
+	log "github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
 )
 
@@ -28,8 +28,8 @@ func removeLBR(s string) string {
 func New(options *common.Options) {
 	var wg sync.WaitGroup
 	var input *os.File
-
 	jobs := make(chan *gonx.Entry)
+	log.Infof("Analyzing...")
 
 	for i := 0; i < options.Concurrency; i++ {
 		wg.Add(1)
@@ -54,7 +54,6 @@ func New(options *common.Options) {
 	config := options.Configs
 	format := removeLBR(config.Logformat)
 	buffer := gonx.NewReader(input, format)
-	fmt.Println(format)
 	for {
 		line, err := buffer.Read()
 		if err == io.EOF {
@@ -66,4 +65,5 @@ func New(options *common.Options) {
 	close(jobs)
 
 	wg.Wait()
+	log.Infof("Done!")
 }
