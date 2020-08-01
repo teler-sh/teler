@@ -9,9 +9,11 @@ type Resources struct {
 	}
 }
 
+var resource *Resources
+
 // Init resources
-func Init() *Resources {
-	resource := &Resources{
+func init() {
+	resource = &Resources{
 		Threat: []struct {
 			Category string
 			URL      string
@@ -39,6 +41,9 @@ func Init() *Resources {
 			},
 		},
 	}
+}
 
+// Get default resources
+func Get() *Resources {
 	return resource
 }
