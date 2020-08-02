@@ -186,8 +186,8 @@ log_format: |
 #### Nginx
 ```yaml
 log_format: |
-  "$remote_addr - $remote_user - [$time_local] "$request_method $request_uri $request_protocol" 
-  $status $body_bytes_sent "$http_referer" "$http_user_agent""
+  $remote_addr $remote_user - [$time_local] "$request_method $request_uri $request_protocol" 
+  $status $body_bytes_sent "$http_referer" "$http_user_agent"
 ```
 
 #### Nginx Ingress
