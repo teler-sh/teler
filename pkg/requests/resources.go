@@ -31,6 +31,7 @@ func getRules(options *common.Options) {
 			if excludes[x] == threat.FieldByName("Category").String() {
 				exclude = true
 			}
+			threat.FieldByName("Exclude").SetBool(exclude)
 		}
 
 		if exclude {

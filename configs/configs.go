@@ -6,6 +6,7 @@ type Resources struct {
 		Category string
 		URL      string
 		Content  string
+		Exclude  bool
 	}
 }
 
@@ -18,6 +19,7 @@ func init() {
 			Category string
 			URL      string
 			Content  string
+			Exclude  bool
 		}{
 			{
 				Category: "Common Web Attack",
