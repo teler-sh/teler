@@ -1,8 +1,10 @@
 package teler
 
 import (
+	"net/url"
 	"reflect"
-	"strings"
+	"unicode/utf8"
+	// "strings"
 
 	"github.com/kitabisa/teler/common"
 	"github.com/kitabisa/teler/configs"
@@ -11,71 +13,65 @@ import (
 	"github.com/satyrius/gonx"
 )
 
-var ex, m bool
-var time_local string
+var match bool
 
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) {
+	log := make(map[string]string)
 	resource := configs.Get()
+
 	fields := reflect.ValueOf(logs).Elem().FieldByName("fields")
 	for _, field := range fields.MapKeys() {
-		log := fields.MapIndex(field).String()
-		cat := field.String()
-		if cat == "time_local" {
-			time_local = log
+		log[field.String()] = fields.MapIndex(field).String()
+	}
+
+	for i := 0; i < len(resource.Threat); i++ {
+		threat := reflect.ValueOf(&resource.Threat[i]).Elem()
+		cat := threat.FieldByName("Category").String()
+		con := threat.FieldByName("Content").String()
+		exc := threat.FieldByName("Exclude").Bool()
+
+		if exc {
+			continue
 		}
 
-		for i := 0; i < len(resource.Threat); i++ {
-			threat := reflect.ValueOf(&resource.Threat[i]).Elem()
-			category := threat.FieldByName("Category").String()
-			content := threat.FieldByName("Content").String()
-
-			patterns := strings.Split(content, "\n")
-			for _, pattern := range patterns {
-				pattern = strings.TrimSpace(pattern)
-				if pattern == "" {
-					continue
-				}
-
-				switch category {
-				case "Common Web Attack":
-				case "Bad Crawler":
-					switch {
-					case cat == "http_user_agent":
-						detect(options, category, pattern, log, time_local)
-					}
-				default:
-					switch {
-					case cat == "remote_addr":
-						if category == "Bad IP Address" {
-							detect(options, category, pattern, log, time_local)
-						}
-					case cat == "http_referer":
-						if category == "Bad Referrer" {
-							detect(options, category, pattern, log, time_local)
-						}
-					case cat == "request_uri":
-						if category == "Directory Bruteforce" {
-							detect(options, category, "^/"+pattern+"$", log, time_local)
-						}
-					}
-				}
+		switch cat {
+		case "Common Web Attack":
+		case "Bad Crawler":
+		case "Bad IP Address":
+			ip := "(?m)^" + log["remote_addr"]
+			match = matchers.IsMatch(ip, con)
+			detect(match, cat, log["remote_addr"], log["time_local"])
+		case "Bad Referrer":
+			if log["http_referer"] == "-" {
+				continue
 			}
+			req, _ := url.Parse(log["http_referer"])
+			ref := req.Path
+			if req.Host != "" {
+				ref = req.Host
+			}
+			match = matchers.IsMatch(ref, con)
+			detect(match, cat, log["http_referer"], log["time_local"])
+		case "Directory Bruteforce":
+			req, _ := url.Parse(log["request_uri"])
+			if log["status"] == "200" || req.Path == "/" {
+				continue
+			}
+
+			match = matchers.IsMatch(trimFirst(req.Path), con)
+			detect(match, cat, log["request_uri"], log["time_local"])
 		}
 	}
 }
 
-func detect(o *common.Options, c string, p string, l string, t string) {
-	e := o.Configs.Rules.Threat.Excludes
-	m = matchers.IsMatch(p, l)
+func trimFirst(s string) string {
+	_, i := utf8.DecodeRuneInString(s)
+	return s[i:]
+}
+
+func detect(m bool, c string, l string, t string) {
 	if m {
-		for x := 0; x < len(e); x++ {
-			if e[x] == c {
-				ex = true
-			}
-		}
-		if !ex {
-			gologger.Labelf("[%s] [%s] %s", t, c, l)
-		}
+		gologger.Labelf("[%s] [%s] %s", t, c, string(l))
 	}
 }
