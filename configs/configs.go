@@ -23,7 +23,7 @@ func init() {
 		}{
 			{
 				Category: "Common Web Attack",
-				URL:      "https://raw.githubusercontent.com/PHPIDS/PHPIDS/master/lib/IDS/default_filter.json",
+				URL:      "https://raw.githubusercontent.com/enygma/expose/master/src/Expose/filter_rules.json",
 			},
 			{
 				Category: "Bad IP Address",
