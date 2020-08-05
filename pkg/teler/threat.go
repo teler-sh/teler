@@ -1,9 +1,9 @@
 package teler
 
 import (
-	"fmt"
 	"net/url"
 	"reflect"
+	"regexp"
 	"strings"
 	"unicode/utf8"
 
@@ -39,20 +39,30 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 
 			switch cat {
 			case "Common Web Attack":
-				// TODO:
-				// parse, _ := fastjson.Parse(con)
-				// cwa, _ := parse.Object()
-				// cwa.Visit(func(k []byte, v *fastjson.Value) {
-				// 	fmt.Printf("%#v", v)
-				// })
-				// os.Exit(1)
-			case "Bad Crawler":
-				for _, pat := range strings.Split(con, "\n") {
-					match = matchers.IsMatch(pat, log["http_user_agent"])
-					if match {
-						break
-					}
+				req, _ := url.Parse(log["request_uri"])
+				query := req.Query()
+				if len(query) > 0 {
+					go func() {
+						for _, q := range query {
+							fil, _ := fastjson.Parse(con)
+							dec, _ := url.QueryUnescape(strings.Join(q, ""))
+							cwa := fil.GetArray("filters")
+							for _, v := range cwa {
+								match = matchers.IsMatch(string(v.GetStringBytes("rule")), regexp.QuoteMeta(dec))
+								detect(match, cat+": "+string(v.GetStringBytes("description")), log["request_uri"], log["time_local"])
+							}
+						}
+					}()
 				}
+			case "Bad Crawler":
+				go func() {
+					for _, pat := range strings.Split(con, "\n") {
+						match = matchers.IsMatch(pat, log["http_user_agent"])
+						if match {
+							break
+						}
+					}
+				}()
 				detect(match, cat, log["http_user_agent"], log["time_local"])
 			case "Bad IP Address":
 				ip := "(?m)^" + log["remote_addr"]
@@ -79,7 +89,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 				if req.Path != "/" {
 					match = matchers.IsMatch(trimFirst(req.Path), con)
 					detect(match, cat, log["request_uri"], log["time_local"])
-					fmt.Println(log["status"])
 				}
 			}
 		}
@@ -93,6 +102,6 @@ func trimFirst(s string) string {
 
 func detect(m bool, c string, l string, t string) {
 	if m {
-		gologger.Labelf("[%s] [%s] %s", t, c, string(l))
+		gologger.Labelf("[%s] [%s] %s", t, c, l)
 	}
 }
