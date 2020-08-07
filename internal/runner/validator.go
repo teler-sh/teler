@@ -52,6 +52,8 @@ func notification(options *common.Options) {
 		provider := strings.Title(config.Alert.Provider)
 		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
 
+		matchers.IsToken(field.FieldByName("Token").String())
+
 		switch provider {
 		case "Slack":
 			field.FieldByName("URL").SetString(SlackAPI)
@@ -64,8 +66,6 @@ func notification(options *common.Options) {
 		default:
 			errors.Exit(strings.Replace(errors.ErrAlertProvider, ":platform", config.Alert.Provider, -1))
 		}
-
-		matchers.IsToken(field.FieldByName("Token").String())
 	}
 }
 
