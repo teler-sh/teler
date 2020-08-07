@@ -7,12 +7,12 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/kitabisa/teler/common"
-	"github.com/kitabisa/teler/configs"
-	"github.com/kitabisa/teler/pkg/matchers"
 	"github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
+	"ktbs.me/teler/common"
+	"ktbs.me/teler/configs"
+	"ktbs.me/teler/pkg/matchers"
 )
 
 // Analyze logs from threat resources

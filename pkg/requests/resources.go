@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"reflect"
 
-	"github.com/kitabisa/teler/common"
-	"github.com/kitabisa/teler/configs"
 	log "github.com/projectdiscovery/gologger"
+	"ktbs.me/teler/common"
+	"ktbs.me/teler/configs"
 )
 
 var resource *configs.Resources

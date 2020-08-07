@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kitabisa/teler/common"
-	"github.com/kitabisa/teler/pkg/requests"
+	"ktbs.me/teler/common"
+	"ktbs.me/teler/pkg/requests"
 )
 
 // ParseOptions will parse args/opts

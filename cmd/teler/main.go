@@ -3,7 +3,7 @@ package main
 import (
 	"runtime"
 
-	"github.com/kitabisa/teler/internal/runner"
+	"ktbs.me/teler/internal/runner"
 )
 
 func init() {

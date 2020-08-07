@@ -1,4 +1,4 @@
-module github.com/kitabisa/teler
+module ktbs.me/teler
 
 go 1.13
 

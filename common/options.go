@@ -1,6 +1,6 @@
 package common
 
-import "github.com/kitabisa/teler/pkg/parsers"
+import "ktbs.me/teler/pkg/parsers"
 
 // Options contains the configuration options
 type Options struct {

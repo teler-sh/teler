@@ -6,11 +6,11 @@ import (
 	"regexp"
 	"sync"
 
-	"github.com/kitabisa/teler/common"
-	"github.com/kitabisa/teler/pkg/errors"
-	"github.com/kitabisa/teler/pkg/teler"
 	log "github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
+	"ktbs.me/teler/common"
+	"ktbs.me/teler/pkg/errors"
+	"ktbs.me/teler/pkg/teler"
 )
 
 func init() {

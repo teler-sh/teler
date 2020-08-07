@@ -5,11 +5,11 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/kitabisa/teler/common"
-	"github.com/kitabisa/teler/pkg/errors"
-	"github.com/kitabisa/teler/pkg/matchers"
-	"github.com/kitabisa/teler/pkg/parsers"
 	"gopkg.in/validator.v2"
+	"ktbs.me/teler/common"
+	"ktbs.me/teler/pkg/errors"
+	"ktbs.me/teler/pkg/matchers"
+	"ktbs.me/teler/pkg/parsers"
 )
 
 func validate(options *common.Options) {
