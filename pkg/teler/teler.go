@@ -49,7 +49,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 							cwa := fil.GetArray("filters")
 							for _, v := range cwa {
 								match = matchers.IsMatch(string(v.GetStringBytes("rule")), regexp.QuoteMeta(dec))
-								detect(match, cat+": "+string(v.GetStringBytes("description")), log["request_uri"], log["time_local"])
+								detect(options, log, match, cat+": "+string(v.GetStringBytes("description")), log["request_uri"], log["time_local"])
 							}
 						}
 					}()
@@ -63,11 +63,11 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 						}
 					}
 				}()
-				detect(match, cat, log["http_user_agent"], log["time_local"])
+				detect(options, log, match, cat, log["http_user_agent"], log["time_local"])
 			case "Bad IP Address":
 				ip := "(?m)^" + log["remote_addr"]
 				match = matchers.IsMatch(ip, con)
-				detect(match, cat, log["remote_addr"], log["time_local"])
+				detect(options, log, match, cat, log["remote_addr"], log["time_local"])
 			case "Bad Referrer":
 				ref := "(?m)^"
 				if log["http_referer"] == "-" {
@@ -79,7 +79,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 					ref += req.Host
 				}
 				match = matchers.IsMatch(ref, con)
-				detect(match, cat, log["http_referer"], log["time_local"])
+				detect(options, log, match, cat, log["http_referer"], log["time_local"])
 			case "Directory Bruteforce":
 				req, _ := url.Parse(log["request_uri"])
 				if matchers.IsMatch("^(2|3)[0-9]{2}", log["status"]) {
@@ -88,7 +88,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 
 				if req.Path != "/" {
 					match = matchers.IsMatch(trimFirst(req.Path), con)
-					detect(match, cat, log["request_uri"], log["time_local"])
+					detect(options, log, match, cat, log["request_uri"], log["time_local"])
 				}
 			}
 		}
@@ -100,8 +100,11 @@ func trimFirst(s string) string {
 	return s[i:]
 }
 
-func detect(m bool, c string, l string, t string) {
+func detect(o *common.Options, l map[string]string, m bool, c string, e string, t string) {
 	if m {
-		gologger.Labelf("[%s] [%s] %s", t, c, l)
+		gologger.Labelf("[%s] [%s] %s", t, c, e)
+		// if o.Configs.Alert.Active {
+		// 	sendAlert(o, l)
+		// }
 	}
 }
