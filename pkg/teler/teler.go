@@ -18,6 +18,8 @@ import (
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) {
 	var match bool
+	var threatCat, threatElm string
+
 	log := make(map[string]string)
 	resource := configs.Get()
 
@@ -42,54 +44,65 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 				req, _ := url.Parse(log["request_uri"])
 				query := req.Query()
 				if len(query) > 0 {
-					go func() {
-						for _, q := range query {
-							fil, _ := fastjson.Parse(con)
-							dec, _ := url.QueryUnescape(strings.Join(q, ""))
-							cwa := fil.GetArray("filters")
-							for _, v := range cwa {
-								match = matchers.IsMatch(string(v.GetStringBytes("rule")), regexp.QuoteMeta(dec))
-								detect(options, log, match, cat+": "+string(v.GetStringBytes("description")), log["request_uri"], log["time_local"])
-							}
-						}
-					}()
-				}
-			case "Bad Crawler":
-				go func() {
-					for _, pat := range strings.Split(con, "\n") {
-						match = matchers.IsMatch(pat, log["http_user_agent"])
-						if match {
-							break
+					for _, q := range query {
+						fil, _ := fastjson.Parse(con)
+						dec, _ := url.QueryUnescape(strings.Join(q, ""))
+						cwa := fil.GetArray("filters")
+						for _, v := range cwa {
+							match = matchers.IsMatch(string(v.GetStringBytes("rule")), regexp.QuoteMeta(dec))
+							threatCat = cat + ": " + string(v.GetStringBytes("description"))
+							threatElm = log["request_uri"]
 						}
 					}
-				}()
-				detect(options, log, match, cat, log["http_user_agent"], log["time_local"])
+				}
+			case "Bad Crawler":
+				for _, pat := range strings.Split(con, "\n") {
+					match = matchers.IsMatch(pat, log["http_user_agent"])
+					if match {
+						break
+					}
+				}
+				threatCat = cat
+				threatElm = log["http_user_agent"]
 			case "Bad IP Address":
 				ip := "(?m)^" + log["remote_addr"]
 				match = matchers.IsMatch(ip, con)
-				detect(options, log, match, cat, log["remote_addr"], log["time_local"])
+				threatCat = cat
+				threatElm = log["remote_addr"]
 			case "Bad Referrer":
-				ref := "(?m)^"
 				if log["http_referer"] == "-" {
-					continue
+					break
 				}
+
 				req, _ := url.Parse(log["http_referer"])
+				ref := "(?m)^"
 				ref += req.Path
 				if req.Host != "" {
 					ref += req.Host
 				}
+
 				match = matchers.IsMatch(ref, con)
-				detect(options, log, match, cat, log["http_referer"], log["time_local"])
+				threatCat = cat
+				threatElm = log["http_referer"]
 			case "Directory Bruteforce":
 				req, _ := url.Parse(log["request_uri"])
 				if matchers.IsMatch("^(2|3)[0-9]{2}", log["status"]) {
-					continue
+					break
 				}
 
 				if req.Path != "/" {
 					match = matchers.IsMatch(trimFirst(req.Path), con)
-					detect(options, log, match, cat, log["request_uri"], log["time_local"])
+					threatCat = cat
+					threatElm = log["request_uri"]
 				}
+			}
+
+			if match {
+				gologger.Labelf("[%s] [%s] %s", log["time_local"], threatCat, threatElm)
+				// fmt.Println(log["status"])
+				// if options.Configs.Alert.Active {
+				// 	sendAlert(options, log)
+				// }
 			}
 		}
 	}()
@@ -98,13 +111,4 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 func trimFirst(s string) string {
 	_, i := utf8.DecodeRuneInString(s)
 	return s[i:]
-}
-
-func detect(o *common.Options, l map[string]string, m bool, c string, e string, t string) {
-	if m {
-		gologger.Labelf("[%s] [%s] %s", t, c, e)
-		// if o.Configs.Alert.Active {
-		// 	sendAlert(o, l)
-		// }
-	}
 }
