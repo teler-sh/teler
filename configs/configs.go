@@ -1,6 +1,6 @@
 package configs
 
-// Resources ...
+// Resources define external threats resource
 type Resources struct {
 	Threat []struct {
 		Category string
