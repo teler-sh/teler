@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"ktbs.me/teler/common"
+	"ktbs.me/teler/pkg/errors"
 	"ktbs.me/teler/pkg/requests"
 )
 
@@ -63,6 +64,11 @@ func ParseOptions() *common.Options {
 
 	// Validates all given args/opts also for user teler config
 	validate(options)
+
+	// Check internet connection before get resources
+	if !isConnected() {
+		errors.Exit("Check your internet connection")
+	}
 
 	// Getting all resources
 	requests.Resources(options)
