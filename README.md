@@ -8,10 +8,9 @@
 
 `teler` is an **real-time threat alert** and huting based on web log that runs in a **terminal** on &ast;nix systems. teler is working like an [Intrusion Detection System](https://en.wikipedia.org/wiki/Intrusion_detection_system), with resources that are compact enough to "_dictate_" a threat.
 
-## Resources
-- [Resources](#resources)
+## Table of Contents
+- [Table of Contents](#table-of-contents)
 - [Features](#features)
-  - [Nearly all web log formats...](#nearly-all-web-log-formats)
 - [Why teler?](#why-teler)
 - [Installation](#installation)
   - [from Binary](#from-binary)
@@ -32,9 +31,11 @@
     - [CloudFront](#cloudfront)
   - [Rules](#rules)
   - [Notification](#notification)
-- [Pronunciation](#pronunciation)
 - [Contributors](#contributors)
+  - [Resources](#resources)
+- [Pronunciation](#pronunciation)
 - [Changes](#changes)
+- [License](#license)
 
 ## Features
 
@@ -47,27 +48,11 @@
   teler analyze the log and show you the threats!
 
 * **Nearly All Web Log Formats**<br>
-  teler allows any custom log format string!
+  teler allows any custom log format string! It all depends on how you write the log format in configuration file.
 
 * **Incremental Log Processing**<br>
   Need data persistence rather than [buffer stream](https://linux.die.net/man/1/stdbuf)?
   teler has the ability to process logs incrementally through the on-disk persistence options.
-
-### Nearly all web log formats...
-teler allows any custom log format string. Predefined options include _(see [Configuration](#configuration))_, but
-not limited to:
-
-* Amazon CloudFront (Download Distribution).
-* Amazon Simple Storage Service (S3)
-* AWS Elastic Load Balancing
-* Combined Log Format (XLF/ELF) Apache | Nginx (and/ Ingress)
-* Common Log Format (CLF) Apache
-* Google Cloud Storage.
-* Apache virtual hosts
-* Squid Native Format.
-* W3C format (IIS).
-
-It all depends on how you fill the log format in configuration file.
 
 ## Why teler?
 
@@ -273,10 +258,6 @@ alert:
   provider: "slack"
 ```
 
-## Pronunciation
-
-/télér/ bagaimana bisa seorang pemuda itu teler hanya dengan meminum 1 sloki ciu _(?)_
-
 ## Contributors
 
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitabisa/teler/issues)
@@ -289,14 +270,22 @@ This project exists thanks to all the people who contribute. To learn how to set
 <table>
   <tr>
     <td align="center"><a href="https://dw1.io"><img src="https://avatars0.githubusercontent.com/u/25837540?v=4" width="100px;" alt=""/><br /><sub><b>Dwi Siswanto</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=dwisiswant0" title="Code">💻</a> <a href="https://github.com/kitabisa/teler/commits?author=dwisiswant0" title="Documentation">📖</a> <a href="https://github.com/kitabisa/teler/commits?author=dwisiswant0" title="Tests">⚠️</a> <a href="#ideas-dwisiswant0" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://projectdiscovery.io/open-source"><img src="https://avatars1.githubusercontent.com/u/50994705?v=4" width="100px;" alt=""/><br /><sub><b>ProjectDiscovery</b></sub></a><br /><a href="#tool-projectdiscovery" title="Tools">🔧</a></td>
     <td align="center"><a href="https://twitter.com/satyrius"><img src="https://avatars2.githubusercontent.com/u/278630?v=4" width="100px;" alt=""/><br /><sub><b>Anton Egorov</b></sub></a><br /><a href="#tool-satyrius" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://projectdiscovery.io/open-source"><img src="https://avatars1.githubusercontent.com/u/50994705?v=4" width="100px;" alt=""/><br /><sub><b>ProjectDiscovery</b></sub></a><br /><a href="#tool-projectdiscovery" title="Tools">🔧</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+### Resources
+
+All external resources used in this teler are **NOT** from us. See all peoples who involved in this resources at [teler Resource Collections](https://github.com/kitabisa/teler-resources).
+
+## Pronunciation
+
+/télér/ bagaimana bisa seorang pemuda itu teler hanya dengan meminum 1 sloki ciu _(?)_
 
 ## Changes
 
