@@ -14,6 +14,7 @@ var resource *Resources
 
 // Init resources
 func init() {
+	db := "https://github.com/kitabisa/teler-resources/raw/master/db"
 	resource = &Resources{
 		Threat: []struct {
 			Category string
@@ -23,23 +24,23 @@ func init() {
 		}{
 			{
 				Category: "Common Web Attack",
-				URL:      "https://raw.githubusercontent.com/enygma/expose/master/src/Expose/filter_rules.json",
+				URL:      db + "/common-web-attacks.json",
 			},
 			{
 				Category: "Bad IP Address",
-				URL:      "https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/_generator_lists/bad-ip-addresses.list",
+				URL:      db + "/bad-ip-addresses.txt",
 			},
 			{
 				Category: "Bad Referrer",
-				URL:      "https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/_generator_lists/bad-referrers.list",
+				URL:      db + "/bad-referrers.txt",
 			},
 			{
 				Category: "Bad Crawler",
-				URL:      "https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/raw/Crawlers.txt",
+				URL:      db + "/bad-crawlers.txt",
 			},
 			{
 				Category: "Directory Bruteforce",
-				URL:      "https://raw.githubusercontent.com/maurosoria/dirsearch/master/db/dicc.txt",
+				URL:      db + "/directory-bruteforces.txt",
 			},
 		},
 	}
