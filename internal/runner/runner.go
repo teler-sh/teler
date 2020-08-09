@@ -8,9 +8,9 @@ import (
 
 	log "github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
-	"ktbs.me/teler/common"
-	"ktbs.me/teler/pkg/errors"
-	"ktbs.me/teler/pkg/teler"
+	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/pkg/errors"
+	"ktbs.dev/teler/pkg/teler"
 )
 
 func removeLBR(s string) string {

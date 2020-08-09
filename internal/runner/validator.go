@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"gopkg.in/validator.v2"
-	"ktbs.me/teler/common"
-	"ktbs.me/teler/pkg/errors"
-	"ktbs.me/teler/pkg/matchers"
-	"ktbs.me/teler/pkg/parsers"
+	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/pkg/errors"
+	"ktbs.dev/teler/pkg/matchers"
+	"ktbs.dev/teler/pkg/parsers"
 )
 
 func validate(options *common.Options) {

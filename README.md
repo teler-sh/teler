@@ -93,7 +93,7 @@ The installation is easy. You can download a prebuilt binary from [releases page
 If you have go1.13+ compiler installed and configured:
 
 ```bash
-▶ GO111MODULE=on go get -v -u ktbs.me/teler/cmd/teler
+▶ GO111MODULE=on go get -v -u ktbs.dev/teler/cmd/teler
 ```
 
 In order to update the tool, you can use `-u` flag with `go get` command.

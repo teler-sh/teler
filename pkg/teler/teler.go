@@ -10,9 +10,9 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
-	"ktbs.me/teler/common"
-	"ktbs.me/teler/configs"
-	"ktbs.me/teler/pkg/matchers"
+	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/configs"
+	"ktbs.dev/teler/pkg/matchers"
 )
 
 // Analyze logs from threat resources

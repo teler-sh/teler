@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"ktbs.me/teler/common"
-	"ktbs.me/teler/pkg/errors"
-	"ktbs.me/teler/pkg/requests"
+	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/pkg/errors"
+	"ktbs.dev/teler/pkg/requests"
 )
 
 // ParseOptions will parse args/opts

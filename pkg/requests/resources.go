@@ -6,8 +6,8 @@ import (
 	"reflect"
 
 	log "github.com/projectdiscovery/gologger"
-	"ktbs.me/teler/common"
-	"ktbs.me/teler/configs"
+	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/configs"
 )
 
 var resource *configs.Resources

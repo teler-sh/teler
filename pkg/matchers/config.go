@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"ktbs.me/teler/pkg/errors"
+	"ktbs.dev/teler/pkg/errors"
 )
 
 func errValidate(key string) {
