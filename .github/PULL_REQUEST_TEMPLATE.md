@@ -7,6 +7,9 @@ _(Any change needs to be discussed before proceeding. Failure to do so may resul
 <!-- Please provide enough information so that others can review your pull request. -->
 <!-- For more information, see the CONTRIBUTING.md guide. -->
 
+_Explains the information and/ motivation for making this changes..._
+
+
 ### Proposed of changes
 
 This PR fixes/implements the following **bugs/features**:
@@ -17,9 +20,11 @@ This PR fixes/implements the following **bugs/features**:
 - Feature 2
 - Breaking changes
 
-<!-- Explain the motivation for making this change. What existing problem does the pull request solve? -->
+<!-- What existing problem does the pull request solve? -->
 
 ### How has this been tested?
+
+Proof:
 
 <!-- Demonstrate the code is solid. Example: The exact commands you ran and their output or/ screenshots. -->
 
