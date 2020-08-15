@@ -14,6 +14,7 @@
 - [Why teler?](#why-teler)
 - [Installation](#installation)
   - [from Binary](#from-binary)
+  - [using Docker](#using-docker)
   - [from Source](#from-source)
   - [from GitHub](#from-github)
 - [Usage](#usage)
@@ -71,6 +72,13 @@ The installation is easy. You can download a prebuilt binary from [releases page
 
 ```bash
 ▶ curl -sSfL 'https://github.com/kitabisa/teler/raw/master/install.sh' | sh -s -- -b /usr/local/bin
+```
+
+### using Docker
+
+```bash
+▶ docker build -t teler https://github.com/kitabisa/teler.git
+▶ docker run -i --rm teler [options]
 ```
 
 ### from Source
