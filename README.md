@@ -68,7 +68,7 @@ access log via SSH, or if you simply love working in the terminal_).
 
 ### from Binary
 
-The installation is easy. You can download a prebuilt binary from [releases page](https://github.com/kitabisa/teler/releases), unpack and run! or run with
+The installation is easy. You can download a prebuilt binary from [releases page](https://github.com/kitabisa/teler/releases), unpack and run! or run with:
 
 ```bash
 ▶ curl -sSfL 'https://github.com/kitabisa/teler/raw/master/install.sh' | sh -s -- -b /usr/local/bin
@@ -76,9 +76,10 @@ The installation is easy. You can download a prebuilt binary from [releases page
 
 ### using Docker
 
+Build the Docker image with:
+
 ```bash
 ▶ docker build -t teler https://github.com/kitabisa/teler.git
-▶ docker run -i --rm teler [options]
 ```
 
 ### from Source
@@ -105,9 +106,17 @@ In order to update the tool, you can use `-u` flag with `go get` command.
 Simply, teler can be run with:
 
 ```bash
-▶ [buffer] | teler -c /path/to/config/teler.yaml
+▶ [buffers] | teler -c /path/to/config/teler.yaml
 # or
 ▶ teler -i /path/to/access.log -c /path/to/config/teler.yaml
+```
+
+If you've built teler with a Docker image:
+
+```bash
+▶ [buffers] | docker run -i --rm -e TELER_CONFIG=/path/to/config/teler.yaml teler
+# or
+▶ docker run -i --rm -e TELER_CONFIG=/path/to/config/teler.yaml teler --input /path/to/access.log
 ```
 
 ### Flags
