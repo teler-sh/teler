@@ -90,7 +90,7 @@ access log via SSH, or if you simply love working in the terminal_).
 The installation is easy. You can download a prebuilt binary from [releases page](https://github.com/kitabisa/teler/releases), unpack and run! or run with:
 
 ```bash
-▶ curl -sSfL 'https://github.com/kitabisa/teler/raw/master/install.sh' | sh -s -- -b /usr/local/bin
+▶ curl -sSfL 'https://ktbs.dev/get-teler.sh' | sh -s -- -b /usr/local/bin
 ```
 
 ### using Docker
