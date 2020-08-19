@@ -40,6 +40,6 @@ Fixes #
 - [ ] My code follows the code style of this project.
 - [ ] My change requires a change to the documentation.
   - [ ] I have updated the documentation accordingly.
-- [ ] I have followed the guidelines in our [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/CONTRIBUTING.md) document.
+- [ ] I have followed the guidelines in our [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md) document.
 - [ ] I have written new tests for my changes.
   - [ ] My changes successfully ran and pass tests locally.

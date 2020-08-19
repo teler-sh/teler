@@ -1,6 +1,6 @@
 # Contributing
 
-By participating to this project, you agree to abide our [code of conduct](https://github.com/kitabisa/teler/blob/development/CODE_OF_CONDUCT.md).
+By participating to this project, you agree to abide our [code of conduct](https://github.com/kitabisa/teler/blob/development/.github/CODE_OF_CONDUCT.md).
 
 ## Development
 
@@ -47,6 +47,6 @@ Please also update the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/dev
 
 ### Pull request checks
 
-First, please accept our [CLA](https://github.com/kitabisa/teler/blob/development/CONTRIBUTION_LICENSE_AGREEMENT.md).
+First, please accept our [CLA](https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTION_LICENSE_AGREEMENT.md).
 
 Also, we run a few checks in CI by using GitHub actions, you can see them [here](https://github.com/kitabisa/teler/tree/development/.github/workflows).
