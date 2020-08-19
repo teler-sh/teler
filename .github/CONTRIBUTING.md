@@ -41,7 +41,7 @@ Add your new or updated configuration to `teler.example.yaml` so they will be sh
 
 ### Submit a pull request
 
-As you are ready with your code contribution, push your branch to your `teler` fork and open a pull request against the **development** branch.
+As you are ready with your code contribution, push your branch to your `teler` fork and open a pull request against the **master** branch.
 
 Please also update the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/development/CHANGELOG.md) to note what you've added or fixed.
 
