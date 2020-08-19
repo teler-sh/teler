@@ -1,7 +1,26 @@
 <p align="center">
   <img alt="teler logo" src="https://user-images.githubusercontent.com/25837540/88009716-594ec700-cb3d-11ea-9863-0e44c2e9ea7c.jpg" height="150" />
-  <h3 align="center">teler</h3>
-  <p align="center">Real-time threat alert & hunting</p>
+  <h3 align="center"><b>teler</b></h3>
+</p>
+
+![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)
+[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
+[![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
+![Version](https://img.shields.io/badge/version-0.0.3--dev-blueviolet)
+[![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](https://github.com/kitabisa/teler)
+![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)
+<!-- [![Go report](https://goreportcard.com/badge/ktbs.dev/teler)](https://goreportcard.com/report/ktbs.dev/teler) -->
+
+<p align="center">
+  Real-time threat alert & hunting
+  <br />
+  <a href="https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md">Contribute</a>
+  ·
+  <a href="https://github.com/kitabisa/teler/blob/development/CHANGELOG.md">What's new</a>
+  ·
+  <a href="https://github.com/kitabisa/teler/issues/new/choose">Report Bug</a>
+  ·
+  <a href="https://github.com/kitabisa/teler/issues/new/choose">Request Feature</a>
 </p>
 
 ---
@@ -279,7 +298,7 @@ alert:
 
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitabisa/teler/issues)
 
-This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/CONTRIBUTING.md).
+This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md).
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -310,4 +329,4 @@ For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/devel
 
 ## License
 
-teler is released under MIT. See [LICENSE](https://github.com/kitabisa/teler/blob/development/LICENSE).
+This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/teler/blob/development/LICENSE). Kitabisa teler and any contributions are Copyright © by Dwi Siswanto 2020.
