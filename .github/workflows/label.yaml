@@ -21,5 +21,4 @@ jobs:
       - name: Label Commenter
         uses: peaceiris/actions-label-commenter@v1
         with:
-          config_file: .github/label-commenter.yaml
           github_token: ${{ secrets.GITHUB_TOKEN }}
