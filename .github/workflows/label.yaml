@@ -19,6 +19,6 @@ jobs:
         with:
           ref: main
       - name: Label Commenter
-        uses: peaceiris/actions-label-commenter@v1
+        uses: peaceiris/actions-label-commenter@v1.5.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
