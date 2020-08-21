@@ -1,0 +1,104 @@
+labels:
+  - name: "Status: Available"
+    labeled:
+      issue:
+        body: |
+          It appears to be exactly what we need! Thanks again for your report.
+
+          We will analyze & fix this as soon as possible.
+
+          ![available](https://media.giphy.com/media/LSX49vHf7JHGyGjrC0/giphy.gif)
+  - name: "Status: Review Needed"
+    labeled:
+      pr:
+        body: |
+          Please consider taking a moment for us to review this pull request.
+
+          ![review needed](https://media.giphy.com/media/NYnvbOCBu85Xy/giphy.gif)
+      action: open
+  - name: "Status: Revision Needed"
+    labeled:
+      pr:
+        body: |
+          We thank reviewers for the constructive comments on this pull request.
+          Where appropriate, we believe the additional analyses discussed and/or suggested above have helped us to substantially improve to teler development.
+
+          ![revision needed](https://media.giphy.com/media/E6jscXfv3AkWQ/giphy.gif)
+      action: open
+  - name: "Status: Abandoned"
+    labeled:
+      pr:
+        body: |
+          ![abandoned](https://media.giphy.com/media/h8JEkRgtJYYaxjUaRH/giphy.gif)
+      action: close
+  - name: "Status: Accepted"
+    labeled:
+      pr:
+        body: |
+          Accepted! Thanks for your patience & contributions, wait to be merged.
+
+          ![accepted](https://media.giphy.com/media/brHaCdJqCXijm/giphy.gif)
+      action: open
+  - name: "Status: In Progress"
+    labeled:
+      pr:
+        body: |
+          ![cant wait](https://media.giphy.com/media/ykzXbY24BFqY8/giphy.gif)
+        action: open
+    unlabeled:
+      pr:
+        body: |
+          Are ya done? Ok, we will try and get back to you for review as soon as possible.
+
+          ![work done](https://media.giphy.com/media/l0HTZL6dTfAhCnx60/giphy.gif)
+        action: open
+  - name: "Status: On Hold"
+    labeled:
+      issue:
+        body: |
+          Thank you for raising a issue to us so promptly. Please make sure you have given us as much context as possible.
+
+          We will try and get back to you as soon as possible.
+
+          ![on hold](https://media.giphy.com/media/pS3sageHruJCU/giphy.gif)
+        action: open
+      pr:
+        body: |
+          Thanks for raising your pull request. Please make sure you have followed our [contributing guidelines](https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md).
+
+          We will review it as soon as possible.
+
+          ![on hold](https://media.giphy.com/media/l41K4KlVE8dgozf8I/giphy.gif)
+        action: open
+  - name: "Type: Question"
+    labeled:
+      issue:
+        body: |
+          Please ask questions about teler at the following forum:
+          https://gitter.im/kitabisa-teler/community
+
+          ![question](https://media.giphy.com/media/woqo2w8RoxQbdAWC0l/giphy.gif)
+        action: close
+  - name: "Status: Won't Fix"
+    labeled:
+      issue:
+        body: |
+          This issue won't be fixed. Closed!
+
+          ![wontfix](https://media.giphy.com/media/xT9IguUeFestXvzZyo/giphy.gif)
+        action: close
+    unlabeled:
+      issue:
+        body: |
+          This has become active again.
+
+          ![let me fix you](https://media.giphy.com/media/QsnQsvAkrkKGiHZuo8/giphy.gif)
+        action: open
+  - name: "Status: Duplicate"
+    labeled:
+      issue:
+        body: |
+          This issue already exists, please use the [issue tracker](https://github.com/kitabisa/teler/issues).
+
+          ![duplicate](https://media.giphy.com/media/9S706ievhjXVfG9s9Q/giphy.gif)
+        action: close
