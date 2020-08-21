@@ -16,8 +16,10 @@ jobs:
     steps:
       - name: Check out Code
         uses: actions/checkout@v2
-        with:
-          ref: main
+        env:
+          GITHUB_TRACE=1
+          GIT_CURL_VERBOSE=1
+          
       - name: Label Commenter
         uses: peaceiris/actions-label-commenter@v1.5.0
         with:
