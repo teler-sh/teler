@@ -8,7 +8,7 @@ labels:
           We will analyze & fix this as soon as possible.
 
           ![available](https://media.giphy.com/media/LSX49vHf7JHGyGjrC0/giphy.gif)
-      action: open
+        action: open
   - name: "Status: Review Needed"
     labeled:
       pr:
@@ -16,7 +16,7 @@ labels:
           Please consider taking a moment for us to review this pull request.
 
           ![review needed](https://media.giphy.com/media/NYnvbOCBu85Xy/giphy.gif)
-      action: open
+        action: open
   - name: "Status: Revision Needed"
     labeled:
       pr:
@@ -25,13 +25,13 @@ labels:
           Where appropriate, we believe the additional analyses discussed and/or suggested above have helped us to substantially improve to teler development.
 
           ![revision needed](https://media.giphy.com/media/E6jscXfv3AkWQ/giphy.gif)
-      action: open
+        action: open
   - name: "Status: Abandoned"
     labeled:
       pr:
         body: |
           ![abandoned](https://media.giphy.com/media/h8JEkRgtJYYaxjUaRH/giphy.gif)
-      action: close
+        action: close
   - name: "Status: Accepted"
     labeled:
       pr:
