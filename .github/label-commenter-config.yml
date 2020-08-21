@@ -8,6 +8,7 @@ labels:
           We will analyze & fix this as soon as possible.
 
           ![available](https://media.giphy.com/media/LSX49vHf7JHGyGjrC0/giphy.gif)
+      action: open
   - name: "Status: Review Needed"
     labeled:
       pr:
