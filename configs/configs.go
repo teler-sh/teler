@@ -14,7 +14,7 @@ var resource *Resources
 
 // Init resources
 func init() {
-	db := "https://github.com/kitabisa/teler-resources/raw/master/db"
+	db := "https://raw.githubusercontent.com/kitabisa/teler-resources/master/db"
 	resource = &Resources{
 		Threat: []struct {
 			Category string
