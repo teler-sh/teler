@@ -28,6 +28,15 @@ func validate(options *common.Options) {
 		}
 	}
 
+	if options.Output != "" {
+		f, errOutput := os.OpenFile(options.Output,
+			os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if errOutput != nil {
+			errors.Exit(errOutput.Error())
+		}
+		options.OutFile = f
+	}
+
 	config, errConfig := parsers.GetConfig(options.ConfigFile)
 	if errConfig != nil {
 		errors.Exit(errConfig.Error())
