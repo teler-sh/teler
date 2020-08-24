@@ -1,17 +1,20 @@
 package teler
 
 import (
+	"fmt"
 	"net/url"
 	"reflect"
 	"regexp"
 	"strings"
 	"unicode/utf8"
 
-	"github.com/projectdiscovery/gologger"
+	"github.com/acarl005/stripansi"
+	"github.com/logrusorgru/aurora"
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/configs"
+	"ktbs.dev/teler/pkg/errors"
 	"ktbs.dev/teler/pkg/matchers"
 )
 
@@ -98,8 +101,13 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 			}
 
 			if match {
-				gologger.Labelf("[%s] [%s] %s", log["time_local"], threatCat, threatElm)
-				// fmt.Println(log["status"])
+				out := fmt.Sprintf("[%s] [%s] %s", aurora.Cyan(log["time_local"]), aurora.Yellow(threatCat), aurora.Red(threatElm))
+				if options.Output != "" {
+					if _, write := options.OutFile.WriteString(fmt.Sprintf("%s\n", stripansi.Strip(out))); write != nil {
+						errors.Show(write.Error())
+					}
+				}
+				fmt.Println(out)
 				// if options.Configs.Alert.Active {
 				// 	sendAlert(options, log)
 				// }
