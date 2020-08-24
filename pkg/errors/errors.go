@@ -4,16 +4,23 @@ import (
 	"os"
 	"strings"
 
-	log "github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/gologger"
 )
 
-// Exit will display error details and stop the program
+// Exit will show error details and stop the program
 func Exit(err string) {
+	msg := "Error! "
 	if err != "" {
 		for _, e := range strings.Split(strings.TrimSuffix(err, "\n"), "\n") {
-			log.Errorf("Error! %s.\n", e)
+			msg += e
+			Show(msg)
 		}
-		log.Infof("Use \"-h\" flag for more information about a command.")
+		gologger.Infof("Use \"-h\" flag for more info about command.")
 		os.Exit(1)
 	}
+}
+
+// Show error message
+func Show(msg string) {
+	gologger.Errorf("%s\n", msg)
 }
