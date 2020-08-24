@@ -64,7 +64,7 @@
 * **Real-time**: Hunts are timed to be processed every 20 line-buffer _(can be configured)_ on the terminal
   input and every second on the output. Wagelaseh!
 
-* **Alerting**: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
+* **Alerting** _(roadmap)_: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
 
 * **Latest resources**: Collections is continuously up-to-date, see [resources](#resources).
 
