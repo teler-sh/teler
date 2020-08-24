@@ -41,7 +41,8 @@
   - [Flags](#flags)
 	  - [Config](#config)
 	  - [Input](#input)
-	  - [Concurrency](#concurrency)
+    - [Concurrency](#concurrency)
+	  - [Output](#output)
 - [Configuration](#configuration)
   - [Log format](#log-format)
     - [Apache](#apache)
@@ -154,9 +155,10 @@ Here are all the switches it supports.
 | Flag                	| Description                                                 	| Examples                                                	|
 |----------------------	|-------------------------------------------------------------	|---------------------------------------------------------	|
 | -c,<br> --config     	| teler configuration file                                    	| kubectl logs nginx \| teler -c /path/to/config/teler.yaml |
-| -i,<br> --input      	| Analyze logs from data persistence rather than buffer stream 	| teler -i /var/log/nginx/access.log                      	|
-| -x,<br> --concurrent 	| Set the concurrency level to analyze logs<br>(default: 20)    | tail -f /var/log/nginx/access.log \| teler -x 50        	|
-| -v,<br> --version    	| Show current teler version                                  	| teler -v                                                	|
+| -i,<br> --input       | Analyze logs from data persistence rather than buffer stream  | teler -i /var/log/nginx/access.log |
+| -x,<br> --concurrent  | Set the concurrency level to analyze logs<br>(default: 20)    | tail -f /var/log/nginx/access.log \| teler -x 50 |
+| -o,<br> --output      | Save detected threats to file                                 | teler -i /var/log/nginx/access.log -o /tmp/threats.log |
+| -v,<br> --version    	| Show current teler version                                  	| teler -v |
 
 #### Config
 
@@ -189,6 +191,14 @@ Concurrency is the number of logs analyzed at the same time. Default value teler
 
 ```bash
 ▶ teler -i /var/log/nginx/access.log -x 50
+```
+
+#### Output
+
+You can also save the detected threats into a file with `-o` flag.
+
+```bash
+▶ teler -i /var/log/nginx/access.log -o nginx-threat.log
 ```
 
 ## Configuration
