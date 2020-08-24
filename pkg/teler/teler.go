@@ -55,6 +55,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 							match = matchers.IsMatch(string(v.GetStringBytes("rule")), regexp.QuoteMeta(dec))
 							threatCat = cat + ": " + string(v.GetStringBytes("description"))
 							threatElm = log["request_uri"]
+
+							if match {
+								break
+							}
 						}
 					}
 				}
