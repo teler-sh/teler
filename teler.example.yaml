@@ -4,18 +4,20 @@ log_format: |
   "$http_referer" "$http_user_agent" $request_length $request_time 
   [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id
 
+# To write log format, see https://github.com/kitabisa/teler#configuration
+
 rules:
   threat:
     active: true
     excludes:
       # - "Common Web Attack"
-      - "Bad IP Address"
+      # - "Bad IP Address"
       # - "Bad Referrer"
       # - "Bad Crawler"
       # - "Directory Bruteforce"
 
 alert:
-  active: true
+  active: false
   provider: "slack"
 
 notifications:
