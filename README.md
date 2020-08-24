@@ -39,10 +39,10 @@
   - [from GitHub](#from-github)
 - [Usage](#usage)
   - [Flags](#flags)
-	  - [Config](#config)
-	  - [Input](#input)
+    - [Config](#config)
+    - [Input](#input)
     - [Concurrency](#concurrency)
-	  - [Output](#output)
+    - [Output](#output)
 - [Configuration](#configuration)
   - [Log format](#log-format)
     - [Apache](#apache)
@@ -61,19 +61,19 @@
 
 ## Features
 
-* **Completely Real Time**<br>
-  Hunts are timed to be processed every 20 line-buffer _(can be configured)_ on the terminal
+* **Real-time**: Hunts are timed to be processed every 20 line-buffer _(can be configured)_ on the terminal
   input and every second on the output. Wagelaseh!
 
-* **Minimal Configuration needed**<br>
-  You can just run it against your log file, write the log format and let
+* **Alerting**: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
+
+* **Latest resources**: Collections is continuously up-to-date, see [resources](#resources).
+
+* **Minimal configuration**: You can just run it against your log file, write the log format and let
   teler analyze the log and show you the threats!
 
-* **Nearly All Web Log Formats**<br>
-  teler allows any custom log format string! It all depends on how you write the log format in configuration file.
+* **Flexible log formats**: teler allows any custom log format string! It all depends on how you write the log format in configuration file.
 
-* **Incremental Log Processing**<br>
-  Need data persistence rather than [buffer stream](https://linux.die.net/man/1/stdbuf)?
+* **Incremental log processing**: Need data persistence rather than [buffer stream](https://linux.die.net/man/1/stdbuf)?
   teler has the ability to process logs incrementally through the on-disk persistence options.
 
 ## Why teler?
@@ -152,13 +152,13 @@ This will display help for the tool.
 
 Here are all the switches it supports.
 
-| Flag                	| Description                                                 	| Examples                                                	|
-|----------------------	|-------------------------------------------------------------	|---------------------------------------------------------	|
-| -c,<br> --config     	| teler configuration file                                    	| kubectl logs nginx \| teler -c /path/to/config/teler.yaml |
+| Flag                  | Description                                                   | Examples                                                  |
+|---------------------- |-------------------------------------------------------------  |---------------------------------------------------------  |
+| -c,<br> --config      | teler configuration file                                      | kubectl logs nginx \| teler -c /path/to/config/teler.yaml |
 | -i,<br> --input       | Analyze logs from data persistence rather than buffer stream  | teler -i /var/log/nginx/access.log |
 | -x,<br> --concurrent  | Set the concurrency level to analyze logs<br>(default: 20)    | tail -f /var/log/nginx/access.log \| teler -x 50 |
 | -o,<br> --output      | Save detected threats to file                                 | teler -i /var/log/nginx/access.log -o /tmp/threats.log |
-| -v,<br> --version    	| Show current teler version                                  	| teler -v |
+| -v,<br> --version     | Show current teler version                                    | teler -v |
 
 #### Config
 
