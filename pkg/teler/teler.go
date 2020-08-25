@@ -51,7 +51,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					cwa := fil.GetArray("filters")
 
 					for _, v := range cwa {
-						out["category"] += ": " + string(v.GetStringBytes("description"))
+						out["category"] = cat + ": " + string(v.GetStringBytes("description"))
 						out["element"] = log["request_uri"]
 						quote := regexp.QuoteMeta(dec)
 
