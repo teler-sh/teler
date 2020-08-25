@@ -1,11 +1,14 @@
 package runner
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"regexp"
 	"sync"
 
+	"github.com/acarl005/stripansi"
+	"github.com/logrusorgru/aurora"
 	log "github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
 	"ktbs.dev/teler/common"
@@ -29,7 +32,26 @@ func New(options *common.Options) {
 		wg.Add(1)
 		go func() {
 			for log := range jobs {
-				teler.Analyze(options, log)
+				threat, elm := teler.Analyze(options, log)
+
+				if threat {
+					out := fmt.Sprintf("[%s] [%s] %s",
+						aurora.Cyan(elm["date"]),
+						aurora.Yellow(elm["category"]),
+						aurora.Red(elm["element"]),
+					)
+
+					if options.Output != "" {
+						_, write := options.OutFile.WriteString(
+							fmt.Sprintf("%s\n", stripansi.Strip(out)),
+						)
+						if write != nil {
+							errors.Show(write.Error())
+						}
+					}
+
+					fmt.Println(out)
+				}
 			}
 			wg.Done()
 		}()

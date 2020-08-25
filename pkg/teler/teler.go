@@ -1,28 +1,24 @@
 package teler
 
 import (
-	"fmt"
 	"net/url"
 	"reflect"
 	"regexp"
 	"strings"
 	"unicode/utf8"
 
-	"github.com/acarl005/stripansi"
-	"github.com/logrusorgru/aurora"
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/configs"
-	"ktbs.dev/teler/pkg/errors"
 	"ktbs.dev/teler/pkg/matchers"
 )
 
 // Analyze logs from threat resources
-func Analyze(options *common.Options, logs *gonx.Entry) {
+func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
 	var match bool
-	var threatCat, threatElm string
 
+	out := make(map[string]string)
 	log := make(map[string]string)
 	resource := configs.Get()
 
@@ -31,98 +27,91 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 		log[field.String()] = fields.MapIndex(field).String()
 	}
 
-	go func() {
-		for i := 0; i < len(resource.Threat); i++ {
-			threat := reflect.ValueOf(&resource.Threat[i]).Elem()
-			cat := threat.FieldByName("Category").String()
-			con := threat.FieldByName("Content").String()
-			exc := threat.FieldByName("Exclude").Bool()
+	for i := 0; i < len(resource.Threat); i++ {
+		threat := reflect.ValueOf(&resource.Threat[i]).Elem()
+		cat := threat.FieldByName("Category").String()
+		con := threat.FieldByName("Content").String()
+		exc := threat.FieldByName("Exclude").Bool()
 
-			if exc {
-				continue
-			}
+		out["date"] = log["time_local"]
 
-			switch cat {
-			case "Common Web Attack":
-				req, _ := url.Parse(log["request_uri"])
-				query := req.Query()
-				if len(query) > 0 {
-					for _, q := range query {
-						fil, _ := fastjson.Parse(con)
-						dec, _ := url.QueryUnescape(strings.Join(q, ""))
-						cwa := fil.GetArray("filters")
-						for _, v := range cwa {
-							match = matchers.IsMatch(
-								string(v.GetStringBytes("rule")),
-								regexp.QuoteMeta(dec),
-							)
-							threatCat = cat + ": " + string(v.GetStringBytes("description"))
-							threatElm = log["request_uri"]
+		if exc {
+			continue
+		}
 
-							if match {
-								break
-							}
+		switch cat {
+		case "Common Web Attack":
+			req, _ := url.Parse(log["request_uri"])
+			query := req.Query()
+			if len(query) > 0 {
+				for _, q := range query {
+					fil, _ := fastjson.Parse(con)
+					dec, _ := url.QueryUnescape(strings.Join(q, ""))
+					cwa := fil.GetArray("filters")
+
+					for _, v := range cwa {
+						match = matchers.IsMatch(
+							string(v.GetStringBytes("rule")),
+							regexp.QuoteMeta(dec),
+						)
+						out["category"] = cat + ": " + string(v.GetStringBytes("description"))
+						out["element"] = log["request_uri"]
+
+						if match {
+							break
 						}
 					}
 				}
-			case "Bad Crawler":
-				for _, pat := range strings.Split(con, "\n") {
-					match = matchers.IsMatch(pat, log["http_user_agent"])
-					if match {
-						break
-					}
-				}
-				threatCat = cat
-				threatElm = log["http_user_agent"]
-			case "Bad IP Address":
-				ip := "(?m)^" + log["remote_addr"]
-				match = matchers.IsMatch(ip, con)
-				threatCat = cat
-				threatElm = log["remote_addr"]
-			case "Bad Referrer":
-				if log["http_referer"] == "-" {
+			}
+		case "Bad Crawler":
+			out["category"] = cat
+			out["element"] = log["http_user_agent"]
+
+			for _, pat := range strings.Split(con, "\n") {
+				match = matchers.IsMatch(pat, log["http_user_agent"])
+				if match {
 					break
 				}
+			}
+		case "Bad IP Address":
+			out["category"] = cat
+			out["element"] = log["remote_addr"]
 
-				req, _ := url.Parse(log["http_referer"])
-				ref := "(?m)^"
-				ref += req.Path
-				if req.Host != "" {
-					ref += req.Host
-				}
+			ip := "(?m)^" + log["remote_addr"]
+			match = matchers.IsMatch(ip, con)
+		case "Bad Referrer":
+			out["category"] = cat
+			out["element"] = log["http_referer"]
 
-				match = matchers.IsMatch(ref, con)
-				threatCat = cat
-				threatElm = log["http_referer"]
-			case "Directory Bruteforce":
-				req, _ := url.Parse(log["request_uri"])
-
-				if req.Path != "/" {
-					match = matchers.IsMatch(trimFirst(req.Path), con)
-					threatCat = cat
-					threatElm = log["request_uri"]
-				}
+			if log["http_referer"] == "-" {
+				break
 			}
 
-			if match {
-				out := fmt.Sprintf("[%s] [%s] %s",
-					aurora.Cyan(log["time_local"]),
-					aurora.Yellow(threatCat),
-					aurora.Red(threatElm),
-				)
+			req, _ := url.Parse(log["http_referer"])
+			ref := "(?m)^"
+			ref += req.Path
 
-				if options.Output != "" {
-					_, write := options.OutFile.WriteString(
-						fmt.Sprintf("%s\n", stripansi.Strip(out)),
-					)
-					if write != nil {
-						errors.Show(write.Error())
-					}
-				}
-				fmt.Println(out)
+			if req.Host != "" {
+				ref += req.Host
+			}
+
+			match = matchers.IsMatch(ref, con)
+		case "Directory Bruteforce":
+			out["category"] = cat
+			out["element"] = log["request_uri"]
+
+			req, _ := url.Parse(log["request_uri"])
+
+			if req.Path != "/" {
+				match = matchers.IsMatch(trimFirst(req.Path), con)
 			}
 		}
-	}()
+
+		if match {
+			return match, out
+		}
+	}
+	return match, out
 }
 
 func trimFirst(s string) string {
