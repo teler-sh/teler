@@ -10,12 +10,12 @@ import (
 	"ktbs.dev/teler/resource"
 )
 
-var resource *resource.Resource
+var rsc *resource.Resources
 var exclude bool
 
 // Resources is to getting all available resources
 func Resources(options *common.Options) {
-	resource = resource.Get()
+	rsc = resource.Get()
 	getRules(options)
 }
 
@@ -23,9 +23,9 @@ func getRules(options *common.Options) {
 	client := Client()
 	excludes := options.Configs.Rules.Threat.Excludes
 
-	for i := 0; i < len(resource.Threat); i++ {
+	for i := 0; i < len(rsc.Threat); i++ {
 		exclude = false
-		threat := reflect.ValueOf(&resource.Threat[i]).Elem()
+		threat := reflect.ValueOf(&rsc.Threat[i]).Elem()
 
 		for x := 0; x < len(excludes); x++ {
 			if excludes[x] == threat.FieldByName("Category").String() {

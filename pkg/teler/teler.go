@@ -20,7 +20,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 	out := make(map[string]string)
 	log := make(map[string]string)
-	rsc := resources.Get()
+	rsc := resource.Get()
 
 	fields := reflect.ValueOf(logs).Elem().FieldByName("fields")
 	for _, field := range fields.MapKeys() {
