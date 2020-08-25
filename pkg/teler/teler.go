@@ -98,11 +98,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			}
 
 			req, _ := url.Parse(log["http_referer"])
-			ref := "(?m)^" + req.Path
-
-			if req.Host != "" {
-				ref += req.Host
-			}
+			ref := "(?m)^" + req.Host
 
 			match = matchers.IsMatch(ref, con)
 		case "Directory Bruteforce":
