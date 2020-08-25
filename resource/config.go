@@ -1,4 +1,4 @@
-package configs
+package resource
 
 // Resources define external threats resource
 type Resources struct {

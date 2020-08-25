@@ -5,17 +5,17 @@ import (
 	"net/http"
 	"reflect"
 
-	log "github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/gologger"
 	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/configs"
+	"ktbs.dev/teler/resource"
 )
 
-var resource *configs.Resources
+var resource *resource.Resource
 var exclude bool
 
 // Resources is to getting all available resources
 func Resources(options *common.Options) {
-	resource = configs.Get()
+	resource = resource.Get()
 	getRules(options)
 }
 
@@ -38,7 +38,7 @@ func getRules(options *common.Options) {
 			continue
 		}
 
-		log.Infof("Getting \"%s\" resource...\n", threat.FieldByName("Category").String())
+		gologger.Infof("Getting \"%s\" resource...\n", threat.FieldByName("Category").String())
 
 		req, _ := http.NewRequest("GET", threat.FieldByName("URL").String(), nil)
 		resp, _ := client.Do(req)
