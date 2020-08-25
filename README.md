@@ -44,14 +44,16 @@
     - [Concurrency](#concurrency)
     - [Output](#output)
 - [Configuration](#configuration)
-  - [Log format](#log-format)
+  - [Log formats](#log-formats)
     - [Apache](#apache)
     - [Nginx](#nginx)
     - [Nginx Ingress](#nginx-ingress)
     - [Amazon S3](#amazon-s3)
     - [Elastic LB](#elastic-lb)
     - [CloudFront](#cloudfront)
-  - [Rules](#rules)
+  - [Threat rules](#threat-rules)
+    - [Excludes](#excludes)
+    - [Whitelists](#whitelists)
   - [Notification](#notification)
 - [Contributors](#contributors)
   - [Resources](#resources)
@@ -203,9 +205,9 @@ You can also save the detected threats into a file with `-o` flag.
 
 ## Configuration
 
-`teler` requires a minimum of configuration to process and/ log analysis, and execute threats and/ alerts. See [teler.example.yaml](https://github.com/kitabisa/teler/blob/development/teler.example.yaml) for an example.
+`teler` requires a minimum of configuration to process and/or log analysis, and execute threats and/or alerts. See [teler.example.yaml](https://github.com/kitabisa/teler/blob/development/teler.example.yaml) for an example.
 
-### Log Format
+### Log Formats
 
 Because we use `gonx` package to parse the log, you can write any log format. As an example:
 
@@ -260,7 +262,9 @@ log_format: |
   $http_content_type  $request_length $request_length_start $request_length_end
 ```
 
-### Rules
+### Threat rules
+
+#### Excludes
 
 We include resources for predetermined threats, including:
 - Common Web Attack
@@ -274,12 +278,24 @@ You can disable any type of threat in the `excludes` configuration.
 ```yaml
 rules:
   threat:
-    active: true
     excludes:
       - "Bad IP Address"
 ```
 
 The above format detects threats that are not included as bad IP address, and will not analyze logs/ send alerts for that type.
+
+#### Whitelists
+
+You can also add whitelists to teler configuration.
+
+```yaml
+rules:
+  threat:
+    whitelists:
+      - "okhttp"
+```
+
+All the lists you fill include whitelisting user-agent, request path, HTTP referrer, IP address and/or request query values.
 
 ### Notification
 
