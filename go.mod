@@ -4,7 +4,7 @@ go 1.14
 
 require (
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d
-	github.com/logrusorgru/aurora v0.0.0-20200102142835-e9ef32dff381
+	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/projectdiscovery/gologger v1.0.1
 	github.com/satyrius/gonx v1.3.0
 	github.com/smartystreets/goconvey v1.6.4 // indirect
