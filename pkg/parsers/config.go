@@ -3,8 +3,8 @@ package parsers
 import "io/ioutil"
 
 type options struct {
-	Active   bool     `yaml:"active"`
-	Excludes []string `yaml:"excludes"`
+	Excludes   []string `yaml:"excludes"`
+	Whitelists []string `yaml:"whitelists"`
 }
 
 type slack struct {

@@ -10,8 +10,8 @@ import (
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
 	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/configs"
 	"ktbs.dev/teler/pkg/matchers"
+	"ktbs.dev/teler/resource"
 )
 
 // Analyze logs from threat resources
@@ -20,20 +20,21 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 	out := make(map[string]string)
 	log := make(map[string]string)
-	resource := configs.Get()
+	rsc := resources.Get()
 
 	fields := reflect.ValueOf(logs).Elem().FieldByName("fields")
 	for _, field := range fields.MapKeys() {
 		log[field.String()] = fields.MapIndex(field).String()
 	}
 
-	for i := 0; i < len(resource.Threat); i++ {
-		threat := reflect.ValueOf(&resource.Threat[i]).Elem()
+	for i := 0; i < len(rsc.Threat); i++ {
+		threat := reflect.ValueOf(&rsc.Threat[i]).Elem()
 		cat := threat.FieldByName("Category").String()
 		con := threat.FieldByName("Content").String()
 		exc := threat.FieldByName("Exclude").Bool()
 
 		out["date"] = log["time_local"]
+		out["category"] = cat
 
 		if exc {
 			continue
@@ -50,13 +51,18 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					cwa := fil.GetArray("filters")
 
 					for _, v := range cwa {
+						out["category"] += ": " + string(v.GetStringBytes("description"))
+						out["element"] = log["request_uri"]
+						quote := regexp.QuoteMeta(dec)
+
+						if white := isWhitelist(options, quote); white {
+							break
+						}
+
 						match = matchers.IsMatch(
 							string(v.GetStringBytes("rule")),
-							regexp.QuoteMeta(dec),
+							quote,
 						)
-						out["category"] = cat + ": " + string(v.GetStringBytes("description"))
-						out["element"] = log["request_uri"]
-
 						if match {
 							break
 						}
@@ -64,32 +70,35 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				}
 			}
 		case "Bad Crawler":
-			out["category"] = cat
 			out["element"] = log["http_user_agent"]
+			if white := isWhitelist(options, log["http_user_agent"]); white {
+				break
+			}
 
 			for _, pat := range strings.Split(con, "\n") {
-				match = matchers.IsMatch(pat, log["http_user_agent"])
-				if match {
+				if match = matchers.IsMatch(pat, log["http_user_agent"]); match {
 					break
 				}
 			}
 		case "Bad IP Address":
-			out["category"] = cat
 			out["element"] = log["remote_addr"]
+			if white := isWhitelist(options, log["remote_addr"]); white {
+				break
+			}
 
 			ip := "(?m)^" + log["remote_addr"]
 			match = matchers.IsMatch(ip, con)
 		case "Bad Referrer":
-			out["category"] = cat
 			out["element"] = log["http_referer"]
-
+			if white := isWhitelist(options, log["http_referer"]); white {
+				break
+			}
 			if log["http_referer"] == "-" {
 				break
 			}
 
 			req, _ := url.Parse(log["http_referer"])
-			ref := "(?m)^"
-			ref += req.Path
+			ref := "(?m)^" + req.Path
 
 			if req.Host != "" {
 				ref += req.Host
@@ -97,11 +106,12 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 			match = matchers.IsMatch(ref, con)
 		case "Directory Bruteforce":
-			out["category"] = cat
 			out["element"] = log["request_uri"]
+			if white := isWhitelist(options, log["request_uri"]); white {
+				break
+			}
 
 			req, _ := url.Parse(log["request_uri"])
-
 			if req.Path != "/" {
 				match = matchers.IsMatch(trimFirst(req.Path), con)
 			}
@@ -111,10 +121,23 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			return match, out
 		}
 	}
+
 	return match, out
 }
 
 func trimFirst(s string) string {
 	_, i := utf8.DecodeRuneInString(s)
 	return s[i:]
+}
+
+func isWhitelist(options *common.Options, find string) bool {
+	whitelist := options.Configs.Rules.Threat.Whitelists
+	for i := 0; i < len(whitelist); i++ {
+		match := matchers.IsMatch(whitelist[i], find)
+		if match {
+			return true
+		}
+	}
+
+	return false
 }
