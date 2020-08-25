@@ -1,10 +1,10 @@
+# To write log format, see https://github.com/kitabisa/teler#configuration
 log_format: |
   $remote_addr - [$remote_addr] $remote_user - [$time_local] 
   "$request_method $request_uri $request_protocol" $status $body_bytes_sent 
   "$http_referer" "$http_user_agent" $request_length $request_time 
   [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id
 
-# To write log format, see https://github.com/kitabisa/teler#configuration
 
 rules:
   threat:
@@ -15,6 +15,13 @@ rules:
       # - "Bad Referrer"
       # - "Bad Crawler"
       # - "Directory Bruteforce"
+
+    # It can be user-agent, request path, referrer, IP address or request query values.
+    whitelists:
+      # - "okhttp"
+      # - "/config"
+      # - "https://www.facebook.com"
+      # - "192.168.0.1"
 
 alert:
   active: false
