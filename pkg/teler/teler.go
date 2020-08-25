@@ -52,7 +52,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 						dec, _ := url.QueryUnescape(strings.Join(q, ""))
 						cwa := fil.GetArray("filters")
 						for _, v := range cwa {
-							match = matchers.IsMatch(string(v.GetStringBytes("rule")), regexp.QuoteMeta(dec))
+							match = matchers.IsMatch(
+								string(v.GetStringBytes("rule")),
+								regexp.QuoteMeta(dec),
+							)
 							threatCat = cat + ": " + string(v.GetStringBytes("description"))
 							threatElm = log["request_uri"]
 
@@ -93,9 +96,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 				threatElm = log["http_referer"]
 			case "Directory Bruteforce":
 				req, _ := url.Parse(log["request_uri"])
-				if matchers.IsMatch("^(2|3)[0-9]{2}", log["status"]) {
-					break
-				}
 
 				if req.Path != "/" {
 					match = matchers.IsMatch(trimFirst(req.Path), con)
@@ -105,16 +105,21 @@ func Analyze(options *common.Options, logs *gonx.Entry) {
 			}
 
 			if match {
-				out := fmt.Sprintf("[%s] [%s] %s", aurora.Cyan(log["time_local"]), aurora.Yellow(threatCat), aurora.Red(threatElm))
+				out := fmt.Sprintf("[%s] [%s] %s",
+					aurora.Cyan(log["time_local"]),
+					aurora.Yellow(threatCat),
+					aurora.Red(threatElm),
+				)
+
 				if options.Output != "" {
-					if _, write := options.OutFile.WriteString(fmt.Sprintf("%s\n", stripansi.Strip(out))); write != nil {
+					_, write := options.OutFile.WriteString(
+						fmt.Sprintf("%s\n", stripansi.Strip(out)),
+					)
+					if write != nil {
 						errors.Show(write.Error())
 					}
 				}
 				fmt.Println(out)
-				// if options.Configs.Alert.Active {
-				// 	sendAlert(options, log)
-				// }
 			}
 		}
 	}()
