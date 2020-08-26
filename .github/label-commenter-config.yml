@@ -32,6 +32,10 @@ labels:
         body: |
           ![abandoned](https://media.giphy.com/media/h8JEkRgtJYYaxjUaRH/giphy.gif)
         action: close
+      issue:
+        body: |
+          ![abandoned](https://media.giphy.com/media/h8JEkRgtJYYaxjUaRH/giphy.gif)
+        action: close
   - name: "Status: Accepted"
     labeled:
       pr:
