@@ -42,7 +42,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 		switch cat {
 		case "Common Web Attack":
-			req, _ := url.Parse(log["request_uri"])
+			req, err := url.Parse(log["request_uri"])
+			if err != nil {
+				break
+			}
 			query := req.Query()
 			if len(query) > 0 {
 				for _, q := range query {
@@ -107,7 +110,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				break
 			}
 
-			req, _ := url.Parse(log["request_uri"])
+			req, err := url.Parse(log["request_uri"])
+			if err != nil {
+				break
+			}
 			if req.Path != "/" {
 				match = matchers.IsMatch(trimFirst(req.Path), con)
 			}
