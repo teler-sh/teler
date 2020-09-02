@@ -1,13 +1,13 @@
 package runner
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"os"
 	"regexp"
 	"sync"
 
-	"github.com/acarl005/stripansi"
 	"github.com/logrusorgru/aurora"
 	log "github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
@@ -25,6 +25,7 @@ func removeLBR(s string) string {
 func New(options *common.Options) {
 	var wg sync.WaitGroup
 	var input *os.File
+
 	jobs := make(chan *gonx.Entry)
 	log.Infof("Analyzing...")
 
@@ -32,25 +33,25 @@ func New(options *common.Options) {
 		wg.Add(1)
 		go func() {
 			for log := range jobs {
-				threat, elm := teler.Analyze(options, log)
+				threat, obj := teler.Analyze(options, log)
 
 				if threat {
-					out := fmt.Sprintf("[%s] [%s] %s",
-						aurora.Cyan(elm["date"]),
-						aurora.Yellow(elm["category"]),
-						aurora.Red(elm["element"]),
+					fmt.Printf("[%s] [%s] [%s] %s\n",
+						aurora.Cyan(obj["time_local"]),
+						aurora.Green(obj["remote_addr"]),
+						aurora.Yellow(obj["category"]),
+						aurora.Red(obj[obj["element"]]),
 					)
 
 					if options.Output != "" {
+						json, _ := json.Marshal(obj)
 						_, write := options.OutFile.WriteString(
-							fmt.Sprintf("%s\n", stripansi.Strip(out)),
+							fmt.Sprintf("%s\n", json),
 						)
 						if write != nil {
 							errors.Show(write.Error())
 						}
 					}
-
-					fmt.Println(out)
 				}
 			}
 			wg.Done()
