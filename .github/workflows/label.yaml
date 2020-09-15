@@ -18,6 +18,6 @@ jobs:
         uses: actions/checkout@master
 
       - name: Label Commenter
-        uses: peaceiris/actions-label-commenter@v1.5.0
+        uses: peaceiris/actions-label-commenter@v1.6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
