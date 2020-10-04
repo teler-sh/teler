@@ -1,5 +1,5 @@
 LABEL dev.ktbs.project.name="teler"
-LABEL description="Real-time threat alert & hunting"
+LABEL description="Real-time HTTP Intrusion Detection"
 LABEL version="0.0.1-dev3"
 LABEL repository="https://github.com/kitabisa/teler"
 LABEL maintainer="dwisiswant0"
