@@ -145,7 +145,7 @@ If you've built teler with a Docker image:
 
 This will display help for the tool.
 
-<img src="https://user-images.githubusercontent.com/25837540/88668885-66efe800-d10d-11ea-95b6-038cc3a82406.png">
+<img src="https://user-images.githubusercontent.com/25837540/95018744-d218e600-068b-11eb-8fa1-27ce2458a696.png">
 
 Here are all the switches it supports.
 
