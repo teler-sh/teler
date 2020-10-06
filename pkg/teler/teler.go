@@ -18,7 +18,6 @@ import (
 func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
 	var match bool
 
-	out := make(map[string]string)
 	log := make(map[string]string)
 	rsc := resource.Get()
 
@@ -33,8 +32,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		con := threat.FieldByName("Content").String()
 		exc := threat.FieldByName("Exclude").Bool()
 
-		out["date"] = log["time_local"]
-		out["category"] = cat
+		log["category"] = cat
 
 		if exc {
 			continue
@@ -54,8 +52,8 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					cwa := fil.GetArray("filters")
 
 					for _, v := range cwa {
-						out["category"] = cat + ": " + string(v.GetStringBytes("description"))
-						out["element"] = log["request_uri"]
+						log["category"] = cat + ": " + string(v.GetStringBytes("description"))
+						log["element"] = "request_uri"
 						quote := regexp.QuoteMeta(dec)
 
 						if white := isWhitelist(options, quote); white {
@@ -73,7 +71,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				}
 			}
 		case "Bad Crawler":
-			out["element"] = log["http_user_agent"]
+			log["element"] = "http_user_agent"
 			if white := isWhitelist(options, log["http_user_agent"]); white {
 				break
 			}
@@ -84,7 +82,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				}
 			}
 		case "Bad IP Address":
-			out["element"] = log["remote_addr"]
+			log["element"] = "remote_addr"
 			if white := isWhitelist(options, log["remote_addr"]); white {
 				break
 			}
@@ -92,7 +90,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			ip := "(?m)^" + log["remote_addr"]
 			match = matchers.IsMatch(ip, con)
 		case "Bad Referrer":
-			out["element"] = log["http_referer"]
+			log["element"] = "http_referer"
 			if white := isWhitelist(options, log["http_referer"]); white {
 				break
 			}
@@ -105,7 +103,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 			match = matchers.IsMatch(ref, con)
 		case "Directory Bruteforce":
-			out["element"] = log["request_uri"]
+			log["element"] = "request_uri"
 			if white := isWhitelist(options, log["request_uri"]); white {
 				break
 			}
@@ -120,11 +118,11 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		}
 
 		if match {
-			return match, out
+			return match, log
 		}
 	}
 
-	return match, out
+	return match, log
 }
 
 func trimFirst(s string) string {

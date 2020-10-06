@@ -6,14 +6,14 @@
 ![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-![Version](https://img.shields.io/badge/version-0.0.1--dev2-blueviolet)
+![Version](https://img.shields.io/badge/version-0.0.1--dev.3-blueviolet)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](https://github.com/kitabisa/teler)
 ![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)
 [![Gitter](https://badges.gitter.im/kitabisa-teler/community.svg)](https://gitter.im/kitabisa-teler/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 <!-- [![Go report](https://goreportcard.com/badge/ktbs.dev/teler)](https://goreportcard.com/report/ktbs.dev/teler) -->
 
 <p align="center">
-  Real-time threat alert & hunting
+  Real-time HTTP Intrusion Detection
   <br />
   <a href="https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md">Contribute</a>
   ·
@@ -26,7 +26,7 @@
 
 ---
 
-`teler` is an **real-time threat alert** and huting based on web log that runs in a **terminal** on &ast;nix systems. teler is working like an [Intrusion Detection System](https://en.wikipedia.org/wiki/Intrusion_detection_system), with resources that are compact enough to "_dictate_" a threat.
+`teler` is an **real-time intrusion detection** and threat alert based on web log that runs in a **terminal** with resources we collect and provide by the community. :heart:
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
@@ -80,12 +80,7 @@
 
 ## Why teler?
 
-<img src="https://user-images.githubusercontent.com/25837540/88010437-1130a400-cb3f-11ea-9089-b6a1e2fb1ae5.jpg" height="400">
-
-teler was designed to be a fast, terminal-based threat analyzer. Its core idea
-is to quickly analyze and hunt threats in real time without
-needing to use your browser (_great if you want to do a quick analysis of your
-access log via SSH, or if you simply love working in the terminal_).
+teler was designed to be a fast, terminal-based threat analyzer. Its core idea is to quickly analyze and hunt threats in real time!
 
 ## Installation
 
@@ -150,7 +145,7 @@ If you've built teler with a Docker image:
 
 This will display help for the tool.
 
-<img src="https://user-images.githubusercontent.com/25837540/88668885-66efe800-d10d-11ea-95b6-038cc3a82406.png">
+<img src="https://user-images.githubusercontent.com/25837540/95018744-d218e600-068b-11eb-8fa1-27ce2458a696.png">
 
 Here are all the switches it supports.
 
