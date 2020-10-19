@@ -14,7 +14,7 @@ rules:
       # - "Bad Crawler"
       # - "Directory Bruteforce"
 
-    # It can be user-agent, request path, HTTP referrer, IP address and/or request query values/
+    # It can be user-agent, request path, HTTP referrer, IP address and/or request query values parsed in regExp
     whitelists:
       # - "okhttp"
       # - "/config"
