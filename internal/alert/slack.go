@@ -57,6 +57,8 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 		},
 	}
 
+	// TODO: Displays an error if it does not exceed the rate-limit
+	// nolint:errcheck
 	api.PostMessage(
 		channel,
 		slack.MsgOptionAttachments(reason, request, fields),
