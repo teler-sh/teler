@@ -12,6 +12,7 @@ import (
 	log "github.com/projectdiscovery/gologger"
 	"github.com/satyrius/gonx"
 	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/internal/alert"
 	"ktbs.dev/teler/pkg/errors"
 	"ktbs.dev/teler/pkg/teler"
 )
@@ -52,6 +53,8 @@ func New(options *common.Options) {
 							errors.Show(write.Error())
 						}
 					}
+
+					alert.New(options, obj)
 				}
 			}
 			wg.Done()
