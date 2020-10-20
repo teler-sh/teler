@@ -70,6 +70,8 @@ func notification(options *common.Options) {
 			field.FieldByName("URL").SetString(strings.Replace(TelegramAPI, ":token", field.FieldByName("Token").String(), -1))
 			matchers.IsChatID(field.FieldByName("ChatID").String())
 			matchers.IsParseMode(field.FieldByName("ParseMode").String())
+		case "Discord":
+			// TODO
 		default:
 			errors.Exit(strings.Replace(errors.ErrAlertProvider, ":platform", config.Alert.Provider, -1))
 		}
