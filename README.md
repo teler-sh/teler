@@ -65,15 +65,14 @@
 
 ## Features
 
-* **Real-time**: Hunts are timed to be processed every 20 line-buffer _(can be configured)_ on the terminal
-  input and every second on the output. Wagelaseh!
+* **Real-time**: Analyze logs and identify suspicious activity in real-time.
 
 * **Alerting** _(roadmap)_: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
 
 * **Latest resources**: Collections is continuously up-to-date, see [resources](#resources).
 
 * **Minimal configuration**: You can just run it against your log file, write the log format and let
-  teler analyze the log and show you the threats!
+  teler analyze the log and show you alerts!
 
 * **Flexible log formats**: teler allows any custom log format string! It all depends on how you write the log format in configuration file.
 
