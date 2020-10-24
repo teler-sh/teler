@@ -44,16 +44,6 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 				Value: log["body_bytes_sent"],
 				Short: true,
 			},
-			{
-				Title: "Upstream name",
-				Value: log["proxy_upstream_name"],
-				Short: true,
-			},
-			{
-				Title: "Upstream address",
-				Value: log["upstream_addr"],
-				Short: true,
-			},
 		},
 	}
 
