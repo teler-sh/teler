@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="teler logo" src="https://user-images.githubusercontent.com/25837540/88009716-594ec700-cb3d-11ea-9863-0e44c2e9ea7c.jpg" height="150" />
+  <a href="#"><img alt="teler" src="https://user-images.githubusercontent.com/25837540/97091757-7200d880-1668-11eb-82c4-e5c4971d2bc8.png" height="400" /></a>
   <h3 align="center"><b>teler</b></h3>
 </p>
 
