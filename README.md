@@ -28,6 +28,8 @@
 
 `teler` is an **real-time intrusion detection** and threat alert based on web log that runs in a **terminal** with resources we collect and provide by the community. :heart:
 
+[![asciicast](https://asciinema.org/a/366830.svg)](https://asciinema.org/a/366830)
+
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
