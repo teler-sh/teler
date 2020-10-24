@@ -46,7 +46,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			}
 			query := req.Query()
 			if len(query) > 0 {
-				for _, q := range query {
+				for p, q := range query {
 					fil, _ := fastjson.Parse(con)
 					dec, _ := url.QueryUnescape(strings.Join(q, ""))
 					cwa := fil.GetArray("filters")
@@ -56,8 +56,8 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 						log["element"] = "request_uri"
 						quote := regexp.QuoteMeta(dec)
 
-						if white := isWhitelist(options, quote); white {
-							break
+						if white := isWhitelist(options, p+"="+dec); white {
+							continue
 						}
 
 						match = matchers.IsMatch(
