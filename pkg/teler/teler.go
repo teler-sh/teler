@@ -112,8 +112,16 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			if err != nil {
 				break
 			}
+
 			if req.Path != "/" {
 				match = matchers.IsMatch(trimFirst(req.Path), con)
+			}
+
+			if match {
+				switch log["status"] {
+				case "200", "204", "304":
+					match = false
+				}
 			}
 		}
 
