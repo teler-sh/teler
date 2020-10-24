@@ -297,8 +297,9 @@ All the lists you fill include whitelisting user-agent, request path, HTTP refer
 ### Notification
 
 We provide alert notification options:
-- Slack
-- or Telegram
+- Slack,
+- Telegram _(roadmap)_, or
+- Discord _(roadmap)_
 
 Configure the notification alerts needed on:
 
