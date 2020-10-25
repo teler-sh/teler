@@ -350,7 +350,7 @@ This project exists thanks to all the people who contribute. To learn how to set
 
 ### Resources
 
-All external resources used in this teler are **NOT** from us. See all peoples who involved in this resources at [teler Resource Collections](https://github.com/kitabisa/teler-resources).
+All external resources used in this teler are **NOT** provided by us. See all peoples who involved in this resources at [teler Resource Collections](https://github.com/kitabisa/teler-resources).
 
 ## Pronunciation
 
