@@ -9,7 +9,8 @@
 ![Version](https://img.shields.io/badge/version-0.0.1--beta3.1-blueviolet)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](https://github.com/kitabisa/teler)
 ![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)
-[![Gitter](https://badges.gitter.im/kitabisa-teler/community.svg)](https://gitter.im/kitabisa-teler/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+<!-- [![Gitter](https://badges.gitter.im/kitabisa-teler/community.svg)](https://gitter.im/kitabisa-teler/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) -->
 <!-- [![Go report](https://goreportcard.com/badge/ktbs.dev/teler)](https://goreportcard.com/report/ktbs.dev/teler) -->
 
 <p align="center">
