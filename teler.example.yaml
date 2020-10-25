@@ -16,10 +16,10 @@ rules:
 
     # It can be user-agent, request path, HTTP referrer, IP address and/or request query values parsed in regExp
     whitelists:
-      # - "okhttp"
-      # - "/config"
-      # - "https://www.facebook.com"
-      # - "192.168.0.1"
+      # - "(curl|Go-http-client|okhttp)/*"
+      # - "^/wp-login\.php"
+      # - "https://www\.facebook\.com"
+      # - "192\.168\.0\.1"
 
 alert:
   active: false
