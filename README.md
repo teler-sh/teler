@@ -292,7 +292,7 @@ The above format detects threats that are not included as bad IP address, and wi
 
 #### Whitelists
 
-You can also add whitelists (processed as _regExp_) to teler configuration.
+You can also add whitelists to teler configuration.
 
 ```yaml
 rules:
@@ -302,7 +302,7 @@ rules:
       - "^/wp-login\\.php"
 ```
 
-It covers the entire HTTP request, please write it with caution!
+It covers the entire HTTP request and processed as _regExp_, please write it with caution!
 
 ### Notification
 
