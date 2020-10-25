@@ -299,7 +299,7 @@ rules:
   threat:
     whitelists:
       - "(curl|Go-http-client|okhttp)/*"
-      - "^/wp-login\.php"
+      - "^/wp-login\\.php"
 ```
 
 It covers the entire HTTP request, please write it with caution!
