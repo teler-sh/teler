@@ -1,6 +1,7 @@
 package alert
 
 import (
+	"fmt"
 	"github.com/slack-go/slack"
 )
 
@@ -13,7 +14,15 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 	}
 	request := slack.Attachment{
 		Title: "Request",
-		Text:  log[log["element"]],
+		Text: fmt.Sprintf(
+			"%s %s %s",
+			log["request_method"], log["request_uri"], log["request_protocol"],
+		),
+		Color: color,
+	}
+	element := slack.Attachment{
+		Title: "Element",
+		Text:  fmt.Sprintf("`%s`", log[log["element"]]),
 		Color: color,
 	}
 	fields := slack.Attachment{
@@ -22,6 +31,11 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 			{
 				Title: "Date",
 				Value: log["time_local"],
+				Short: true,
+			},
+			{
+				Title: "IP Address",
+				Value: log["remote_addr"],
 				Short: true,
 			},
 			{
@@ -51,7 +65,7 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 	// nolint:errcheck
 	api.PostMessage(
 		channel,
-		slack.MsgOptionAttachments(reason, request, fields),
+		slack.MsgOptionAttachments(reason, request, element, fields),
 		slack.MsgOptionAsUser(true),
 	)
 }
