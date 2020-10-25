@@ -5,6 +5,6 @@ The community will be thankful to your contributions. :star:
 
 ## Reporting a Vulnerability
 
-Please report the security vulnerabilities via Issues Section or email `secinfo<at>kitabisa.com`
+Please report the security vulnerabilities via Issues Section or email `infosec<at>kitabisa.com`
 
 <!-- ## Past Security Vulnerabilities -->
