@@ -28,12 +28,11 @@
 
 `teler` is an **real-time intrusion detection** and threat alert based on web log that runs in a **terminal** with resources we collect and provide by the community. :heart:
 
-[![asciicast](https://asciinema.org/a/366830.svg)](https://asciinema.org/a/366830)
-
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Why teler?](#why-teler)
+- [Demo](#demo)
 - [Installation](#installation)
   - [from Binary](#from-binary)
   - [using Docker](#using-docker)
@@ -82,6 +81,12 @@
 ## Why teler?
 
 teler was designed to be a fast, terminal-based threat analyzer. Its core idea is to quickly analyze and hunt threats in real time!
+
+## Demo
+
+| **Buffer-streams** 	| **Incremental** 	|
+|--------------------	|-----------------	|
+| <a href="https://asciinema.org/a/367616" alt="teler"><img src="https://asciinema.org/a/367616.svg"></a>	| <a href="https://asciinema.org/a/367610" alt="teler"><img src="https://asciinema.org/a/367610.svg"></a>	|
 
 ## Installation
 
