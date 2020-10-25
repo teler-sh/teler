@@ -2,9 +2,14 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-beta3.2
+
+- Delete element in Slack alert
+- Move Slack alert parts
+
 ### v0.0.1-dev.4.2
 
-- Add request, element & remote IP addr parts on Slack alerts 
+- Add remote IP addr part on Slack alert
 
 ### v0.0.1-beta3.1
 
