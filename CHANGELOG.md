@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-dev.4.2
+
+- Add request, element & remote IP addr parts on Slack alerts 
+
 ### v0.0.1-beta3.1
 
 - Update documentations
@@ -10,19 +14,6 @@ All notable changes to this project should be documented in this file.
 
 - Removes default attachments alert
 - Fix ignored whitelists on query parameters (#28)
-
-### v0.0.1-dev.4
-
-- Add alerting packages
-
-### v0.0.1-beta3
-
-- Add `nolint` for GitHub workflow
-
-### v0.0.1-dev.3
-
-- Add CodeQL DB to gitignore
-- Update documentations
 
 ### v0.0.1-beta2
 
