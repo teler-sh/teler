@@ -5,6 +5,7 @@ All notable changes to this project should be documented in this file.
 ### v0.0.1-dev.4.1
 
 - Removes default attachments alert
+- Fix ignored whitelists on query parameters (#28)
 
 ### v0.0.1-dev.4
 
@@ -33,6 +34,7 @@ All notable changes to this project should be documented in this file.
 ### v0.0.1-rc1.2
 
 - Fix mismatch pattern of referrer
+- Add whitelist for logs (#16)
 
 ### v0.0.1-rc1
 
