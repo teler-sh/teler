@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-beta3.1
+
+- Update documentations
+
 ### v0.0.1-dev.4.1
 
 - Removes default attachments alert
