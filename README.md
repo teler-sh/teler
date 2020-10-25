@@ -6,7 +6,7 @@
 ![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-![Version](https://img.shields.io/badge/version-0.0.1--dev.4.1-blueviolet)
+![Version](https://img.shields.io/badge/version-0.0.1--beta3.1-blueviolet)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](https://github.com/kitabisa/teler)
 ![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)
 [![Gitter](https://badges.gitter.im/kitabisa-teler/community.svg)](https://gitter.im/kitabisa-teler/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
