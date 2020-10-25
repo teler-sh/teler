@@ -27,7 +27,7 @@
 
 ---
 
-`teler` is an **real-time intrusion detection** and threat alert based on web log that runs in a **terminal** with resources we collect and provide by the community. :heart:
+`teler` is an **real-time intrusion detection** and threat alert based on web log that runs in a **terminal** with resources that we collect and provide by the community. :heart:
 
 [![teler](https://user-images.githubusercontent.com/25837540/97096468-f8ccaa00-1696-11eb-8830-0d3a7be45a2d.gif)](#)
 
@@ -86,6 +86,8 @@
 teler was designed to be a fast, terminal-based threat analyzer. Its core idea is to quickly analyze and hunt threats in real time!
 
 ## Demo
+
+Here is a preview of `teler` with conditions of use as:
 
 | **Buffer-streams** 	| **Incremental** 	|
 |--------------------	|-----------------	|
@@ -277,7 +279,7 @@ We include resources for predetermined threats, including:
 - Bad Crawler
 - Directory Bruteforce
 
-You can disable any type of threat in the `excludes` configuration.
+You can disable any type of threat in the `excludes` configuration _(case-sensitive)_.
 
 ```yaml
 rules:
@@ -290,16 +292,17 @@ The above format detects threats that are not included as bad IP address, and wi
 
 #### Whitelists
 
-You can also add whitelists to teler configuration.
+You can also add whitelists (processed as _regExp_) to teler configuration.
 
 ```yaml
 rules:
   threat:
     whitelists:
-      - "okhttp"
+      - "(curl|Go-http-client|okhttp)/*"
+      - "^/wp-login\.php"
 ```
 
-All the lists you fill include whitelisting user-agent, request path, HTTP referrer, IP address and/or request query values.
+It covers the entire HTTP request, please write it with caution!
 
 ### Notification
 
