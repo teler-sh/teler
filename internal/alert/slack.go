@@ -20,11 +20,6 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 		),
 		Color: color,
 	}
-	element := slack.Attachment{
-		Title: "Element",
-		Text:  fmt.Sprintf("`%s`", log[log["element"]]),
-		Color: color,
-	}
 	fields := slack.Attachment{
 		Color: color,
 		Fields: []slack.AttachmentField{
@@ -65,7 +60,7 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 	// nolint:errcheck
 	api.PostMessage(
 		channel,
-		slack.MsgOptionAttachments(reason, request, element, fields),
+		slack.MsgOptionAttachments(reason, request, fields),
 		slack.MsgOptionAsUser(true),
 	)
 }
