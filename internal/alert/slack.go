@@ -39,13 +39,13 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 				Short: true,
 			},
 			{
-				Title: "Referrer",
-				Value: log["http_referer"],
+				Title: "User-Agent",
+				Value: log["http_user_agent"],
 				Short: true,
 			},
 			{
-				Title: "User-Agent",
-				Value: log["http_user_agent"],
+				Title: "Referrer",
+				Value: log["http_referer"],
 				Short: true,
 			},
 			{
