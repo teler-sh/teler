@@ -1,23 +1,84 @@
 package matchers
 
 import (
-	"os"
-	"os/exec"
 	"testing"
 )
 
 func TestIsLogformat(t *testing.T) {
-	fnName := "TestIsLogformat"
+	fnTest := "IsLogFormat"
+	fnName := "Test" + fnTest
 	if IsEnvSet(fnName) {
 		IsLogformat(GetTestArgEnv(fnName))
 		return
 	}
 
-	cmd := exec.Command(os.Args[0], "-test.run=TestIsLogformat")
-	cmd.Env = append(os.Environ(), "TEST_TestIsLogformat=1")
-	err := cmd.Run()
-	if e, ok := err.(*exec.ExitError); ok && !e.Success() {
+	type args struct {
+		text string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			name: "invalid log format",
+			args: args{
+				text: "",
+			},
+			wantErr: true,
+		},
+		{
+			name: "no $ sign",
+			args: args{
+				text: "remote_addr",
+			},
+			wantErr: true,
+		},
+		{
+			name: "valid log format",
+			args: args{
+				text: "$remote_addr",
+			},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			err := InitExecCommand(fnName, tt.args.text)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf(fnTest+"() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+		})
+	}
+}
+
+func TestIsToken(t *testing.T) {
+	fnTest := "IsToken"
+	fnName := "Test" + fnTest
+	if IsEnvSet(fnName) {
+		IsToken(GetTestArgEnv(fnName))
 		return
 	}
-	t.Fatalf("process ran with err %v, want exit status 1", err)
+
+	type args struct {
+		text string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		// TODO:
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			err := InitExecCommand(fnName, tt.args.text)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf(fnTest+"() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+		})
+	}
+
 }
