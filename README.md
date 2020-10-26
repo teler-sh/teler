@@ -367,3 +367,5 @@ For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/devel
 ## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/teler/blob/development/LICENSE). Kitabisa teler and any contributions are Copyright © by Dwi Siswanto 2020.
+
+[![Stargazers over time](https://starchart.cc/kitabisa/teler.svg)](https://starchart.cc/kitabisa/teler)
