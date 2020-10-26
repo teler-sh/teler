@@ -35,8 +35,16 @@ jobs:
         with:
           version: v1.29
 
-      - name: Run tests
-        run: make test
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: go
+
+      # - name: Run tests
+      #   run: make test
 
       - name: Compile the project
         run: make build
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
