@@ -1,20 +1,23 @@
 package matchers
 
-import "testing"
+import (
+	"os"
+	"os/exec"
+	"testing"
+)
 
 func TestIsLogformat(t *testing.T) {
-	type args struct {
-		s string
+	fnName := "TestIsLogformat"
+	if IsEnvSet(fnName) {
+		IsLogformat(GetTestArgEnv(fnName))
+		return
 	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
+
+	cmd := exec.Command(os.Args[0], "-test.run=TestIsLogformat")
+	cmd.Env = append(os.Environ(), "TEST_TestIsLogformat=1")
+	err := cmd.Run()
+	if e, ok := err.(*exec.ExitError); ok && !e.Success() {
+		return
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			IsLogformat(tt.args.s)
-		})
-	}
+	t.Fatalf("process ran with err %v, want exit status 1", err)
 }
