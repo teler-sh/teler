@@ -1,17 +1,16 @@
 package requests
 
 import (
-	"crypto/tls"
 	"net"
 	"net/http"
 	"time"
 )
 
+// Client define its HTTP client
 func Client() *http.Client {
 	tr := &http.Transport{
 		MaxIdleConns:    30,
 		IdleConnTimeout: time.Second,
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		DialContext: (&net.Dialer{
 			Timeout:   time.Second * 30,
 			KeepAlive: time.Second,
