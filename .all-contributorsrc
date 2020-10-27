@@ -52,6 +52,15 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "fairyhunter13",
+      "name": "fairyhunter13",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/12372147?v=4",
+      "profile": "https://github.com/fairyhunter13",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
