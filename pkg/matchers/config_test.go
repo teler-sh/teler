@@ -1,7 +1,12 @@
 package matchers
 
 import (
+	"flag"
+	"math/rand"
+	"os"
+	"strings"
 	"testing"
+	"time"
 
 	"ktbs.dev/teler/pkg/errors"
 )
@@ -200,6 +205,25 @@ func TestIsParseMode(t *testing.T) {
 	}
 }
 
+func TestMain(m *testing.M) {
+	flag.Parse()
+	rand.Seed(time.Now().UTC().UnixNano())
+	os.Exit(m.Run())
+}
+
+func randomChannelID() string {
+	numStr := "0123456789"
+	minLn := 9
+	maxLn := 13
+	ln := minLn + rand.Intn(maxLn-minLn)
+	lenNum := len(numStr)
+	var res strings.Builder
+	for i := 1; i <= ln; i++ {
+		res.WriteByte(numStr[rand.Intn(lenNum)])
+	}
+	return res.String()
+}
+
 func TestIsChannel(t *testing.T) {
 	type args struct {
 		s string
@@ -217,16 +241,9 @@ func TestIsChannel(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name: "Invalid Slack channel ID",
-			args: args {
-				s: "kitabisa13",
-			},
-			wantErr: true,
-		},
-		{
 			name: "Slack channel ID is valid",
 			args: args {
-				s: "KITABISA13",
+				s: randomChannelID(),
 			},
 			wantErr: false,
 		},
