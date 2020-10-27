@@ -16,28 +16,21 @@ func TestIsLogformat(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "invalid log format",
+			name: "Invalid log format",
 			args: args{
 				s: "",
 			},
 			wantErr: true,
 		},
 		{
-			name: "no $ sign",
+			name: "Invalid log format: need $ sign",
 			args: args{
 				s: "remote_addr",
 			},
 			wantErr: true,
 		},
 		{
-			name: "nonexist required log format",
-			args: args{
-				s: "$upstream_addr",
-			},
-			wantErr: true,
-		},
-		{
-			name: "valid log format",
+			name: "Log format is valid",
 			args: args{
 				s: "$request_method",
 			},
@@ -68,21 +61,21 @@ func TestIsToken(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "invalid token",
+			name: "Invalid token",
 			args: args{
 				s: "hola",
 			},
 			wantErr: true,
 		},
 		{
-			name: "valid slack token",
+			name: "Token is valid",
 			args: args{
 				s: "xoxp-0123456789-012345678901-y",
 			},
 			wantErr: false,
 		},
 		{
-			name: "valid telegram token",
+			name: "Token is valid",
 			args: args{
 				s: "012345678:abcdefghijklmnopqrstuvwxyz012345678",
 			},
@@ -113,21 +106,21 @@ func TestIsHexcolor(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "invalid hex color",
+			name: "Invalid hex color code",
 			args: args{
 				s: "\u2713",
 			},
 			wantErr: true,
 		},
 		{
-			name: "invalid hex syntax",
+			name: "Invalid hex color code",
 			args: args{
 				s: "#af01",
 			},
 			wantErr: true,
 		},
 		{
-			name: "valid hex color",
+			name: "Hex color code is valid",
 			args: args{
 				s: "#F00000",
 			},
@@ -158,35 +151,35 @@ func TestIsParseMode(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "invalid parse mode",
+			name: "Invalid Telegram parse_mode, only accept: Markdown, MarkdownV2 & HTML (case-sensitive)",
 			args: args{
 				s: "Latex",
 			},
 			wantErr: true,
 		},
 		{
-			name: "outdated markdown",
+			name: "Telegram parse_mode is valid",
 			args: args{
-				s: "MarkdownV1",
+				s: "Markdown",
 			},
-			wantErr: true,
+			wantErr: false,
 		},
 		{
-			name: "case sensitive invalid html",
+			name: "Invalid parse_mode, only accept: Markdown, MarkdownV2 & HTML (case-sensitive)",
 			args: args{
 				s: "html",
 			},
 			wantErr: true,
 		},
 		{
-			name: "valid markdown",
+			name: "parse_mode is valid",
 			args: args{
 				s: "MarkdownV2",
 			},
 			wantErr: false,
 		},
 		{
-			name: "valid html",
+			name: "parse_mode is valid",
 			args: args{
 				s: "HTML",
 			},
@@ -217,21 +210,21 @@ func TestIsChannel(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "invalid channel format",
+			name: "Invalid Slack channel ID",
 			args: args{
 				s: "hola",
 			},
 			wantErr: true,
 		},
 		{
-			name: "invalid lowercase channel name",
+			name: "Invalid Slack channel ID",
 			args: args{
 				s: "kitabisa13",
 			},
 			wantErr: true,
 		},
 		{
-			name: "valid channel format",
+			name: "Slack channel ID is valid",
 			args: args{
 				s: "KITABISA13",
 			},
@@ -262,14 +255,14 @@ func TestIsChatID(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "invalid chat id",
+			name: "Invalid Telegram chat_id",
 			args: args{
 				s: "hola",
 			},
 			wantErr: true,
 		},
 		{
-			name: "digit chat id",
+			name: "Telegram chat_id is valid",
 			args: args{
 				s: "12345678",
 			},
