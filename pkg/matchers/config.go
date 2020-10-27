@@ -36,7 +36,7 @@ func IsHexcolor(s string) {
 // IsParseMode validates the parse mode for Telegram
 func IsParseMode(s string) {
 	if regexp := IsMatch(PatternParseMode, s); !regexp {
-		errValidate("parse mode [Mardown(v2), or HTML]")
+		errValidate("parse mode [Markdown(v2), or HTML]")
 	}
 }
 
@@ -47,9 +47,9 @@ func IsChannel(s string) {
 	}
 }
 
-// IsChatID validates the chat_id for Slack
+// IsChatID validates the chat_id for Telegram
 func IsChatID(s string) {
-	if _, isFloat := strconv.ParseFloat(s, 8); isFloat != nil {
+	if _, isFloat := strconv.ParseFloat(s, 64); isFloat != nil {
 		errValidate("chat_id")
 	}
 }
