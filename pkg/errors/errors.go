@@ -7,6 +7,9 @@ import (
 	"github.com/projectdiscovery/gologger"
 )
 
+// ExitFunc specifies the os.Exit function
+var ExitFunc = os.Exit
+
 // Exit will show error details and stop the program
 func Exit(err string) {
 	msg := "Error! "
@@ -16,7 +19,7 @@ func Exit(err string) {
 			Show(msg)
 		}
 		gologger.Infof("Use \"-h\" flag for more info about command.")
-		os.Exit(1)
+		ExitFunc(1)
 	}
 }
 
