@@ -7,12 +7,12 @@ import (
 
 func toSlack(token string, channel string, color string, log map[string]string) {
 	api := slack.New(token)
-	reason := slack.Attachment{
+	reason := slack.Attachment {
 		AuthorName: ":warning: teler Alert",
 		Title:      log["category"],
 		Color:      color,
 	}
-	request := slack.Attachment{
+	request := slack.Attachment {
 		Title: "Request",
 		Text: fmt.Sprintf(
 			"%s %s %s",
@@ -20,9 +20,9 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 		),
 		Color: color,
 	}
-	fields := slack.Attachment{
+	fields := slack.Attachment {
 		Color: color,
-		Fields: []slack.AttachmentField{
+		Fields: []slack.AttachmentField {
 			{
 				Title: "Date",
 				Value: log["time_local"],
