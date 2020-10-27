@@ -47,7 +47,7 @@ func TestIsLogformat(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var code int
-			errors.ExitFunc = func(c int) {
+			errors.Abort = func(c int) {
 				code = c
 			}
 			IsLogformat(tt.args.s)
@@ -92,7 +92,7 @@ func TestIsToken(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var code int
-			errors.ExitFunc = func(c int) {
+			errors.Abort = func(c int) {
 				code = c
 			}
 			IsToken(tt.args.s)
@@ -137,7 +137,7 @@ func TestIsHexcolor(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var code int
-			errors.ExitFunc = func(c int) {
+			errors.Abort = func(c int) {
 				code = c
 			}
 			IsHexcolor(tt.args.s)
@@ -196,7 +196,7 @@ func TestIsParseMode(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var code int
-			errors.ExitFunc = func(c int) {
+			errors.Abort = func(c int) {
 				code = c
 			}
 			IsParseMode(tt.args.s)
@@ -241,7 +241,7 @@ func TestIsChannel(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var code int
-			errors.ExitFunc = func(c int) {
+			errors.Abort = func(c int) {
 				code = c
 			}
 			IsChannel(tt.args.s)
@@ -279,7 +279,7 @@ func TestIsChatID(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var code int
-			errors.ExitFunc = func(c int) {
+			errors.Abort = func(c int) {
 				code = c
 			}
 			IsChatID(tt.args.s)
