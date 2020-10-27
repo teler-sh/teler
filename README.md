@@ -345,6 +345,7 @@ This project exists thanks to all the people who contribute. To learn how to set
     <td align="center"><a href="https://twitter.com/satyrius"><img src="https://avatars2.githubusercontent.com/u/278630?v=4" width="100px;" alt=""/><br /><sub><b>Anton Egorov</b></sub></a><br /><a href="#tool-satyrius" title="Tools">🔧</a></td>
     <td align="center"><a href="https://github.com/0ktavandi"><img src="https://avatars0.githubusercontent.com/u/26356781?v=4" width="100px;" alt=""/><br /><sub><b>0ktavandi</b></sub></a><br /><a href="#ideas-0ktavandi" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http:///instagram.com/fikcompany"><img src="https://avatars3.githubusercontent.com/u/73404079?v=4" width="100px;" alt=""/><br /><sub><b>Fik</b></sub></a><br /><a href="#design-fikridhiyau" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/fairyhunter13"><img src="https://avatars3.githubusercontent.com/u/12372147?v=4" width="100px;" alt=""/><br /><sub><b>fairyhunter13</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=fairyhunter13" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
