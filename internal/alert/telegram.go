@@ -23,11 +23,9 @@ func toTelegram(token string, chatID string, parseMode string, log map[string]st
 	message := telegramBot.NewMessage(id, telegramMessage(log))
 	message.ParseMode = parseMode
 
+	// TODO: Displays an error if it does not exceed the rate-limit
 	// nolint:errcheck
-	_, err = api.Send(message)
-	if err != nil {
-		errors.Show(err.Error())
-	}
+	api.Send(message)
 }
 
 func telegramMessage(log map[string]string) string {
