@@ -23,7 +23,6 @@ rules:
 
 alert:
   active: false
-  # supported `slack` or `telegram`
   provider: "slack"
 
 notifications:

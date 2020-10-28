@@ -319,6 +319,7 @@ notifications:
     token: "xoxb-..."
     color: "#ffd21a"
     channel: "G30SPKI"
+
   telegram:
     token: "123456:ABC-DEF1234...-..."
     chat_id: "-111000"
