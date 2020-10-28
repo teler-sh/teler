@@ -24,7 +24,12 @@ func New(options *common.Options, log map[string]string) {
 				log,
 			)
 		case "Telegram":
-			// TODO
+			toTelegram(
+				field.FieldByName("Token").String(),
+				field.FieldByName("ChatID").String(),
+				field.FieldByName("ParseMode").String(),
+				log,
+			)
 		case "Discord":
 			// TODO
 		}

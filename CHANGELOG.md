@@ -31,6 +31,10 @@ All notable changes to this project should be documented in this file.
 - Fix invalid URL escape by adding error handle
 - Fix justifies common web attack category
 
+### v0.0.1-rc1.3
+
+- Add telegram alerting
+
 ### v0.0.1-rc1.2
 
 - Fix mismatch pattern of referrer

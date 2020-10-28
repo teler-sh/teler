@@ -23,6 +23,7 @@ rules:
 
 alert:
   active: false
+  # supported `slack` or `telegram`
   provider: "slack"
 
 notifications:
@@ -33,6 +34,6 @@ notifications:
 
   telegram:
     token: "123456:ABC-DEF1234...-..."
-    chat_id: "111000"
+    chat_id: "-111000"
     silent: false
     parse_mode: "MarkdownV2"
