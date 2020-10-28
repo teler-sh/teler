@@ -2,6 +2,12 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-beta4
+
+- Refactoring configurations
+- Add Telegram notification alert (#38)
+- Add partially unit test (#34)
+
 ### v0.0.1-beta3.2
 
 - Delete element in Slack alert
@@ -30,10 +36,6 @@ All notable changes to this project should be documented in this file.
 
 - Fix invalid URL escape by adding error handle
 - Fix justifies common web attack category
-
-### v0.0.1-rc1.3
-
-- Add telegram alerting
 
 ### v0.0.1-rc1.2
 
