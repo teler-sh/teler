@@ -9,7 +9,7 @@ import (
 	"ktbs.dev/teler/pkg/errors"
 )
 
-func toTelegram(token string, chatID string, parseMode string, log map[string]string) {
+func toTelegram(token string, chatID string, log map[string]string) {
 	id, err := strconv.ParseInt(chatID, 10, 64)
 	if err != nil {
 		errors.Show(err.Error())
@@ -21,7 +21,7 @@ func toTelegram(token string, chatID string, parseMode string, log map[string]st
 	}
 
 	message := telegramBot.NewMessage(id, telegramMessage(log))
-	message.ParseMode = parseMode
+	message.ParseMode = "MarkdownV2"
 
 	// TODO: Displays an error if it does not exceed the rate-limit
 	// nolint:errcheck
