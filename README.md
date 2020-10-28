@@ -308,7 +308,7 @@ It covers the entire HTTP request and processed as _regExp_, please write it wit
 
 We provide alert notification options:
 - Slack,
-- Telegram _(roadmap)_, or
+- Telegram
 - Discord _(roadmap)_
 
 Configure the notification alerts needed on:
@@ -319,6 +319,11 @@ notifications:
     token: "xoxb-..."
     color: "#ffd21a"
     channel: "G30SPKI"
+
+  telegram:
+    token: "123456:ABC-DEF1234...-..."
+    chat_id: "-111000"
+    parse_mode: "MarkdownV2"
 ```
 
 You can also choose to disable alerts or want to be sent where the alerts are.
