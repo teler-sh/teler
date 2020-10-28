@@ -16,12 +16,10 @@ type slack struct {
 }
 
 type telegram struct {
-	Text      string
-	URL       string
-	Token     string `yaml:"token"`
-	ChatID    string `yaml:"chat_id"`
-	Silent    bool   `yaml:"silent"`
-	ParseMode string `yaml:"parse_mode"`
+	Text   string
+	URL    string
+	Token  string `yaml:"token"`
+	ChatID string `yaml:"chat_id"`
 }
 
 // Configs default structure for config

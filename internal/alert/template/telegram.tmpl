@@ -1,0 +1,10 @@
+⚠ *teler Alert*
+Warning: *{{ .category }}*
+
+Request: `{{ .request_method }} {{ .request_uri }} {{ .request_protocol }}`
+Date: `{{ .time_local }}`
+IP Address: `{{ .remote_addr }}`
+User\-Agent: `{{ .http_user_agent }}`
+Referrer: `{{ .http_referer }}`
+Status code: `{{ .status }}`
+Bytes sent: `{{ .body_bytes_sent }}`

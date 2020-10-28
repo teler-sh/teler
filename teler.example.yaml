@@ -33,6 +33,4 @@ notifications:
 
   telegram:
     token: "123456:ABC-DEF1234...-..."
-    chat_id: "111000"
-    silent: false
-    parse_mode: "MarkdownV2"
+    chat_id: "-111000"

@@ -33,13 +33,6 @@ func IsHexcolor(s string) {
 	}
 }
 
-// IsParseMode validates the parse mode for Telegram
-func IsParseMode(s string) {
-	if regexp := IsMatch(PatternParseMode, s); !regexp {
-		errValidate("parse mode [Markdown(v2), or HTML]")
-	}
-}
-
 // IsChannel validates the channel for Slack
 func IsChannel(s string) {
 	if regexp := IsMatch(PatternChannel, s); !regexp {
