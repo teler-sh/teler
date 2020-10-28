@@ -323,7 +323,6 @@ notifications:
   telegram:
     token: "123456:ABC-DEF1234...-..."
     chat_id: "-111000"
-    parse_mode: "MarkdownV2"
 ```
 
 You can also choose to disable alerts or want to be sent where the alerts are.
