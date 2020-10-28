@@ -146,65 +146,6 @@ func TestIsHexcolor(t *testing.T) {
 	}
 }
 
-func TestIsParseMode(t *testing.T) {
-	type args struct {
-		s string
-	}
-	tests := []struct {
-		name    string
-		args    args
-		wantErr bool
-	}{
-		{
-			name: "Invalid Telegram parse_mode, only accept: Markdown, MarkdownV2 & HTML (case-sensitive)",
-			args: args {
-				s: "Latex",
-			},
-			wantErr: true,
-		},
-		{
-			name: "Telegram parse_mode is valid",
-			args: args {
-				s: "Markdown",
-			},
-			wantErr: false,
-		},
-		{
-			name: "Invalid parse_mode, only accept: Markdown, MarkdownV2 & HTML (case-sensitive)",
-			args: args {
-				s: "html",
-			},
-			wantErr: true,
-		},
-		{
-			name: "parse_mode is valid",
-			args: args {
-				s: "MarkdownV2",
-			},
-			wantErr: false,
-		},
-		{
-			name: "parse_mode is valid",
-			args: args {
-				s: "HTML",
-			},
-			wantErr: false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			var code int
-			errors.Abort = func(c int) {
-				code = c
-			}
-			IsParseMode(tt.args.s)
-			if (code != 0) != tt.wantErr {
-				t.Fatalf("IsParseMode() error code: %v wantErr: %v", code, tt.wantErr)
-			}
-		})
-	}
-}
-
 func TestMain(m *testing.M) {
 	flag.Parse()
 	rand.Seed(time.Now().UTC().UnixNano())
