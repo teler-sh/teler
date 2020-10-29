@@ -63,11 +63,9 @@ func notification(options *common.Options) {
 
 		switch provider {
 		case "Slack":
-			field.FieldByName("URL").SetString(SlackAPI)
 			matchers.IsHexcolor(field.FieldByName("Color").String())
 			matchers.IsChannel(field.FieldByName("Channel").String())
 		case "Telegram":
-			field.FieldByName("URL").SetString(strings.Replace(TelegramAPI, ":token", field.FieldByName("Token").String(), -1))
 			matchers.IsChatID(field.FieldByName("ChatID").String())
 		case "Discord":
 			// TODO
