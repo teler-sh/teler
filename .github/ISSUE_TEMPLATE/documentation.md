@@ -2,7 +2,7 @@
 name: Documentation
 about: Suggest better docs coverage for a particular tool or process.
 title: "[DOCS]"
-labels: 'Priority: Low, Status: On Hold, Type: Documentation'
+labels: 'Status: On Hold, Type: Documentation'
 ---
 
 <!--
