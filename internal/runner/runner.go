@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"regexp"
+	"strconv"
 	"sync"
 
 	"github.com/logrusorgru/aurora"
@@ -26,6 +27,10 @@ func removeLBR(s string) string {
 func New(options *common.Options) {
 	var wg sync.WaitGroup
 	var input *os.File
+
+	if options.Metrics {
+		log.Infof("Listening metrics on port : " + strconv.Itoa(options.MetricsPort))
+	}
 
 	jobs := make(chan *gonx.Entry)
 	log.Infof("Analyzing...")

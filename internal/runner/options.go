@@ -27,6 +27,12 @@ func ParseOptions() *common.Options {
 	flag.StringVar(&options.Output, "o", "", "")
 	flag.StringVar(&options.Output, "output", "", "")
 
+	flag.BoolVar(&options.Metrics, "m", false, "")
+	flag.BoolVar(&options.Metrics, "metrics", false, "")
+
+	flag.IntVar(&options.MetricsPort, "p", 2525, "")
+	flag.IntVar(&options.MetricsPort, "port", 2525, "")
+
 	flag.BoolVar(&options.Version, "v", false, "")
 	flag.BoolVar(&options.Version, "version", false, "")
 
@@ -43,6 +49,7 @@ func ParseOptions() *common.Options {
 			"  -i, --input <FILE>          Analyze logs from data persistence rather than buffer stream",
 			"  -x, --concurrent <i>        Set the concurrency level to analyze logs (default: 20)",
 			"  -o, --output <FILE>         Save detected threats to file",
+			"  -m  --metrics               Run as node exporter",
 			"  -v, --version               Show current teler version",
 			"",
 			"Examples:",
