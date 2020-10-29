@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-rc1.3
+
+- Update Dockerfile
+
 ### v0.0.1-beta4
 
 - Refactoring configurations
