@@ -17,7 +17,6 @@ import (
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
 	var match bool
-
 	log := make(map[string]string)
 	rsc := resource.Get()
 
@@ -65,30 +64,45 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 							quote,
 						)
 						if match {
+							getcwa.WithLabelValues(string(v.GetStringBytes("description")),
+								log["http_user_agent"], log["remote_addr"],
+								log["request_uri"], log["status"])
+
 							break
 						}
 					}
 				}
 			}
+
 		case "Bad Crawler":
 			log["element"] = "http_user_agent"
+
 			if white := isWhitelist(options, log["http_user_agent"]); white {
 				break
 			}
 
 			for _, pat := range strings.Split(con, "\n") {
 				if match = matchers.IsMatch(pat, log["http_user_agent"]); match {
+
+					getbadcrawler.WithLabelValues(log["remote_addr"],
+						log["http_user_agent"],
+						log["status"]).Inc()
+
 					break
 				}
 			}
+
 		case "Bad IP Address":
 			log["element"] = "remote_addr"
+
 			if white := isWhitelist(options, log["remote_addr"]); white {
 				break
 			}
 
 			ip := "(?m)^" + log["remote_addr"]
 			match = matchers.IsMatch(ip, con)
+			getbadip.WithLabelValues(log["remote_addr"]).Inc()
+
 		case "Bad Referrer":
 			log["element"] = "http_referer"
 			if white := isWhitelist(options, log["http_referer"]); white {
@@ -102,8 +116,11 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			ref := "(?m)^" + req.Host
 
 			match = matchers.IsMatch(ref, con)
+			getbadreferrer.WithLabelValues(log["http_referer"]).Inc()
+
 		case "Directory Bruteforce":
 			log["element"] = "request_uri"
+
 			if white := isWhitelist(options, log["request_uri"]); white {
 				break
 			}
@@ -122,6 +139,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				case "200", "204", "304":
 					match = false
 				}
+				getdirbruteforce.WithLabelValues(log["remote_addr"],
+					log["http_user_agent"],
+					log["request_uri"],
+					log["status"]).Inc()
 			}
 		}
 
