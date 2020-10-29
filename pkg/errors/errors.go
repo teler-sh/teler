@@ -1,14 +1,14 @@
 package errors
 
 import (
-	"os"
 	"strings"
+	"syscall"
 
 	"github.com/projectdiscovery/gologger"
 )
 
-// Abort specifies the os.Exit function
-var Abort = os.Exit
+// Abort specifies the syscall.Kill function
+var Abort = syscall.Kill
 
 // Exit will show error details and stop the program
 func Exit(err string) {
@@ -19,7 +19,7 @@ func Exit(err string) {
 			Show(msg)
 		}
 		gologger.Infof("Use \"-h\" flag for more info about command.")
-		Abort(1)
+		Abort(syscall.Getpid(), syscall.SIGTERM)
 	}
 }
 
