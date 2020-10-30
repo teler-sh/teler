@@ -11,5 +11,6 @@ func Abort(i ...int) {
 		Exit(err.Error())
 	}
 
+	// nolint:errcheck
 	syscall.Kill(-pgid, syscall.SIGTERM)
 }
