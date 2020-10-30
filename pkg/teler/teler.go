@@ -32,6 +32,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		exc := threat.FieldByName("Exclude").Bool()
 
 		log["category"] = cat
+		getthreatstotal.WithLabelValues(cat).Inc()
 
 		if exc {
 			continue
@@ -65,8 +66,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 						)
 						if match {
 							getcwa.WithLabelValues(string(v.GetStringBytes("description")),
-								log["http_user_agent"], log["remote_addr"],
-								log["request_uri"], log["status"]).Inc()
+								log["remote_addr"], log["request_uri"], log["status"]).Inc()
 
 							break
 						}
@@ -140,7 +140,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					match = false
 				}
 				getdirbruteforce.WithLabelValues(log["remote_addr"],
-					log["http_user_agent"],
 					log["request_uri"],
 					log["status"]).Inc()
 			}
