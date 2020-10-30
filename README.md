@@ -334,6 +334,15 @@ alert:
   active: true
   provider: "slack"
 ```
+### Collected metrics
+| Name                        | Desc                            |
+|-----------------------------|---------------------------------|
+|`teler_threats_count_total`  | the total amount of threats     |
+|`teler_cwa`                  | get all of `Common Web Attack` threats  |
+|`teler_badcrawler`           | get a badcrawler                |
+|`teler_dir_bruteforce`       | list bruteforced dir            |
+|`teler_badip_count`          | count of remote address of threats       |
+|`teler_bad_referrer`         | http with a bad referrer          |
 
 ## Contributors
 
