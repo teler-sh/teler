@@ -113,7 +113,7 @@ Build the Docker image with:
 
 ### from Source
 
-If you have go1.13+ compiler installed and configured:
+If you have go1.14+ compiler installed and configured:
 
 ```bash
 ▶ GO111MODULE=on go get -v -u ktbs.dev/teler/cmd/teler
