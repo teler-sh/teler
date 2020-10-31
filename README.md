@@ -6,7 +6,7 @@
 [![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-[![Version](https://img.shields.io/badge/version-0.0.1--dev.4.3-blueviolet)](https://github.com/kitabisa/teler/releases)
+[![Version](https://img.shields.io/badge/version-0.0.1--dev5-blueviolet)](https://github.com/kitabisa/teler/releases)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)](https://github.com/kitabisa/teler/issues)
 
@@ -59,6 +59,8 @@
     - [Excludes](#excludes)
     - [Whitelists](#whitelists)
   - [Notification](#notification)
+  - [Metrics](#metrics)
+    - [Prometheus](#prometheus)
 - [Contributors](#contributors)
   - [Resources](#resources)
 - [Pronunciation](#pronunciation)
@@ -166,7 +168,6 @@ Here are all the switches it supports.
 | -i,<br> --input       | Analyze logs from data persistence rather than buffer stream  | teler -i /var/log/nginx/access.log |
 | -x,<br> --concurrent  | Set the concurrency level to analyze logs<br>(default: 20)    | tail -f /var/log/nginx/access.log \| teler -x 50 |
 | -o,<br> --output      | Save detected threats to file                                 | teler -i /var/log/nginx/access.log -o /tmp/threats.log |
-| -m,<br> --metrics     | Set exporter port<br>(default: 2525)                                               | teler -m 1412 |
 | -v,<br> --version     | Show current teler version                                    | teler -v |
 
 #### Config
@@ -333,15 +334,33 @@ alert:
   active: true
   provider: "slack"
 ```
-### Collected metrics
-| Name                        | Desc                            |
-|-----------------------------|---------------------------------|
-|`teler_threats_count_total`  | Total number of detected threats     |
-|`teler_cwa`                  | Get lists of Common Web Attacks  |
-|`teler_badcrawler`           | Get lists of Bad Crawler requests           |
-|`teler_dir_bruteforce`       | Get lists of Directories Bruteforced       |
-|`teler_badip_count`          | Total number of Bad IP Addresses       |
-|`teler_bad_referrer`         | Get lists of Bad Referrer requests          |
+
+### Metrics
+
+`teler` also supports metrics using Prometheus.
+
+#### Prometheus
+
+You can configure the host, port and endpoint to use Prometheus metrics in the configuration file.
+
+```yaml
+prometheus:
+  active: true
+  host: "localhost"
+  port: 9099
+  endpoint: "/metrics"
+```
+
+Here are all the metrics we collected & categorized.
+
+| Metric                       | Description                          |
+| ---------------------------- | ------------------------------------ |
+| `teler_threats_count_total`  | Total number of detected threats     |
+| `teler_cwa`                  | Get lists of Common Web Attacks      |
+| `teler_badcrawler`           | Get lists of Bad Crawler requests    |
+| `teler_dir_bruteforce`       | Get lists of Directories Bruteforced |
+| `teler_bad_referrer`         | Get lists of Bad Referrer requests   |
+| `teler_badip_count`          | Total number of Bad IP Addresses     |
 
 ## Contributors
 
