@@ -2,10 +2,15 @@
 
 All notable changes to this project should be documented in this file.
 
-### v0.0.1-rc1.4
+### v0.0.1-dev5
 
+- Refactor teler configurations
+- Update Prometheus package & runner
 - Add Exporters to Prometheus (#42)
 
+### v0.0.1-dev.4.3
+
+- Add errors.Abort for supporting cross-platform
 
 ### v0.0.1-rc1.3
 
