@@ -29,5 +29,4 @@ func main() {
 	if err != nil {
 		errors.Exit(err.Error())
 	}
-
 }
