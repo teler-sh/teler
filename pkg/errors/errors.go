@@ -1,14 +1,10 @@
 package errors
 
 import (
-	"os"
 	"strings"
 
 	"github.com/projectdiscovery/gologger"
 )
-
-// Abort specifies the os.Exit function
-var Abort = os.Exit
 
 // Exit will show error details and stop the program
 func Exit(err string) {
@@ -19,7 +15,7 @@ func Exit(err string) {
 			Show(msg)
 		}
 		gologger.Infof("Use \"-h\" flag for more info about command.")
-		Abort(1)
+		Abort(9)
 	}
 }
 

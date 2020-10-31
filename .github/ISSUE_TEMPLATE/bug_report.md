@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: "[BUG]"
-labels: 'Priority: Low, Status: On Hold, Type: Bug'
+labels: 'Status: On Hold, Type: Bug'
 assignees: dwisiswant0
 
 ---
