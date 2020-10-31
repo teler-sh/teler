@@ -352,6 +352,9 @@ This project exists thanks to all the people who contribute. To learn how to set
     <td align="center"><a href="https://github.com/fairyhunter13"><img src="https://avatars3.githubusercontent.com/u/12372147?v=4" width="100px;" alt=""/><br /><sub><b>fairyhunter13</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=fairyhunter13" title="Tests">⚠️</a></td>
     <td align="center"><a href="http://zufardhiyaulhaq.com"><img src="https://avatars3.githubusercontent.com/u/11990726?v=4" width="100px;" alt=""/><br /><sub><b>Zufar Dhiyaulhaq</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=zufardhiyaulhaq" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/JustHumanz"><img src="https://avatars3.githubusercontent.com/u/43176061?v=4" width="100px;" alt=""/><br /><sub><b>Aldin Setiawan</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=JustHumanz" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
