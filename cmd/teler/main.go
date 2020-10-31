@@ -7,6 +7,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"ktbs.dev/teler/internal/runner"
+	"ktbs.dev/teler/pkg/errors"
 	"ktbs.dev/teler/pkg/metrics"
 )
 
@@ -24,6 +25,9 @@ func main() {
 	metrics.MetricInit()
 	go runner.New(options)
 
-	http.ListenAndServe(":"+strconv.Itoa(options.Metrics), nil)
+	err := http.ListenAndServe(":"+strconv.Itoa(options.Metrics), nil)
+	if err != nil {
+		errors.Exit(err.Error())
+	}
 
 }
