@@ -16,6 +16,5 @@ type Options struct {
 	Output      string           // Save detected threats to file
 	OutFile     *os.File         // Write log output into file
 	Configs     *parsers.Configs // Get teler configuration interface
-	Metrics     bool             // Enable metrics for prometheus
-	MetricsPort int
+	Metrics     int              // Enable metrics for prometheus
 }

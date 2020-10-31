@@ -11,6 +11,7 @@ import (
 	"github.com/valyala/fastjson"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/pkg/matchers"
+	"ktbs.dev/teler/pkg/metrics"
 	"ktbs.dev/teler/resource"
 )
 
@@ -32,7 +33,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		exc := threat.FieldByName("Exclude").Bool()
 
 		log["category"] = cat
-		getthreatstotal.WithLabelValues(cat).Inc()
+		metrics.GetThreasTotal.WithLabelValues(cat).Inc()
 
 		if exc {
 			continue
@@ -65,7 +66,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 							quote,
 						)
 						if match {
-							getcwa.WithLabelValues(string(v.GetStringBytes("description")),
+							metrics.GetCwa.WithLabelValues(string(v.GetStringBytes("description")),
 								log["remote_addr"], log["request_uri"], log["status"]).Inc()
 
 							break
@@ -84,7 +85,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			for _, pat := range strings.Split(con, "\n") {
 				if match = matchers.IsMatch(pat, log["http_user_agent"]); match {
 
-					getbadcrawler.WithLabelValues(log["remote_addr"],
+					metrics.GetBadCrawler.WithLabelValues(log["remote_addr"],
 						log["http_user_agent"],
 						log["status"]).Inc()
 
@@ -101,7 +102,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 			ip := "(?m)^" + log["remote_addr"]
 			match = matchers.IsMatch(ip, con)
-			getbadip.WithLabelValues(log["remote_addr"]).Inc()
+			metrics.GetBadIP.WithLabelValues(log["remote_addr"]).Inc()
 
 		case "Bad Referrer":
 			log["element"] = "http_referer"
@@ -116,7 +117,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			ref := "(?m)^" + req.Host
 
 			match = matchers.IsMatch(ref, con)
-			getbadreferrer.WithLabelValues(log["http_referer"]).Inc()
+			metrics.GetBadReferrer.WithLabelValues(log["http_referer"]).Inc()
 
 		case "Directory Bruteforce":
 			log["element"] = "request_uri"
@@ -139,7 +140,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				case "200", "204", "304":
 					match = false
 				}
-				getdirbruteforce.WithLabelValues(log["remote_addr"],
+				metrics.GetDirBruteforce.WithLabelValues(log["remote_addr"],
 					log["request_uri"],
 					log["status"]).Inc()
 			}
