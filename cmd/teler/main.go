@@ -7,7 +7,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"ktbs.dev/teler/internal/runner"
-	"ktbs.dev/teler/pkg/teler"
+	"ktbs.dev/teler/pkg/metrics"
 )
 
 func init() {
@@ -18,16 +18,12 @@ func init() {
 func main() {
 	// Parse the command line flags
 	options := runner.ParseOptions()
-	if options.Metrics {
-		http.Handle("/metrics", promhttp.Handler())
 
-		teler.MetricInit()
-		go runner.New(options)
+	//run metric
+	http.Handle("/metrics", promhttp.Handler())
+	metrics.MetricInit()
+	go runner.New(options)
 
-		http.ListenAndServe(":"+strconv.Itoa(options.MetricsPort), nil)
-
-	} else {
-		runner.New(options)
-	}
+	http.ListenAndServe(":"+strconv.Itoa(options.Metrics), nil)
 
 }

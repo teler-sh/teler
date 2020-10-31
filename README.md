@@ -166,8 +166,7 @@ Here are all the switches it supports.
 | -i,<br> --input       | Analyze logs from data persistence rather than buffer stream  | teler -i /var/log/nginx/access.log |
 | -x,<br> --concurrent  | Set the concurrency level to analyze logs<br>(default: 20)    | tail -f /var/log/nginx/access.log \| teler -x 50 |
 | -o,<br> --output      | Save detected threats to file                                 | teler -i /var/log/nginx/access.log -o /tmp/threats.log |
-| -m,<br> --metrics     | Run as exporter                                               | teler -m |
-| -p,<br> --port        | Set exporter port<br>(default: 2525)                          | teler -m -p 1412 |
+| -m,<br> --metrics     | Set exporter port<br>(default: 2525)                                               | teler -m 1412 |
 | -v,<br> --version     | Show current teler version                                    | teler -v |
 
 #### Config
@@ -337,12 +336,12 @@ alert:
 ### Collected metrics
 | Name                        | Desc                            |
 |-----------------------------|---------------------------------|
-|`teler_threats_count_total`  | the total amount of threats     |
-|`teler_cwa`                  | get all payload from `Common Web Attack` threats  |
-|`teler_badcrawler`           | list useragent and remote address of threats              |
-|`teler_dir_bruteforce`       | list of bruteforced dir by threats          |
-|`teler_badip_count`          | count of bad ip address       |
-|`teler_bad_referrer`         | http request with a bad referrer          |
+|`teler_threats_count_total`  | Total number of detected threats     |
+|`teler_cwa`                  | Get lists of Common Web Attacks  |
+|`teler_badcrawler`           | Get lists of Bad Crawler requests           |
+|`teler_dir_bruteforce`       | Get lists of Directories Bruteforced       |
+|`teler_badip_count`          | Count of bad ip address       |
+|`teler_bad_referrer`         | Http request with a bad referrer          |
 
 ## Contributors
 

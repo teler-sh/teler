@@ -28,9 +28,7 @@ func New(options *common.Options) {
 	var wg sync.WaitGroup
 	var input *os.File
 
-	if options.Metrics {
-		log.Infof("Listening metrics on port : " + strconv.Itoa(options.MetricsPort))
-	}
+	log.Infof("Listening metrics on port : " + strconv.Itoa(options.Metrics))
 
 	jobs := make(chan *gonx.Entry)
 	log.Infof("Analyzing...")
