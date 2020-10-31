@@ -2,7 +2,7 @@ package metrics
 
 import "github.com/prometheus/client_golang/prometheus"
 
-//metric variables
+// Defines its Prometheus metrics variables
 var (
 	GetCWA = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
@@ -53,8 +53,8 @@ var (
 	)
 )
 
-// MetricInit will register a metric with the specified variables
-func MetricInit() {
+// Init will register a Prometheus metrics with the specified variables
+func Init() {
 	prometheus.MustRegister(GetBadCrawler,
 		GetDirBruteforce, GetBadIP,
 		GetCWA, GetBadReferrer, GetThreasTotal)

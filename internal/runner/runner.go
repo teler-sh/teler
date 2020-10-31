@@ -4,17 +4,19 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 	"regexp"
-	"strconv"
 	"sync"
 
 	"github.com/logrusorgru/aurora"
 	log "github.com/projectdiscovery/gologger"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/satyrius/gonx"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/internal/alert"
 	"ktbs.dev/teler/pkg/errors"
+	"ktbs.dev/teler/pkg/metrics"
 	"ktbs.dev/teler/pkg/teler"
 )
 
@@ -28,7 +30,20 @@ func New(options *common.Options) {
 	var wg sync.WaitGroup
 	var input *os.File
 
-	log.Infof("Listening metrics on port: " + strconv.Itoa(options.Metrics))
+	metric, promserve, promendpoint := prometheus(options)
+	if metric {
+		go func() {
+			http.Handle(promendpoint, promhttp.Handler())
+
+			err := http.ListenAndServe(promserve, nil)
+			if err != nil {
+				errors.Exit(err.Error())
+			}
+		}()
+
+		metrics.Init()
+		log.Infof("Listening metrics on http://" + promserve + promendpoint)
+	}
 
 	jobs := make(chan *gonx.Entry)
 	log.Infof("Analyzing...")

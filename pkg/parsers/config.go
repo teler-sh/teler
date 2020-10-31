@@ -26,6 +26,13 @@ type Configs struct {
 		Threat options `yaml:"threat" validate:"nonzero"`
 	} `yaml:"rules" validate:"nonzero"`
 
+	Prometheus struct {
+		Active   bool   `yaml:"active"`
+		Host     string `yaml:"host"`
+		Port     int    `yaml:"port"`
+		Endpoint string `yaml:"endpoint"`
+	} `yaml:"prometheus" validate:"nonzero"`
+
 	Alert struct {
 		Active   bool   `yaml:"active"`
 		Provider string `yaml:"provider"`
