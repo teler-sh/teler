@@ -21,6 +21,12 @@ rules:
       # - "https://www\\.facebook\\.com"
       # - "192\\.168\\.0\\.1"
 
+prometheus:
+  active: true
+  host: "localhost"
+  port: 9099
+  endpoint: "/metrics"
+
 alert:
   active: false
   provider: "slack"
