@@ -34,6 +34,7 @@ jobs:
         uses: golangci/golangci-lint-action@v2.3.0
         with:
           version: v1.29
+          args: --tests=0
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1

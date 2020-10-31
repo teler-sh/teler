@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project
 title: "[FEATURE]"
-labels: 'Priority: Low, Status: On Hold, Type: Enhancement'
+labels: 'Status: On Hold'
 assignees: dwisiswant0
 
 ---

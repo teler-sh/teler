@@ -8,16 +8,12 @@ type options struct {
 }
 
 type slack struct {
-	Text    string
-	URL     string
 	Token   string `yaml:"token"`
 	Color   string `yaml:"color"`
 	Channel string `yaml:"channel"`
 }
 
 type telegram struct {
-	Text   string
-	URL    string
 	Token  string `yaml:"token"`
 	ChatID string `yaml:"chat_id"`
 }
