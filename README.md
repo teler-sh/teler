@@ -341,7 +341,7 @@ alert:
 |`teler_badcrawler`           | Get lists of Bad Crawler requests           |
 |`teler_dir_bruteforce`       | Get lists of Directories Bruteforced       |
 |`teler_badip_count`          | Total number of Bad IP Addresses       |
-|`teler_bad_referrer`         | Http request with a bad referrer          |
+|`teler_bad_referrer`         | Get lists of Bad Referrer requests          |
 
 ## Contributors
 
