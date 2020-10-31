@@ -22,7 +22,7 @@ rules:
       # - "192\\.168\\.0\\.1"
 
 prometheus:
-  active: true
+  active: false
   host: "localhost"
   port: 9099
   endpoint: "/metrics"
