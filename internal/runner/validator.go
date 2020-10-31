@@ -3,6 +3,7 @@ package runner
 import (
 	"os"
 	"reflect"
+	"strconv"
 	"strings"
 
 	"gopkg.in/validator.v2"
@@ -52,6 +53,27 @@ func validate(options *common.Options) {
 	if errVal := validator.Validate(options); errVal != nil {
 		errors.Exit(errVal.Error())
 	}
+}
+
+func prometheus(options *common.Options) (bool, string, string) {
+	config := options.Configs
+	if config.Prometheus.Active {
+		if config.Prometheus.Host == "" {
+			config.Prometheus.Host = "127.0.0.1"
+		}
+
+		if config.Prometheus.Port == 0 {
+			config.Prometheus.Port = 9090
+		}
+
+		if config.Prometheus.Endpoint == "" {
+			config.Prometheus.Endpoint = "/metrics"
+		}
+	}
+
+	server := config.Prometheus.Host + ":" + strconv.Itoa(config.Prometheus.Port)
+
+	return config.Prometheus.Active, server, config.Prometheus.Endpoint
 }
 
 func notification(options *common.Options) {
