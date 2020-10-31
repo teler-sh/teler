@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-rc1.4
+
+- Add Exporters to Prometheus (#42)
+
+
 ### v0.0.1-rc1.3
 
 - Update Dockerfile

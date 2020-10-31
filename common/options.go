@@ -16,4 +16,5 @@ type Options struct {
 	Output      string           // Save detected threats to file
 	OutFile     *os.File         // Write log output into file
 	Configs     *parsers.Configs // Get teler configuration interface
+	Metrics     int              // Set port for metrics
 }

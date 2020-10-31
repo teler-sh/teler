@@ -166,6 +166,7 @@ Here are all the switches it supports.
 | -i,<br> --input       | Analyze logs from data persistence rather than buffer stream  | teler -i /var/log/nginx/access.log |
 | -x,<br> --concurrent  | Set the concurrency level to analyze logs<br>(default: 20)    | tail -f /var/log/nginx/access.log \| teler -x 50 |
 | -o,<br> --output      | Save detected threats to file                                 | teler -i /var/log/nginx/access.log -o /tmp/threats.log |
+| -m,<br> --metrics     | Set exporter port<br>(default: 2525)                                               | teler -m 1412 |
 | -v,<br> --version     | Show current teler version                                    | teler -v |
 
 #### Config
@@ -332,6 +333,15 @@ alert:
   active: true
   provider: "slack"
 ```
+### Collected metrics
+| Name                        | Desc                            |
+|-----------------------------|---------------------------------|
+|`teler_threats_count_total`  | Total number of detected threats     |
+|`teler_cwa`                  | Get lists of Common Web Attacks  |
+|`teler_badcrawler`           | Get lists of Bad Crawler requests           |
+|`teler_dir_bruteforce`       | Get lists of Directories Bruteforced       |
+|`teler_badip_count`          | Total number of Bad IP Addresses       |
+|`teler_bad_referrer`         | Get lists of Bad Referrer requests          |
 
 ## Contributors
 
