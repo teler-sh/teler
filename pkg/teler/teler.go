@@ -66,7 +66,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 							quote,
 						)
 						if match {
-							metrics.GetCwa.WithLabelValues(string(v.GetStringBytes("description")),
+							metrics.GetCWA.WithLabelValues(string(v.GetStringBytes("description")),
 								log["remote_addr"], log["request_uri"], log["status"]).Inc()
 
 							break
