@@ -340,7 +340,7 @@ alert:
 |`teler_cwa`                  | Get lists of Common Web Attacks  |
 |`teler_badcrawler`           | Get lists of Bad Crawler requests           |
 |`teler_dir_bruteforce`       | Get lists of Directories Bruteforced       |
-|`teler_badip_count`          | Count of bad ip address       |
+|`teler_badip_count`          | Total number of Bad IP Addresses       |
 |`teler_bad_referrer`         | Http request with a bad referrer          |
 
 ## Contributors
