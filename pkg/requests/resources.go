@@ -49,7 +49,7 @@ func getRules(options *common.Options) {
 
 		gologger.Infof("Getting \"%s\" resource...\n", cat)
 
-		if cache.IsCached() {
+		if cache.Check() {
 			content, _ = ioutil.ReadFile(filepath.Join(cache.Path, fname))
 		} else {
 			req, err := http.NewRequest("GET", "https://raw.githubusercontent.com/kitabisa/teler-resources/master/db/"+fname, nil)

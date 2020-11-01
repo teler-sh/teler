@@ -17,11 +17,10 @@ type Cache struct {
 
 var (
 	// Path define its local user-level cache path
-	Path   string
-	file   string
-	now    string
-	cache  Cache
-	cached bool
+	Path  string
+	file  string
+	now   string
+	cache Cache
 )
 
 func init() {
@@ -36,37 +35,37 @@ func init() {
 	now = time.Now().In(loc).Format(time.RFC3339)
 }
 
-// IsCached to check if resources is in local cache
-func IsCached() (cached bool) {
+// Check to check if resources is cached
+func Check() bool {
 	if err := configdir.MakePath(Path); err != nil {
 		errors.Exit(err.Error())
 	}
 
 	if _, err := os.Stat(file); os.IsNotExist(err) {
-		return
+		return false
 	}
 
 	fh, err := os.Open(file)
 	if err != nil {
-		return
+		return false
 	}
 	defer fh.Close()
 
 	decoder := json.NewDecoder(fh)
 	if err := decoder.Decode(&cache); err != nil {
-		return
+		return false
 	}
 
 	updated, err := time.Parse(time.RFC3339, cache.UpdatedAt)
 	if err != nil {
-		return
+		return false
 	}
 
 	if time.Since(updated).Hours() < 24 {
-		cached = true
+		return true
 	}
 
-	return
+	return false
 }
 
 // Update to updating local cache
@@ -80,5 +79,7 @@ func Update() {
 	defer fh.Close()
 
 	encoder := json.NewEncoder(fh)
+
+	// nolint:errcheck
 	encoder.Encode(&cache)
 }
