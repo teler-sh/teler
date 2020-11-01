@@ -385,6 +385,7 @@ This project exists thanks to all the people who contribute. To learn how to set
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/JustHumanz"><img src="https://avatars3.githubusercontent.com/u/43176061?v=4" width="100px;" alt=""/><br /><sub><b>Aldin Setiawan</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=JustHumanz" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.kirsle.net/"><img src="https://avatars2.githubusercontent.com/u/1663507?v=4" width="100px;" alt=""/><br /><sub><b>Noah Petherbridge</b></sub></a><br /><a href="#tool-kirsle" title="Tools">🔧</a></td>
   </tr>
 </table>
 
