@@ -23,6 +23,7 @@ type Configs struct {
 	Logformat string `yaml:"log_format" validate:"nonzero"`
 
 	Rules struct {
+		Cache  bool    `yaml:"cache"`
 		Threat options `yaml:"threat" validate:"nonzero"`
 	} `yaml:"rules" validate:"nonzero"`
 

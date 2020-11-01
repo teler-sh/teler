@@ -6,6 +6,7 @@ log_format: |
   [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id
 
 rules:
+  cache: true
   threat:
     excludes:
       # - "Common Web Attack"
