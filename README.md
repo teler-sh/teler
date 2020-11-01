@@ -6,7 +6,7 @@
 [![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-[![Version](https://img.shields.io/badge/version-0.0.1--dev5-blueviolet)](https://github.com/kitabisa/teler/releases)
+[![Version](https://img.shields.io/badge/version-0.0.1--rc2-blueviolet)](https://github.com/kitabisa/teler/releases)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)](https://github.com/kitabisa/teler/issues)
 
@@ -73,7 +73,7 @@
 
 * **Alerting** _(roadmap)_: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
 
-* **Latest resources**: Collections is continuously up-to-date, see [resources](#resources).
+* **Latest resources**: Collections is continuously up-to-date.
 
 * **Minimal configuration**: You can just run it against your log file, write the log format and let
   teler analyze the log and show you alerts!
@@ -271,6 +271,8 @@ log_format: |
 ```
 
 ### Threat rules
+
+The external resources used by `teler` are stored under user-level cache directory of cross-platform and will be updated every day, see [resources](#resources).
 
 #### Excludes
 
