@@ -4,7 +4,7 @@ package resource
 type Resources struct {
 	Threat []struct {
 		Category string
-		URL      string
+		Filename string
 		Content  string
 		Exclude  bool
 	}
@@ -14,33 +14,32 @@ var resource *Resources
 
 // Init resources
 func init() {
-	db := "https://raw.githubusercontent.com/kitabisa/teler-resources/master/db"
 	resource = &Resources{
 		Threat: []struct {
 			Category string
-			URL      string
+			Filename string
 			Content  string
 			Exclude  bool
 		}{
 			{
 				Category: "Common Web Attack",
-				URL:      db + "/common-web-attacks.json",
+				Filename: "common-web-attacks.json",
 			},
 			{
 				Category: "Bad IP Address",
-				URL:      db + "/bad-ip-addresses.txt",
+				Filename: "bad-ip-addresses.txt",
 			},
 			{
 				Category: "Bad Referrer",
-				URL:      db + "/bad-referrers.txt",
+				Filename: "bad-referrers.txt",
 			},
 			{
 				Category: "Bad Crawler",
-				URL:      db + "/bad-crawlers.txt",
+				Filename: "bad-crawlers.txt",
 			},
 			{
 				Category: "Directory Bruteforce",
-				URL:      db + "/directory-bruteforces.txt",
+				Filename: "directory-bruteforces.txt",
 			},
 		},
 	}

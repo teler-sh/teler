@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-rc2
+
+- Add caching supports for resources (#45)
+
 ### v0.0.1-dev5
 
 - Refactor teler configurations
