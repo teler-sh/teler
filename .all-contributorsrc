@@ -79,6 +79,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "kirsle",
+      "name": "Noah Petherbridge",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1663507?v=4",
+      "profile": "https://www.kirsle.net/",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,
