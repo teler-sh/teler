@@ -30,6 +30,7 @@ func Resources(options *common.Options) {
 func getRules(options *common.Options) {
 	client := Client()
 	excludes := options.Configs.Rules.Threat.Excludes
+	isCached := options.Configs.Rules.Cache
 
 	for i := 0; i < len(rsrc.Threat); i++ {
 		exclude = false
@@ -50,7 +51,7 @@ func getRules(options *common.Options) {
 
 		gologger.Infof("Getting \"%s\" resource...", cat)
 
-		if cache.Check() && options.Configs.Rules.Cache {
+		if cache.Check() && isCached {
 			content, errCon = ioutil.ReadFile(filepath.Join(cache.Path, fname))
 			if errCon != nil {
 				cache.Purge()
@@ -73,19 +74,23 @@ func getRules(options *common.Options) {
 				errors.Exit(errCon.Error())
 			}
 
-			file, err := os.Create(filepath.Join(cache.Path, fname))
-			if err != nil {
-				errors.Exit(err.Error())
-			}
+			if isCached {
+				file, err := os.Create(filepath.Join(cache.Path, fname))
+				if err != nil {
+					errors.Exit(err.Error())
+				}
 
-			if _, err = file.WriteString(string(content)); err != nil {
-				errors.Exit(err.Error())
-				file.Close()
+				if _, err = file.WriteString(string(content)); err != nil {
+					errors.Exit(err.Error())
+					file.Close()
+				}
 			}
 		}
 
 		threat.FieldByName("Content").SetString(string(content))
 	}
 
-	cache.Update()
+	if isCached {
+		cache.Update()
+	}
 }
