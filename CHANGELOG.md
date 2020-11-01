@@ -2,6 +2,14 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-rc2.1
+
+- Add remove cached resources flag
+- Add purge caches function
+- Fix fails to get cached resources
+- Add cache option in configuration file
+- Remove unused files
+
 ### v0.0.1-rc2
 
 - Add caching supports for resources (#45)
