@@ -18,6 +18,7 @@ var (
 	rsrc    *resource.Resources
 	exclude bool
 	content []byte
+	errCon  error
 )
 
 // Resources is to getting all available resources
@@ -47,10 +48,15 @@ func getRules(options *common.Options) {
 			continue
 		}
 
-		gologger.Infof("Getting \"%s\" resource...\n", cat)
+		gologger.Infof("Getting \"%s\" resource...", cat)
 
-		if cache.Check() {
-			content, _ = ioutil.ReadFile(filepath.Join(cache.Path, fname))
+		if cache.Check() && options.Configs.Rules.Cache {
+			content, errCon = ioutil.ReadFile(filepath.Join(cache.Path, fname))
+			if errCon != nil {
+				cache.Purge()
+				gologger.Labelf("Fail to get local resources. Retry...")
+				getRules(options)
+			}
 		} else {
 			req, err := http.NewRequest("GET", "https://raw.githubusercontent.com/kitabisa/teler-resources/master/db/"+fname, nil)
 			if err != nil {
@@ -62,7 +68,10 @@ func getRules(options *common.Options) {
 				errors.Exit(err.Error())
 			}
 
-			content, _ = ioutil.ReadAll(res.Body)
+			content, errCon = ioutil.ReadAll(res.Body)
+			if errCon != nil {
+				errors.Exit(errCon.Error())
+			}
 
 			file, err := os.Create(filepath.Join(cache.Path, fname))
 			if err != nil {
