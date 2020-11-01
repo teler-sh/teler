@@ -35,10 +35,10 @@ func init() {
 	now = time.Now().In(loc).Format(time.RFC3339)
 }
 
-// Check to check if resources is cached
+// Check if resources is cached
 func Check() bool {
 	if err := configdir.MakePath(Path); err != nil {
-		errors.Exit(err.Error())
+		return false
 	}
 
 	if _, err := os.Stat(file); os.IsNotExist(err) {
@@ -68,7 +68,7 @@ func Check() bool {
 	return false
 }
 
-// Update to updating local cache
+// Update latest resources being cached
 func Update() {
 	cache = Cache{now}
 
@@ -82,4 +82,12 @@ func Update() {
 
 	// nolint:errcheck
 	encoder.Encode(&cache)
+}
+
+// Purge local/cached resources
+func Purge() {
+	err := os.RemoveAll(Path)
+	if err != nil {
+		errors.Exit(err.Error())
+	}
 }
