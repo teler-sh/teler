@@ -107,10 +107,10 @@ The installation is easy. You can download a prebuilt binary from [releases page
 
 ### using Docker
 
-Build the Docker image with:
+Pull the Docker image by running:
 
 ```bash
-▶ docker build -t teler https://github.com/kitabisa/teler.git
+▶ docker pull kitabisa/teler
 ```
 
 ### from Source

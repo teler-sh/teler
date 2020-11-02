@@ -1,17 +1,19 @@
 FROM golang:1.14.2-alpine3.11 as build
 
-LABEL dev.ktbs.project.name="teler"
 LABEL description="Real-time HTTP Intrusion Detection"
-LABEL version="0.0.1-dev3"
 LABEL repository="https://github.com/kitabisa/teler"
 LABEL maintainer="dwisiswant0"
 
-RUN apk --no-cache add git
-ENV GO111MODULE on
-RUN go get ktbs.dev/teler/cmd/teler; exit 0
+RUN mkdir -p /app
+WORKDIR /app
+COPY ./go.mod .
+RUN go mod download
+
+COPY . .
+RUN go build -o ./bin/teler ./cmd/teler 
 
 FROM alpine:latest
-RUN apk --no-cache add ca-certificates
-COPY --from=build /go/bin/teler /bin/teler
+
+COPY --from=build /app/bin/teler /bin/teler
 ENV HOME /
 ENTRYPOINT ["/bin/teler"]
