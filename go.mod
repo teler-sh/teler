@@ -3,6 +3,7 @@ module ktbs.dev/teler
 go 1.14
 
 require (
+	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/kirsle/configdir v0.0.0-20170128060238-e45d2f54772f
 	github.com/kr/pretty v0.2.1 // indirect
