@@ -17,7 +17,7 @@ func toTelegram(token string, chatID string, log map[string]string) {
 
 	api, err := telegramBot.NewBotAPI(token)
 	if err != nil {
-		errors.Show(err.Error())
+		errors.Exit(err.Error())
 	}
 
 	message := telegramBot.NewMessage(id, telegramMessage(log))
