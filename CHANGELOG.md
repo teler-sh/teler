@@ -2,6 +2,12 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1-dev5.1
+
+- Add prints JSON format options
+- Update Dockerfile
+- Fix SIGSEGV of `syscall` within Docker container
+
 ### v0.0.1-rc2.1
 
 - Add remove cached resources flag

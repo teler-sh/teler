@@ -33,6 +33,8 @@ func ParseOptions() *common.Options {
 
 	flag.BoolVar(&options.RmCache, "rm-cache", false, "")
 
+	flag.BoolVar(&options.JSON, "json", false, "")
+
 	// Override help flag
 	flag.Usage = func() {
 		showBanner()
@@ -46,6 +48,7 @@ func ParseOptions() *common.Options {
 			"  -i, --input <FILE>          Analyze logs from data persistence rather than buffer stream",
 			"  -x, --concurrent <i>        Set the concurrency level to analyze logs (default: 20)",
 			"  -o, --output <FILE>         Save detected threats to file",
+			"      --json                  Display threats in the terminal as JSON format",
 			"      --rm-cache              Removes all cached resources",
 			"  -v, --version               Show current teler version",
 			"",

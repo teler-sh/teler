@@ -6,7 +6,7 @@
 [![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-[![Version](https://img.shields.io/badge/version-0.0.1--rc2.1-blueviolet)](https://github.com/kitabisa/teler/releases)
+[![Version](https://img.shields.io/badge/version-0.0.1--dev5.1-blueviolet)](https://github.com/kitabisa/teler/releases)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)](https://github.com/kitabisa/teler/issues)
 
@@ -47,6 +47,8 @@
     - [Input](#input)
     - [Concurrency](#concurrency)
     - [Output](#output)
+    - [JSON Format](#json-format)
+    - [Remove Caches](#remove-caches)
 - [Configuration](#configuration)
   - [Log formats](#log-formats)
     - [Apache](#apache)
@@ -159,7 +161,7 @@ If you've built teler with a Docker image:
 This will display help for the tool.
 
 <p align="center">
-  <a href="#"><img alt="teler" src="https://user-images.githubusercontent.com/25837540/97816682-6301d200-1cc9-11eb-9d1e-c1e19443ad75.png" /></a>
+  <a href="#"><img alt="teler" src="https://user-images.githubusercontent.com/25837540/97946822-164bf300-1dbe-11eb-8f54-3a25ee0eb80e.png" /></a>
 </p>
 
 Here are all the switches it supports.
@@ -170,6 +172,7 @@ Here are all the switches it supports.
 | -i,<br> --input       | Analyze logs from data persistence rather than buffer stream  | teler -i /var/log/nginx/access.log |
 | -x,<br> --concurrent  | Set the concurrency level to analyze logs<br>(default: 20)    | tail -f /var/log/nginx/access.log \| teler -x 50 |
 | -o,<br> --output      | Save detected threats to file                                 | teler -i /var/log/nginx/access.log -o /tmp/threats.log |
+| --json                | Display threats in the terminal as JSON format                | teler -i /var/log/nginx/access.log --json |
 | --rm-cache            | Remove all cached resources                                   | teler --rm-cache |
 | -v,<br> --version     | Show current teler version                                    | teler -v |
 
@@ -211,7 +214,25 @@ Concurrency is the number of logs analyzed at the same time. Default value teler
 You can also save the detected threats into a file with `-o` flag.
 
 ```bash
-▶ teler -i /var/log/nginx/access.log -o nginx-threat.log
+▶ teler -i /var/log/nginx/access.log -o threats.log
+```
+
+#### JSON Format
+
+If you want to display the detected threats as JSON format, switch it with `--json` flag.
+
+```bash
+▶ teler -i /var/log/nginx/access.log --json
+```
+
+Please note this will also apply if you save it to a file with `-o` flag.
+
+#### Remove Caches
+
+It will removes all stored resources in the user-level cache directory, see [cache](#cache).
+
+```bash
+▶ teler --rm-cache
 ```
 
 ## Configuration
