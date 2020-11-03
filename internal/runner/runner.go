@@ -9,6 +9,7 @@ import (
 	"regexp"
 	"sync"
 
+	"github.com/acarl005/stripansi"
 	"github.com/logrusorgru/aurora"
 	log "github.com/projectdiscovery/gologger"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -29,6 +30,7 @@ func removeLBR(s string) string {
 func New(options *common.Options) {
 	var wg sync.WaitGroup
 	var input *os.File
+	var out string
 
 	metric, promserve, promendpoint := prometheus(options)
 	if metric {
@@ -55,19 +57,29 @@ func New(options *common.Options) {
 				threat, obj := teler.Analyze(options, log)
 
 				if threat {
-					fmt.Printf("[%s] [%s] [%s] %s\n",
-						aurora.Cyan(obj["time_local"]),
-						aurora.Green(obj["remote_addr"]),
-						aurora.Yellow(obj["category"]),
-						aurora.Red(obj[obj["element"]]),
-					)
+					if options.JSON {
+						json, err := json.Marshal(obj)
+						if err != nil {
+							errors.Exit(err.Error())
+						}
+						out = fmt.Sprintf("%s\n", json)
+					} else {
+						out = fmt.Sprintf("[%s] [%s] [%s] %s\n",
+							aurora.Cyan(obj["time_local"]),
+							aurora.Green(obj["remote_addr"]),
+							aurora.Yellow(obj["category"]),
+							aurora.Red(obj[obj["element"]]),
+						)
+					}
+
+					fmt.Print(out)
 
 					if options.Output != "" {
-						json, _ := json.Marshal(obj)
-						_, write := options.OutFile.WriteString(
-							fmt.Sprintf("%s\n", json),
-						)
-						if write != nil {
+						if !options.JSON {
+							out = stripansi.Strip(out)
+						}
+
+						if _, write := options.OutFile.WriteString(out); write != nil {
 							errors.Show(write.Error())
 						}
 					}
@@ -75,6 +87,7 @@ func New(options *common.Options) {
 					alert.New(options, obj)
 				}
 			}
+
 			wg.Done()
 		}()
 	}
