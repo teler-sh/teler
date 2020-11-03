@@ -420,6 +420,7 @@ This project exists thanks to all the people who contribute. To learn how to set
     <td align="center"><a href="https://github.com/JustHumanz"><img src="https://avatars3.githubusercontent.com/u/43176061?v=4" width="100px;" alt=""/><br /><sub><b>Aldin Setiawan</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=JustHumanz" title="Code">💻</a></td>
     <td align="center"><a href="https://www.kirsle.net/"><img src="https://avatars2.githubusercontent.com/u/1663507?v=4" width="100px;" alt=""/><br /><sub><b>Noah Petherbridge</b></sub></a><br /><a href="#tool-kirsle" title="Tools">🔧</a></td>
     <td align="center"><a href="https://github.com/zackijack"><img src="https://avatars3.githubusercontent.com/u/1515471?v=4" width="100px;" alt=""/><br /><sub><b>Zackky Muhammad</b></sub></a><br /><a href="#infra-zackijack" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/acarl005"><img src="https://avatars0.githubusercontent.com/u/8334252?v=4" width="100px;" alt=""/><br /><sub><b>Andy</b></sub></a><br /><a href="#tool-acarl005" title="Tools">🔧</a></td>
   </tr>
 </table>
 
