@@ -26,17 +26,17 @@ func IsToken(s string) {
 	}
 }
 
-// IsHexcolor validates the hex color code
-func IsHexcolor(s string) {
-	if regexp := IsMatch(PatternHexcolor, s); !regexp {
-		errValidate("hex color")
+// IsColor validates the color code
+func IsColor(s string) {
+	if regexp := IsMatch(PatternColor, s); !regexp {
+		errValidate("(hex) color")
 	}
 }
 
-// IsChannel validates the channel for Slack
+// IsChannel validates the channel for Slack & Discord
 func IsChannel(s string) {
 	if regexp := IsMatch(PatternChannel, s); !regexp {
-		errValidate("Slack channel")
+		errValidate("channel")
 	}
 }
 
