@@ -84,13 +84,11 @@ func notification(options *common.Options) {
 		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
 
 		switch provider {
-		case "Slack":
-			matchers.IsHexcolor(field.FieldByName("Color").String())
+		case "Slack", "Discord":
+			matchers.IsColor(field.FieldByName("Color").String())
 			matchers.IsChannel(field.FieldByName("Channel").String())
 		case "Telegram":
 			matchers.IsChatID(field.FieldByName("ChatID").String())
-		case "Discord":
-			// TODO
 		default:
 			errors.Exit(strings.Replace(errors.ErrAlertProvider, ":platform", config.Alert.Provider, -1))
 		}

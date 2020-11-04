@@ -7,7 +7,7 @@ type options struct {
 	Whitelists []string `yaml:"whitelists"`
 }
 
-type slack struct {
+type general struct {
 	Token   string `yaml:"token"`
 	Color   string `yaml:"color"`
 	Channel string `yaml:"channel"`
@@ -40,8 +40,9 @@ type Configs struct {
 	} `yaml:"alert" validate:"nonzero"`
 
 	Notifications struct {
-		Slack    slack    `yaml:"slack"`
+		Slack    general    `yaml:"slack"`
 		Telegram telegram `yaml:"telegram"`
+		Discord  general  `yaml:"discord"`
 	} `yaml:"notifications"`
 }
 
