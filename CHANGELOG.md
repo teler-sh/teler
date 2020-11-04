@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.1
+
+- Add Discord notification alert
+
 ### v0.0.1-dev5.1
 
 - Add prints JSON format options
