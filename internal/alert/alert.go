@@ -8,7 +8,7 @@ import (
 )
 
 // New will initialize notification provider & send threat alerts
-func New(options *common.Options, log map[string]string) {
+func New(options *common.Options, version string, log map[string]string) {
 	config := options.Configs
 
 	if config.Alert.Active {
@@ -30,7 +30,13 @@ func New(options *common.Options, log map[string]string) {
 				log,
 			)
 		case "Discord":
-			// TODO
+			toDiscord(
+				field.FieldByName("Token").String(),
+				field.FieldByName("Channel").String(),
+				field.FieldByName("Color").String(),
+				version,
+				log,
+			)
 		}
 	}
 }
