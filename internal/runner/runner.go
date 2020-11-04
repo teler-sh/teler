@@ -84,7 +84,7 @@ func New(options *common.Options) {
 						}
 					}
 
-					alert.New(options, obj)
+					alert.New(options, version, obj)
 				}
 			}
 
