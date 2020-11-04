@@ -41,3 +41,8 @@ notifications:
   telegram:
     token: "123456:ABC-DEF1234...-..."
     chat_id: "-111000"
+
+  discord:
+    token: "NkWkawkawkawkawka.X0xo.n-kmZwA8aWAA"
+    color: "16312092"
+    channel: "700000000000000..."
