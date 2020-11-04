@@ -6,7 +6,7 @@
 [![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-[![Version](https://img.shields.io/badge/version-0.0.1--dev5.1-blueviolet)](https://github.com/kitabisa/teler/releases)
+[![Version](https://img.shields.io/badge/version-0.0.1-blueviolet)](https://github.com/kitabisa/teler/releases)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)](https://github.com/kitabisa/teler/issues)
 
@@ -73,7 +73,7 @@
 
 * **Real-time**: Analyze logs and identify suspicious activity in real-time.
 
-* **Alerting** _(roadmap)_: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
+* **Alerting**: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
 
 * **Latest resources**: Collections is continuously up-to-date.
 
@@ -346,7 +346,7 @@ It covers the entire HTTP request and processed as _regExp_, please write it wit
 We provide alert notification options:
 - Slack,
 - Telegram
-- Discord _(roadmap)_
+- Discord
 
 Configure the notification alerts needed on:
 
@@ -360,6 +360,11 @@ notifications:
   telegram:
     token: "123456:ABC-DEF1234...-..."
     chat_id: "-111000"
+
+  discord:
+    token: "NkWkawkawkawkawka.X0xo.n-kmZwA8aWAA"
+    color: "16312092"
+    channel: "700000000000000..."
 ```
 
 You can also choose to disable alerts or want to be sent where the alerts are.
