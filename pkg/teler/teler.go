@@ -57,7 +57,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 						log["element"] = "request_uri"
 						quote := regexp.QuoteMeta(dec)
 
-						if white := isWhitelist(options, p+"="+dec); white {
+						if isWhitelist(options, p+"="+dec) {
 							continue
 						}
 
@@ -82,7 +82,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		case "Bad Crawler":
 			log["element"] = "http_user_agent"
 
-			if white := isWhitelist(options, log["http_user_agent"]); white {
+			if isWhitelist(options, log["http_user_agent"]) {
 				break
 			}
 
@@ -100,7 +100,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		case "Bad IP Address":
 			log["element"] = "remote_addr"
 
-			if white := isWhitelist(options, log["remote_addr"]); white {
+			if isWhitelist(options, log["remote_addr"]) {
 				break
 			}
 
@@ -111,7 +111,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			}
 		case "Bad Referrer":
 			log["element"] = "http_referer"
-			if white := isWhitelist(options, log["http_referer"]); white {
+			if isWhitelist(options, log["http_referer"]) {
 				break
 			}
 
