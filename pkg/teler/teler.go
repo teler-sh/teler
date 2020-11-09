@@ -129,7 +129,9 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		case "Directory Bruteforce":
 			log["element"] = "request_uri"
 
-			if white := isWhitelist(options, log["request_uri"]); white {
+			if isWhitelist(options, log["request_uri"]) ||
+				matchers.IsMatch("^20(0|4)$", log["status"]) ||
+				matchers.IsMatch("^3[0-9]{2}$", log["status"]) {
 				break
 			}
 
@@ -143,16 +145,11 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			}
 
 			if match {
-				switch log["status"] {
-				case "200", "204", "304":
-					match = false
-				default:
-					metrics.GetDirBruteforce.WithLabelValues(
-						log["remote_addr"],
-						log["request_uri"],
-						log["status"],
-					).Inc()
-				}
+				metrics.GetDirBruteforce.WithLabelValues(
+					log["remote_addr"],
+					log["request_uri"],
+					log["status"],
+				).Inc()
 			}
 		}
 
