@@ -45,6 +45,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			if err != nil {
 				break
 			}
+
 			query := req.Query()
 			if len(query) > 0 {
 				for p, q := range query {
@@ -65,16 +66,20 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 							string(v.GetStringBytes("rule")),
 							quote,
 						)
+
 						if match {
-							metrics.GetCWA.WithLabelValues(string(v.GetStringBytes("description")),
-								log["remote_addr"], log["request_uri"], log["status"]).Inc()
+							metrics.GetCWA.WithLabelValues(
+								string(v.GetStringBytes("description")),
+								log["remote_addr"],
+								log["request_uri"],
+								log["status"],
+							).Inc()
 
 							break
 						}
 					}
 				}
 			}
-
 		case "Bad Crawler":
 			log["element"] = "http_user_agent"
 
@@ -84,15 +89,15 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 			for _, pat := range strings.Split(con, "\n") {
 				if match = matchers.IsMatch(pat, log["http_user_agent"]); match {
-
-					metrics.GetBadCrawler.WithLabelValues(log["remote_addr"],
+					metrics.GetBadCrawler.WithLabelValues(
+						log["remote_addr"],
 						log["http_user_agent"],
-						log["status"]).Inc()
+						log["status"],
+					).Inc()
 
 					break
 				}
 			}
-
 		case "Bad IP Address":
 			log["element"] = "remote_addr"
 
@@ -102,13 +107,15 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 			ip := "(?m)^" + log["remote_addr"]
 			match = matchers.IsMatch(ip, con)
-			metrics.GetBadIP.WithLabelValues(log["remote_addr"]).Inc()
-
+			if match {
+				metrics.GetBadIP.WithLabelValues(log["remote_addr"]).Inc()
+			}
 		case "Bad Referrer":
 			log["element"] = "http_referer"
 			if white := isWhitelist(options, log["http_referer"]); white {
 				break
 			}
+
 			if log["http_referer"] == "-" {
 				break
 			}
@@ -117,8 +124,9 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			ref := "(?m)^" + req.Host
 
 			match = matchers.IsMatch(ref, con)
-			metrics.GetBadReferrer.WithLabelValues(log["http_referer"]).Inc()
-
+			if match {
+				metrics.GetBadReferrer.WithLabelValues(log["http_referer"]).Inc()
+			}
 		case "Directory Bruteforce":
 			log["element"] = "request_uri"
 
@@ -139,10 +147,13 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				switch log["status"] {
 				case "200", "204", "304":
 					match = false
+				default:
+					metrics.GetDirBruteforce.WithLabelValues(
+						log["remote_addr"],
+						log["request_uri"],
+						log["status"],
+					).Inc()
 				}
-				metrics.GetDirBruteforce.WithLabelValues(log["remote_addr"],
-					log["request_uri"],
-					log["status"]).Inc()
 			}
 		}
 
