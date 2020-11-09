@@ -33,7 +33,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		exc := threat.FieldByName("Exclude").Bool()
 
 		log["category"] = cat
-		metrics.GetThreatTotal.WithLabelValues(cat).Inc()
 
 		if exc {
 			continue

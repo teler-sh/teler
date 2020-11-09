@@ -57,6 +57,10 @@ func New(options *common.Options) {
 				threat, obj := teler.Analyze(options, log)
 
 				if threat {
+					if metric {
+						metrics.GetThreatTotal.WithLabelValues(obj["category"]).Inc()
+					}
+
 					if options.JSON {
 						json, err := json.Marshal(obj)
 						if err != nil {
