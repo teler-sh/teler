@@ -75,6 +75,8 @@
 
 * **Alerting**: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
 
+* **Monitoring**: We've our own metrics if you want to monitor threats easily, and we use Prometheus for that.
+
 * **Latest resources**: Collections is continuously up-to-date.
 
 * **Minimal configuration**: You can just run it against your log file, write the log format and let
