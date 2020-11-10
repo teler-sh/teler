@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.4-dev
+
+- Add spinner while getting resources
+
 ### v0.0.3
 
 - Fix the _wrong catch_ for `3xx` status codes to be ignored in Directory Bruteforce (#56)
