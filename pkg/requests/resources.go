@@ -6,7 +6,9 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"time"
 
+	"github.com/briandowns/spinner"
 	"github.com/projectdiscovery/gologger"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/pkg/cache"
@@ -19,7 +21,12 @@ var (
 	exclude bool
 	content []byte
 	errCon  error
+	spin    *spinner.Spinner
 )
+
+func init() {
+	spin = spinner.New(spinner.CharSets[11], 90*time.Millisecond, spinner.WithWriter(os.Stderr))
+}
 
 // Resources is to getting all available resources
 func Resources(options *common.Options) {
@@ -29,8 +36,14 @@ func Resources(options *common.Options) {
 
 func getRules(options *common.Options) {
 	client := Client()
-	excludes := options.Configs.Rules.Threat.Excludes
-	isCached := options.Configs.Rules.Cache
+
+	rules := options.Configs.Rules
+	excludes := rules.Threat.Excludes
+	isCached := rules.Cache
+
+	if err := spin.Color("blue"); err != nil {
+		errors.Exit(err.Error())
+	}
 
 	for i := 0; i < len(rsrc.Threat); i++ {
 		exclude = false
@@ -49,14 +62,18 @@ func getRules(options *common.Options) {
 			continue
 		}
 
-		gologger.Infof("Getting \"%s\" resource...", cat)
+		spin.Suffix = " Getting \"" + cat + "\" resource..."
 
 		if cache.Check() && isCached {
 			content, errCon = ioutil.ReadFile(filepath.Join(cache.Path, fname))
 			if errCon != nil {
 				cache.Purge()
+
+				println()
 				gologger.Labelf("Fail to get local resources. Retry...")
 				getRules(options)
+
+				spin.Restart()
 			}
 		} else {
 			req, err := http.NewRequest("GET", "https://raw.githubusercontent.com/kitabisa/teler-resources/master/db/"+fname, nil)
@@ -89,6 +106,8 @@ func getRules(options *common.Options) {
 
 		threat.FieldByName("Content").SetString(string(content))
 	}
+
+	spin.Stop()
 
 	if isCached {
 		cache.Update()
