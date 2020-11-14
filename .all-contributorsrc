@@ -115,6 +115,15 @@
       "contributions": [
         "tool"
       ]
+    },
+    {
+      "login": "markustenghamn",
+      "name": "Markus Tenghamn",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1903284?v=4",
+      "profile": "https://ma.rkus.io",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
