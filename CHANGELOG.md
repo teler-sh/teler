@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.4
+
+- Fix the Slack token validation not accepting some tokens (#57)
+
 ### v0.0.3
 
 - Fix the _wrong catch_ for `3xx` status codes to be ignored in Directory Bruteforce (#56)
