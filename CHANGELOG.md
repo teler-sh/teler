@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.0.5-dev
+
+- Justifying informations
+
 ### v0.0.4
 
 - Fix the Slack token validation not accepting some tokens (#57)
