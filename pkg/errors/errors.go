@@ -10,7 +10,6 @@ import (
 func Exit(err string) {
 	msg := "Error! "
 	if err != "" {
-		println()
 		for _, e := range strings.Split(strings.TrimSuffix(err, "\n"), "\n") {
 			msg += e
 			Show(msg)
