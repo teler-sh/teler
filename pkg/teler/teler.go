@@ -40,7 +40,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 		switch cat {
 		case "Common Web Attack":
-			req, err := url.Parse(log["request_uri"])
+			req, err := url.ParseRequestURI(log["request_uri"])
 			if err != nil {
 				break
 			}
@@ -48,11 +48,13 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			query := req.Query()
 			if len(query) > 0 {
 				for p, q := range query {
-					fil, _ := fastjson.Parse(con)
-					dec, _ := url.QueryUnescape(strings.Join(q, ""))
-					cwa := fil.GetArray("filters")
+					dec, err := url.QueryUnescape(strings.Join(q, ""))
+					if err != nil {
+						continue
+					}
 
-					for _, v := range cwa {
+					cwa, _ := fastjson.Parse(con)
+					for _, v := range cwa.GetArray("filters") {
 						log["category"] = cat + ": " + string(v.GetStringBytes("description"))
 						log["element"] = "request_uri"
 						quote := regexp.QuoteMeta(dec)
