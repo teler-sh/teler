@@ -26,6 +26,10 @@ func init() {
 				Filename: "common-web-attacks.json",
 			},
 			{
+				Category: "CVE",
+				Filename: "cves.json",
+			},
+			{
 				Category: "Bad IP Address",
 				Filename: "bad-ip-addresses.txt",
 			},

@@ -70,7 +70,74 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 						if match {
 							metrics.GetCWA.WithLabelValues(
-								string(v.GetStringBytes("description")),
+								log["category"],
+								log["remote_addr"],
+								log["request_uri"],
+								log["status"],
+							).Inc()
+
+							break
+						}
+					}
+				}
+			}
+		case "CVE":
+			req, err := url.ParseRequestURI(log["request_uri"])
+			if err != nil {
+				break
+			}
+
+			log["element"] = "request_uri"
+			cves, _ := fastjson.Parse(con)
+			for _, cve := range cves.GetArray("templates") {
+				log["category"] = strings.ToTitle(string(cve.GetStringBytes("id")))
+				if match {
+					break
+				}
+
+				for _, r := range cve.GetArray("requests") {
+					method := string(r.GetStringBytes("method"))
+					if method != "GET" {
+						continue
+					}
+
+					// if log["request_method"] != method {
+					// 	continue
+					// }
+
+					for _, p := range r.GetArray("path") {
+						diff, err := url.ParseRequestURI(
+							strings.TrimPrefix(
+								strings.Trim(p.String(), `"`),
+								"{{BaseURL}}",
+							),
+						)
+						if err != nil {
+							continue
+						}
+
+						if len(diff.Path) <= 1 {
+							continue
+						}
+
+						if req.Path != diff.Path {
+							break
+						}
+
+						fq := 0
+						for q := range req.Query() {
+							if diff.Query().Get(q) != "" {
+								fq++
+							}
+						}
+
+						if len(diff.Query())-fq <= 3 {
+							match = true
+						}
+
+						if match {
+							metrics.GetCVE.WithLabelValues(
+								log["category"],
 								log["remote_addr"],
 								log["request_uri"],
 								log["status"],
