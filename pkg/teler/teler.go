@@ -91,9 +91,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			cves, _ := fastjson.Parse(con)
 			for _, cve := range cves.GetArray("templates") {
 				log["category"] = strings.ToTitle(string(cve.GetStringBytes("id")))
-				if match {
-					break
-				}
 
 				for _, r := range cve.GetArray("requests") {
 					method := string(r.GetStringBytes("method"))
@@ -146,6 +143,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 							break
 						}
 					}
+				}
+
+				if match {
+					break
 				}
 			}
 		case "Bad Crawler":
