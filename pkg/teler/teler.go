@@ -188,7 +188,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				break
 			}
 
-			req, _ := url.Parse(log["http_referer"])
+			req, err := url.Parse(log["http_referer"])
+			if err != nil {
+				break
+			}
 			ref := "(?m)^" + req.Host
 
 			match = matchers.IsMatch(ref, con)
