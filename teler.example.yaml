@@ -10,6 +10,7 @@ rules:
   threat:
     excludes:
       # - "Common Web Attack"
+      # - "CVE"
       # - "Bad IP Address"
       # - "Bad Referrer"
       # - "Bad Crawler"
