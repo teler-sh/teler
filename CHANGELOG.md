@@ -5,6 +5,7 @@ All notable changes to this project should be documented in this file.
 ### v1.0.0-rc
 
 - Add CVE resource
+- Add metrics for CVEs
 
 ### v0.0.5-dev
 
