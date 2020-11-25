@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v1.0.0
+
+- Fix mismatch breaking logic for detecting CVE (#71)
+
 ### v1.0.0-rc
 
 - Add CVE resource
