@@ -6,6 +6,7 @@ All notable changes to this project should be documented in this file.
 
 - Add CVE resource
 - Add metrics for CVEs
+- Fix Bad Referrer
 
 ### v0.0.5-dev
 
