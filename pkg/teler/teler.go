@@ -17,7 +17,7 @@ import (
 
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
-	var match bool
+	var match, status bool
 	log := make(map[string]string)
 	rsc := resource.Get()
 
@@ -101,6 +101,18 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					// if log["request_method"] != method {
 					// 	continue
 					// }
+
+					for _, m := range r.GetArray("matchers") {
+						for _, s := range m.GetArray("status") {
+							if log["status"] == s.String() {
+								status = true
+							}
+						}
+					}
+
+					if !status {
+						continue
+					}
 
 					for _, p := range r.GetArray("path") {
 						diff, err := url.ParseRequestURI(
