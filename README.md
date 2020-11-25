@@ -62,6 +62,7 @@
   - [Notification](#notification)
   - [Metrics](#metrics)
     - [Prometheus](#prometheus)
+- [Supporting Materials](#supporting-materials)
 - [Contributors](#contributors)
   - [Resources](#resources)
 - [Pronunciation](#pronunciation)
