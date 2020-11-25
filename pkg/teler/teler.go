@@ -40,7 +40,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 		switch cat {
 		case "Common Web Attack":
-			req, err := url.Parse(log["request_uri"])
+			req, err := url.ParseRequestURI(log["request_uri"])
 			if err != nil {
 				break
 			}
@@ -48,11 +48,13 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			query := req.Query()
 			if len(query) > 0 {
 				for p, q := range query {
-					fil, _ := fastjson.Parse(con)
-					dec, _ := url.QueryUnescape(strings.Join(q, ""))
-					cwa := fil.GetArray("filters")
+					dec, err := url.QueryUnescape(strings.Join(q, ""))
+					if err != nil {
+						continue
+					}
 
-					for _, v := range cwa {
+					cwa, _ := fastjson.Parse(con)
+					for _, v := range cwa.GetArray("filters") {
 						log["category"] = cat + ": " + string(v.GetStringBytes("description"))
 						log["element"] = "request_uri"
 						quote := regexp.QuoteMeta(dec)
@@ -68,7 +70,74 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 						if match {
 							metrics.GetCWA.WithLabelValues(
-								string(v.GetStringBytes("description")),
+								log["category"],
+								log["remote_addr"],
+								log["request_uri"],
+								log["status"],
+							).Inc()
+
+							break
+						}
+					}
+				}
+			}
+		case "CVE":
+			req, err := url.ParseRequestURI(log["request_uri"])
+			if err != nil {
+				break
+			}
+
+			log["element"] = "request_uri"
+			cves, _ := fastjson.Parse(con)
+			for _, cve := range cves.GetArray("templates") {
+				log["category"] = strings.ToTitle(string(cve.GetStringBytes("id")))
+				if match {
+					break
+				}
+
+				for _, r := range cve.GetArray("requests") {
+					method := string(r.GetStringBytes("method"))
+					if method != "GET" {
+						continue
+					}
+
+					// if log["request_method"] != method {
+					// 	continue
+					// }
+
+					for _, p := range r.GetArray("path") {
+						diff, err := url.ParseRequestURI(
+							strings.TrimPrefix(
+								strings.Trim(p.String(), `"`),
+								"{{BaseURL}}",
+							),
+						)
+						if err != nil {
+							continue
+						}
+
+						if len(diff.Path) <= 1 {
+							continue
+						}
+
+						if req.Path != diff.Path {
+							break
+						}
+
+						fq := 0
+						for q := range req.Query() {
+							if diff.Query().Get(q) != "" {
+								fq++
+							}
+						}
+
+						if len(diff.Query())-fq <= 3 {
+							match = true
+						}
+
+						if match {
+							metrics.GetCVE.WithLabelValues(
+								log["category"],
 								log["remote_addr"],
 								log["request_uri"],
 								log["status"],
@@ -119,7 +188,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				break
 			}
 
-			req, _ := url.Parse(log["http_referer"])
+			req, err := url.Parse(log["http_referer"])
+			if err != nil {
+				break
+			}
 			ref := "(?m)^" + req.Host
 
 			match = matchers.IsMatch(ref, con)

@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/briandowns/spinner"
-	"github.com/projectdiscovery/gologger"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/pkg/cache"
 	"ktbs.dev/teler/pkg/errors"
@@ -70,7 +69,7 @@ func getRules(options *common.Options) {
 				cache.Purge()
 
 				println()
-				gologger.Labelf("Fail to get local resources. Retry...")
+				errors.Show("Fail to get local resources. Retry...")
 				getRules(options)
 
 				spin.Restart()

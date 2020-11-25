@@ -7,7 +7,7 @@ func showBanner() {
 	gologger.Printf("%s\n\n", banner)
 	gologger.Printf("\t%s\n\n", email)
 	if development {
-		gologger.Labelf("This tool is under development!\n")
-		gologger.Labelf("Please submit a report if an error occurs.\n")
+		gologger.Labelf("This tool is under development!")
+		gologger.Labelf("Please submit a report if an error occurs.")
 	}
 }

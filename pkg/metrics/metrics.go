@@ -12,6 +12,14 @@ var (
 		[]string{"description", "remote_addr", "request_uri", "status"},
 	)
 
+	GetCVE = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "teler_cve",
+			Help: "Get lists of CVE threats",
+		},
+		[]string{"description", "remote_addr", "request_uri", "status"},
+	)
+
 	GetBadCrawler = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_badcrawler",
@@ -57,6 +65,6 @@ var (
 func Init() {
 	prometheus.MustRegister(
 		GetBadCrawler, GetDirBruteforce, GetBadIP,
-		GetCWA, GetBadReferrer, GetThreatTotal,
+		GetCWA, GetCVE, GetBadReferrer, GetThreatTotal,
 	)
 }

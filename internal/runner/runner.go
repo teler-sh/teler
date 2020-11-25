@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"os"
 	"regexp"
-	"sync"
 
 	"github.com/acarl005/stripansi"
 	"github.com/logrusorgru/aurora"
 	log "github.com/projectdiscovery/gologger"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/remeh/sizedwaitgroup"
 	"github.com/satyrius/gonx"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/internal/alert"
@@ -28,7 +28,6 @@ func removeLBR(s string) string {
 
 // New read & pass stdin log
 func New(options *common.Options) {
-	var wg sync.WaitGroup
 	var input *os.File
 	var out string
 
@@ -50,9 +49,13 @@ func New(options *common.Options) {
 	jobs := make(chan *gonx.Entry)
 	log.Infof("Analyzing...")
 
-	for i := 0; i < options.Concurrency; i++ {
-		wg.Add(1)
+	con := options.Concurrency
+	swg := sizedwaitgroup.New(con)
+	for i := 0; i < con; i++ {
+		swg.Add()
 		go func() {
+			defer swg.Done()
+
 			for log := range jobs {
 				threat, obj := teler.Analyze(options, log)
 
@@ -91,8 +94,6 @@ func New(options *common.Options) {
 					alert.New(options, version, obj)
 				}
 			}
-
-			wg.Done()
 		}()
 	}
 
@@ -119,6 +120,6 @@ func New(options *common.Options) {
 
 	close(jobs)
 
-	wg.Wait()
+	swg.Wait()
 	log.Infof("Done!")
 }

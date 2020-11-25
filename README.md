@@ -6,7 +6,7 @@
 [![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-[![Version](https://img.shields.io/badge/version-0.0.4-blueviolet)](https://github.com/kitabisa/teler/releases)
+[![Version](https://img.shields.io/badge/version-1.0.0--rc-blueviolet)](https://github.com/kitabisa/teler/releases)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)](https://github.com/kitabisa/teler/issues)
 
@@ -32,7 +32,6 @@
 [![teler](https://user-images.githubusercontent.com/25837540/97096468-f8ccaa00-1696-11eb-8830-0d3a7be45a2d.gif)](#)
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Why teler?](#why-teler)
 - [Demo](#demo)
@@ -63,6 +62,7 @@
   - [Notification](#notification)
   - [Metrics](#metrics)
     - [Prometheus](#prometheus)
+- [Supporting Materials](#supporting-materials)
 - [Contributors](#contributors)
   - [Resources](#resources)
 - [Pronunciation](#pronunciation)
@@ -313,6 +313,7 @@ If you choose to cache resources, it's stored under user-level cache directory o
 
 We include resources for predetermined threats, including:
 - Common Web Attack
+- CVE
 - Bad IP Address
 - Bad Referrer
 - Bad Crawler
@@ -399,10 +400,16 @@ Here are all the metrics we collected & categorized.
 | ---------------------------- | ------------------------------------ |
 | `teler_threats_count_total`  | Total number of detected threats     |
 | `teler_cwa`                  | Get lists of Common Web Attacks      |
+| `teler_cve`                  | Get lists of CVE threats             |
 | `teler_badcrawler`           | Get lists of Bad Crawler requests    |
 | `teler_dir_bruteforce`       | Get lists of Directories Bruteforced |
 | `teler_bad_referrer`         | Get lists of Bad Referrer requests   |
 | `teler_badip_count`          | Total number of Bad IP Addresses     |
+
+## Supporting Materials
+
+- [teler - Protect Your WebApp!](https://dw1.io/files/teler%20-%20Protect%20Your%20WebApp.pdf) Talks were brought to the **OWASP Jakarta: Virtual AppSec Indonesia 2020** event.
+- [Tutorial: Cyber Threat Hunting - Useful Threat Hunting Tools (Part One)](https://youtu.be/0m54WOXO6Gc), Semi Yulianto gave a brief explanation and how to use **teler** in the video.
 
 ## Contributors
 
