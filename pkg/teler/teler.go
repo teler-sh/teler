@@ -17,7 +17,8 @@ import (
 
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
-	var match bool
+	var match, status bool
+
 	log := make(map[string]string)
 	rsc := resource.Get()
 
@@ -82,8 +83,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				}
 			}
 		case "CVE":
-			// var status bool
-
 			req, err := url.ParseRequestURI(log["request_uri"])
 			if err != nil {
 				break
@@ -104,17 +103,17 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 						continue
 					}
 
-					// for _, m := range r.GetArray("matchers") {
-					// 	for _, s := range m.GetArray("status") {
-					// 		if log["status"] == s.String() {
-					// 			status = true
-					// 		}
-					// 	}
-					// }
+					for _, m := range r.GetArray("matchers") {
+						for _, s := range m.GetArray("status") {
+							if log["status"] == s.String() {
+								status = true
+							}
+						}
+					}
 
-					// if !status {
-					// 	continue
-					// }
+					if !status {
+						break
+					}
 
 					for _, p := range r.GetArray("path") {
 						diff, err := url.ParseRequestURI(
@@ -142,7 +141,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 							}
 						}
 
-						if len(diff.Query())-fq <= 3 {
+						if fq >= len(diff.Query()) {
 							match = true
 						}
 
