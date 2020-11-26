@@ -2,7 +2,7 @@ package runner
 
 const (
 	email       = "infosec@kitabisa.com"
-	version     = "1.0.0"
+	version     = "1.0.1"
 	development = false
 	banner      = `
 	  __      __       

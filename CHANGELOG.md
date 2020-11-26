@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v1.0.1
+
+- Improves whitelist for Common Web Attack & CVE threats
+- Matching status code & request method to reduce false-positives CVE (#72)
+
 ### v1.0.0
 
 - Fix mismatch breaking logic for detecting CVE (#71)
