@@ -17,7 +17,7 @@ import (
 
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
-	var match, status bool
+	var match bool
 	log := make(map[string]string)
 	rsc := resource.Get()
 
@@ -53,15 +53,15 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 						continue
 					}
 
+					if isWhitelist(options, p+"="+dec) {
+						continue
+					}
+
 					cwa, _ := fastjson.Parse(con)
 					for _, v := range cwa.GetArray("filters") {
 						log["category"] = cat + ": " + string(v.GetStringBytes("description"))
 						log["element"] = "request_uri"
 						quote := regexp.QuoteMeta(dec)
-
-						if isWhitelist(options, p+"="+dec) {
-							continue
-						}
 
 						match = matchers.IsMatch(
 							string(v.GetStringBytes("rule")),
@@ -82,8 +82,14 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				}
 			}
 		case "CVE":
+			// var status bool
+
 			req, err := url.ParseRequestURI(log["request_uri"])
 			if err != nil {
+				break
+			}
+
+			if isWhitelist(options, req.RequestURI()) {
 				break
 			}
 
@@ -102,17 +108,17 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					// 	continue
 					// }
 
-					for _, m := range r.GetArray("matchers") {
-						for _, s := range m.GetArray("status") {
-							if log["status"] == s.String() {
-								status = true
-							}
-						}
-					}
+					// for _, m := range r.GetArray("matchers") {
+					// 	for _, s := range m.GetArray("status") {
+					// 		if log["status"] == s.String() {
+					// 			status = true
+					// 		}
+					// 	}
+					// }
 
-					if !status {
-						continue
-					}
+					// if !status {
+					// 	continue
+					// }
 
 					for _, p := range r.GetArray("path") {
 						diff, err := url.ParseRequestURI(
