@@ -18,5 +18,5 @@ require (
 	github.com/valyala/fastjson v1.6.3
 	google.golang.org/protobuf v1.24.0 // indirect
 	gopkg.in/validator.v2 v2.0.0-20200605151824-2b28d334fa05
-	gopkg.in/yaml.v2 v2.3.0
+	gopkg.in/yaml.v2 v2.4.0
 )
