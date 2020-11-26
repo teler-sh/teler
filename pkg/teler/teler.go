@@ -100,13 +100,9 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 				for _, r := range cve.GetArray("requests") {
 					method := string(r.GetStringBytes("method"))
-					if method != "GET" {
+					if method != log["request_method"] {
 						continue
 					}
-
-					// if log["request_method"] != method {
-					// 	continue
-					// }
 
 					// for _, m := range r.GetArray("matchers") {
 					// 	for _, s := range m.GetArray("status") {
