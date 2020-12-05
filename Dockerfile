@@ -4,11 +4,9 @@ LABEL description="Real-time HTTP Intrusion Detection"
 LABEL repository="https://github.com/kitabisa/teler"
 LABEL maintainer="dwisiswant0"
 
-RUN mkdir -p /app
 WORKDIR /app
 COPY ./go.mod .
 RUN go mod download
-
 COPY . .
 RUN go build -o ./bin/teler ./cmd/teler 
 

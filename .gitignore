@@ -3,3 +3,6 @@ dist/*
 teler.yaml
 .scannerwork/
 teler/
+
+# for linux binary
+teler
