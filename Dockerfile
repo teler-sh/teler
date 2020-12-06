@@ -7,6 +7,7 @@ LABEL maintainer="dwisiswant0"
 WORKDIR /app
 COPY ./go.mod .
 RUN go mod download
+
 COPY . .
 RUN go build -o ./bin/teler ./cmd/teler 
 
