@@ -437,6 +437,7 @@ This project exists thanks to all the people who contribute. To learn how to set
     <td align="center"><a href="https://github.com/acarl005"><img src="https://avatars0.githubusercontent.com/u/8334252?v=4" width="100px;" alt=""/><br /><sub><b>Andy</b></sub></a><br /><a href="#tool-acarl005" title="Tools">🔧</a></td>
     <td align="center"><a href="https://victoriametrics.com"><img src="https://avatars0.githubusercontent.com/u/283442?v=4" width="100px;" alt=""/><br /><sub><b>Aliaksandr Valialkin</b></sub></a><br /><a href="#tool-valyala" title="Tools">🔧</a></td>
     <td align="center"><a href="https://ma.rkus.io"><img src="https://avatars2.githubusercontent.com/u/1903284?v=4" width="100px;" alt=""/><br /><sub><b>Markus Tenghamn</b></sub></a><br /><a href="https://github.com/kitabisa/teler/issues?q=author%3Amarkustenghamn" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/brownchow"><img src="https://avatars0.githubusercontent.com/u/8622915?v=4" width="100px;" alt=""/><br /><sub><b>Rick</b></sub></a><br /><a href="#maintenance-brownchow" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 

@@ -124,6 +124,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "brownchow",
+      "name": "Rick",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/8622915?v=4",
+      "profile": "https://github.com/brownchow",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
