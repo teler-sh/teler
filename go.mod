@@ -10,7 +10,7 @@ require (
 	github.com/kirsle/configdir v0.0.0-20170128060238-e45d2f54772f
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/projectdiscovery/gologger v1.0.1
-	github.com/prometheus/client_golang v1.8.0
+	github.com/prometheus/client_golang v1.9.0
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/satyrius/gonx v1.3.0
 	github.com/slack-go/slack v0.7.3
