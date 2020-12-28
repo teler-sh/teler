@@ -19,6 +19,7 @@ import (
 	"ktbs.dev/teler/pkg/errors"
 	"ktbs.dev/teler/pkg/metrics"
 	"ktbs.dev/teler/pkg/teler"
+	"ktbs.dev/teler/versioninfo"
 )
 
 func removeLBR(s string) string {
@@ -91,7 +92,7 @@ func New(options *common.Options) {
 						}
 					}
 
-					alert.New(options, version, obj)
+					alert.New(options, versioninfo.Version, obj)
 				}
 			}
 		}()

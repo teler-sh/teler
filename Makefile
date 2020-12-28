@@ -3,9 +3,6 @@
 SHELL         = /bin/bash
 APP_NAME      = teler
 VERSION       = $(shell git describe --always --tags)
-GIT_COMMIT    = $(shell git rev-parse HEAD)
-GIT_DIRTY     = $(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)
-BUILD_DATE    = $(shell date '+%Y-%m-%d-%H:%M:%S')
 SQUAD         = infosec
 
 default: help
@@ -27,7 +24,7 @@ help:
 build:
 	@echo "Building ${APP_NAME} ${VERSION}"
 	@echo "GOPATH=${GOPATH}"
-	go build -ldflags "-w -X github.com/kitabisa/teler/version.GitCommit=${GIT_COMMIT}${GIT_DIRTY} -X github.com/kitabisa/teler/version.Version=${VERSION} -X github.com/kitabisa/teler/version.Environment=${ENVIRONMENT} -X github.com/kitabisa/teler/version.BuildDate=${BUILD_DATE}" -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
+	go build -ldflags "-s -w  -X ktbs.dev/teler/versioninfo.Version=${VERSION}" -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
 
 run: build
 	@echo "Running ${APP_NAME} ${VERSION}"
