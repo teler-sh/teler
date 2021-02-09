@@ -41,7 +41,7 @@ func ParseOptions() *common.Options {
 		h := []string{
 			"",
 			"Usage:",
-			usage,
+			common.Usage,
 			"",
 			"Options:",
 			"  -c, --config <FILE>         teler configuration file",
@@ -53,7 +53,7 @@ func ParseOptions() *common.Options {
 			"  -v, --version               Show current teler version",
 			"",
 			"Examples:",
-			example,
+			common.Example,
 			"",
 		}
 
