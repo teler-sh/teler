@@ -1,15 +1,16 @@
 package runner
 
-const (
+import "ktbs.dev/teler/versioninfo"
+
+var (
 	email       = "infosec@kitabisa.com"
-	version     = "1.0.1"
 	development = false
 	banner      = `
 	  __      __       
 	 / /____ / /__ ____
 	/ __/ -_) / -_) __/
 	\__/\__/_/\__/_/   
-	                v` + version
+	                ` + versioninfo.Version
 
 	usage = `  [buffers] | teler [options]
   teler -c [...] [options]`
