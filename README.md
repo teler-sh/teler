@@ -6,7 +6,7 @@
 [![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-[![Version](https://img.shields.io/badge/version-1.0.1-blueviolet)](https://github.com/kitabisa/teler/releases)
+[![Release](https://img.shields.io/github/v/release/kitabisa/teler?color=blueviolet)](https://github.com/kitabisa/teler/releases)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
 [![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)](https://github.com/kitabisa/teler/issues)
 
@@ -122,10 +122,10 @@ Pull the Docker image by running:
 If you have go1.14+ compiler installed and configured:
 
 ```bash
-▶ GO111MODULE=on go get -v -u ktbs.dev/teler/cmd/teler
+▶ GO111MODULE=on go get -u ktbs.dev/teler/cmd/teler
 ```
 
-In order to update the tool, you can use `-u` flag with `go get` command.
+The same command works for update to the latest version.
 
 ### from GitHub
 
