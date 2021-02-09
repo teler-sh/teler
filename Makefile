@@ -1,4 +1,4 @@
-.PHONY: default help build package tag push helm run test clean
+.PHONY: default help build package push helm run test clean
 
 SHELL         = /bin/bash
 APP_NAME      = teler
@@ -12,7 +12,6 @@ help:
 	@echo
 	@echo 'Usage:'
 	@echo '    make build            Compile the project.'
-	@echo '    make tag              Tag image created by package with latest, git commit and version.'
 	@echo '    make push             Push tagged images to registry.'
 	@echo '    make run ARGS=        Run with supplied arguments.'
 	@echo '    make test             Run tests on a compiled project.'
@@ -24,7 +23,7 @@ help:
 build:
 	@echo "Building ${APP_NAME} ${VERSION}"
 	@echo "GOPATH=${GOPATH}"
-	go build -ldflags "-s -w  -X ktbs.dev/teler/versioninfo.Version=${VERSION}" -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
+	go build -ldflags "-s -w -X ktbs.dev/teler/common.Version=${VERSION}" -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
 
 run: build
 	@echo "Running ${APP_NAME} ${VERSION}"
