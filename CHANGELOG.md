@@ -2,6 +2,12 @@
 
 All notable changes to this project should be documented in this file.
 
+### v1.0.2
+
+- Inject build version (#95)
+- Update `Makefile` script
+- Update documentations
+
 ### v1.0.1
 
 - Improves whitelist for Common Web Attack & CVE threats
