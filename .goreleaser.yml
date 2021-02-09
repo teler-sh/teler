@@ -10,6 +10,8 @@ builds:
       - 386
       - arm
       - arm64
+    ldflags:
+      - -s -w -X ktbs.dev/teler/common.Version={{.Version}}
   
 archives:
   - id: tgz
