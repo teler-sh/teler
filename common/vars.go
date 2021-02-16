@@ -3,7 +3,7 @@ package common
 var (
 	Email       = "infosec@kitabisa.com"
 	Development = true
-	Version     = "undefined"
+	Version     = ""
 	Banner      = `
 	  __      __       
 	 / /____ / /__ ____
