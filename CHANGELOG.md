@@ -4,6 +4,10 @@ All notable changes to this project should be documented in this file.
 
 ### v1.0.2
 
+- Refactor versioning package
+
+### v1.0.2-dev
+
 - Inject build version (#95)
 - Update `Makefile` script
 - Update documentations
