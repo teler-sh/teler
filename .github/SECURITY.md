@@ -7,4 +7,6 @@ The community will be thankful to your contributions. :star:
 
 Please report the security vulnerabilities via Issues Section or email `infosec<at>kitabisa.com`
 
-<!-- ## Past Security Vulnerabilities -->
+## Past Security Vulnerabilities
+
+- [CVE-2020-26213](https://github.com/kitabisa/teler/security/advisories/GHSA-jhj6-5mh6-4pvf) - Denial-of-Service within Docker container
