@@ -13,7 +13,7 @@ require (
 	github.com/prometheus/client_golang v1.9.0
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/satyrius/gonx v1.3.0
-	github.com/slack-go/slack v0.7.4
+	github.com/slack-go/slack v0.8.1
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	github.com/valyala/fastjson v1.6.3
 	google.golang.org/protobuf v1.24.0 // indirect
