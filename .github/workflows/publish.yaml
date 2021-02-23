@@ -1,4 +1,4 @@
-name: Publish to DockerHub
+name: Publish
 on:
   create:
     tags:
@@ -6,8 +6,16 @@ on:
 
 jobs: 
   release: 
+    name: "Publish to DockerHub"
     runs-on: ubuntu-latest
     steps:
+      - name: "Check out code"
+        uses: actions/checkout@v2
+
+      - name: "Set variables"
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
       - name: "Set up QEMU"
         uses: docker/setup-qemu-action@v1.0.1
       
@@ -22,10 +30,11 @@ jobs:
       
       - name: "Build and push"
         id: docker_build
-        uses: docker/build-push-action@v2.2.1
+        uses: docker/build-push-action@v2.3.0
         with:
           push: true
-          tags: ${{ github.repository }}:latest
+          build-args: "VERSION=${{ steps.vars.outputs.tag }}"
+          tags: "${{ github.repository }}:latest,${{ github.repository }}:${{ steps.vars.outputs.tag }}"
       
       - name: "Image digest"
         run: echo ${{ steps.docker_build.outputs.digest }}
