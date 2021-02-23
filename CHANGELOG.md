@@ -2,6 +2,10 @@
 
 All notable changes to this project should be documented in this file.
 
+### v1.0.3
+
+- Remove unused package
+
 ### v1.0.2
 
 - Refactor versioning package
