@@ -143,6 +143,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ossie-git",
+      "name": "oelnaggar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25382296?v=4",
+      "profile": "https://github.com/ossie-git",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
