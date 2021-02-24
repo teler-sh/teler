@@ -134,6 +134,15 @@
         "maintenance",
         "code"
       ]
+    },
+    {
+      "login": "michael-bouvy",
+      "name": "Michael BOUVY",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1674029?v=4",
+      "profile": "http://michael.bouvy.net/blog/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

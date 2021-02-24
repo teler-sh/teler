@@ -439,6 +439,9 @@ This project exists thanks to all the people who contribute. To learn how to set
     <td align="center"><a href="https://ma.rkus.io"><img src="https://avatars2.githubusercontent.com/u/1903284?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Markus Tenghamn</b></sub></a><br /><a href="https://github.com/kitabisa/teler/issues?q=author%3Amarkustenghamn" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/brownchow"><img src="https://avatars0.githubusercontent.com/u/8622915?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rick</b></sub></a><br /><a href="#maintenance-brownchow" title="Maintenance">🚧</a> <a href="https://github.com/kitabisa/teler/commits?author=brownchow" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://michael.bouvy.net/blog/"><img src="https://avatars.githubusercontent.com/u/1674029?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael BOUVY</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=michael-bouvy" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
