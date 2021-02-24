@@ -441,6 +441,7 @@ This project exists thanks to all the people who contribute. To learn how to set
   </tr>
   <tr>
     <td align="center"><a href="http://michael.bouvy.net/blog/"><img src="https://avatars.githubusercontent.com/u/1674029?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael BOUVY</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=michael-bouvy" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ossie-git"><img src="https://avatars.githubusercontent.com/u/25382296?v=4?s=100" width="100px;" alt=""/><br /><sub><b>oelnaggar</b></sub></a><br /><a href="https://github.com/kitabisa/teler/commits?author=ossie-git" title="Documentation">📖</a></td>
   </tr>
 </table>
 
