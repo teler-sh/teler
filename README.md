@@ -248,7 +248,7 @@ Because we use `gonx` package to parse the log, you can write any log format. As
 #### Apache
 ```yaml
 log_format: |
-  $remote_addr - $remote_user [$time_local] "$request_method $request_uri $request_protocol" $status $body_bytes_sent
+  $remote_addr - $remote_user [$time_local] "$request_method $request_uri $request_protocol" $status $body_bytes_sent "$http_referer" "$http_user_agent"
 ```
 
 #### Nginx
