@@ -149,9 +149,9 @@ Simply, teler can be run with:
 If you've built teler with a Docker image:
 
 ```bash
-▶ [buffers] | docker run -i --rm -e TELER_CONFIG=/path/to/config/teler.yaml teler
+▶ [buffers] | docker run -i --rm -e TELER_CONFIG=/path/to/config/teler.yaml kitabisa/teler
 # or
-▶ docker run -i --rm -e TELER_CONFIG=/path/to/config/teler.yaml teler --input /path/to/access.log
+▶ docker run -i --rm -e TELER_CONFIG=/path/to/config/teler.yaml kitabisa/teler --input /path/to/access.log
 ```
 
 ### Flags
