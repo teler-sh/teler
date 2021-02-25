@@ -10,7 +10,7 @@ import (
 
 	"github.com/acarl005/stripansi"
 	"github.com/logrusorgru/aurora"
-	log "github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/gologger"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/remeh/sizedwaitgroup"
 	"github.com/satyrius/gonx"
@@ -43,11 +43,11 @@ func New(options *common.Options) {
 		}()
 
 		metrics.Init()
-		log.Infof("Listening metrics on http://" + promserve + promendpoint)
+		gologger.Info().Msgf("Listening metrics on http://" + promserve + promendpoint)
 	}
 
 	jobs := make(chan *gonx.Entry)
-	log.Infof("Analyzing...")
+	gologger.Info().Msg("Analyzing...")
 
 	con := options.Concurrency
 	swg := sizedwaitgroup.New(con)
@@ -121,5 +121,5 @@ func New(options *common.Options) {
 	close(jobs)
 
 	swg.Wait()
-	log.Infof("Done!")
+	gologger.Info().Msg("Done!")
 }

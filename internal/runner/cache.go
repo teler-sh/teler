@@ -8,6 +8,6 @@ import (
 
 func rmCache() {
 	cache.Purge()
-	gologger.Infof("All local cached resources have been removed.")
+	gologger.Info().Msg("All local cached resources have been removed.")
 	errors.Abort(9)
 }

@@ -14,12 +14,12 @@ func Exit(err string) {
 			msg += e
 			Show(msg)
 		}
-		gologger.Infof("Use \"-h\" flag for more info about command.")
+		gologger.Info().Msgf("Use \"-h\" flag for more info about command.")
 		Abort(9)
 	}
 }
 
 // Show error message
 func Show(msg string) {
-	gologger.Errorf("%s\n", msg)
+	gologger.Error().Msgf("%s\n", msg)
 }

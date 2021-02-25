@@ -7,10 +7,10 @@ import (
 
 // showBanner is used to show the banner to the user
 func showBanner() {
-	gologger.Printf("%s\n\n", common.Banner)
-	gologger.Printf("\t%s\n\n", common.Email)
+	gologger.Print().Msgf("%s\n\n", common.Banner)
+	gologger.Print().Msgf("\t%s\n\n", common.Email)
 	if common.Development {
-		gologger.Labelf("This tool is under development!")
-		gologger.Labelf("Please submit a report if an error occurs.")
+		gologger.Warning().Msg("This tool is under development!")
+		gologger.Warning().Msg("Please submit a report if an error occurs.")
 	}
 }
