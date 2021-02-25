@@ -11,7 +11,7 @@ builds:
       - arm
       - arm64
     ldflags:
-      - -s -w -X ktbs.dev/teler/common.Version={{.Version}}
+      - -s -w -X ktbs.dev/teler/common.Version=v{{.Version}}
   
 archives:
   - id: tgz
