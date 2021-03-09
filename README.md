@@ -4,7 +4,7 @@
 </p>
 
 [![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
-[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/development/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/master/LICENSE)
 [![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
 [![Release](https://img.shields.io/github/v/release/kitabisa/teler?color=blueviolet)](https://github.com/kitabisa/teler/releases)
 [![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
@@ -16,9 +16,9 @@
 <p align="center">
   Real-time HTTP Intrusion Detection
   <br />
-  <a href="https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md">Contribute</a>
+  <a href="https://github.com/kitabisa/teler/blob/master/.github/CONTRIBUTING.md">Contribute</a>
   ·
-  <a href="https://github.com/kitabisa/teler/blob/development/CHANGELOG.md">What's new</a>
+  <a href="https://github.com/kitabisa/teler/blob/master/CHANGELOG.md">What's new</a>
   ·
   <a href="https://github.com/kitabisa/teler/issues/new/choose">Report Bug</a>
   ·
@@ -75,6 +75,8 @@ Here is a preview of `teler` with conditions of use as:
 
 ## Documentation
 
+All related documentation is on our [Wiki page](https://github.com/kitabisa/teler/wiki).
+
 - [Installation](https://github.com/kitabisa/teler/wiki/Installation)
 - [Usage](https://github.com/kitabisa/teler/wiki/Usage)
 - [Configuration](https://github.com/kitabisa/teler/wiki/Configuration)
@@ -88,7 +90,7 @@ Here is a preview of `teler` with conditions of use as:
 
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitabisa/teler/issues)
 
-This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md).
+This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/master/.github/CONTRIBUTING.md).
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -133,10 +135,10 @@ All external resources used in this teler are **NOT** provided by us. See all pe
 
 ## Changes
 
-For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/development/CHANGELOG.md).
+For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/master/CHANGELOG.md).
 
 ## License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/teler/blob/development/LICENSE). Kitabisa teler and any contributions are Copyright © by Dwi Siswanto 2020.
+This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/teler/blob/master/LICENSE). Kitabisa teler and any contributions are Copyright © by Dwi Siswanto 2020.
 
 [![Stargazers over time](https://starchart.cc/kitabisa/teler.svg)](https://starchart.cc/kitabisa/teler)
