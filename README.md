@@ -75,11 +75,7 @@ Here is a preview of `teler` with conditions of use as:
 
 ## Documentation
 
-All related documentation is on our [Wiki page](https://github.com/kitabisa/teler/wiki).
-
-- [Installation](https://github.com/kitabisa/teler/wiki/Installation)
-- [Usage](https://github.com/kitabisa/teler/wiki/Usage)
-- [Configuration](https://github.com/kitabisa/teler/wiki/Configuration)
+All related documentation about installation, usage & configuration is on our [Wiki page](https://www.notion.so/kitabisa/teler-a1fd9d874e9a4448a45d9d3add434b54).
 
 ## Supporting Materials
 
