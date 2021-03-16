@@ -63,13 +63,13 @@ func New(options *common.Options) {
 
 	con := options.Concurrency
 	swg := sizedwaitgroup.New(con)
-	for i := 0; i < con; i++ {
-		swg.Add()
-		go func() {
-			defer swg.Done()
+	go func() {
+		for log := range jobs {
+			swg.Add()
+			go func(line *gonx.Entry) {
+				defer swg.Done()
 
-			for log := range jobs {
-				threat, obj := teler.Analyze(options, log)
+				threat, obj := teler.Analyze(options, line)
 
 				if threat {
 					if metric {
@@ -105,9 +105,9 @@ func New(options *common.Options) {
 
 					alert.New(options, common.Version, obj)
 				}
-			}
-		}()
-	}
+			}(log)
+		}
+	}()
 
 	if options.Stdin {
 		input = os.Stdin
