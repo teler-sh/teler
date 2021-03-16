@@ -30,6 +30,7 @@ func removeLBR(s string) string {
 func New(options *common.Options) {
 	var input *os.File
 	var out string
+	var pass int
 
 	metric, promserve, promendpoint := prometheus(options)
 	if metric {
@@ -116,10 +117,15 @@ func New(options *common.Options) {
 			break
 		}
 		jobs <- line
+		pass++
 	}
 
 	close(jobs)
-
 	swg.Wait()
+
+	// fmt.Println(pass)
+	if pass == 0 {
+		gologger.Warning().Msg("No logs analyzed, did you write log format correctly?")
+	}
 	gologger.Info().Msg("Done!")
 }
