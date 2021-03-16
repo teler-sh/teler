@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"os/signal"
 	"regexp"
 
 	"github.com/acarl005/stripansi"
@@ -49,6 +50,16 @@ func New(options *common.Options) {
 
 	jobs := make(chan *gonx.Entry)
 	gologger.Info().Msg("Analyzing...")
+
+	stop := make(chan os.Signal, 1)
+	signal.Notify(stop, os.Interrupt)
+	go func() {
+		<-stop
+		gologger.Warning().Msg("Interuppted. Exiting...")
+
+		close(jobs)
+		done(pass)
+	}()
 
 	con := options.Concurrency
 	swg := sizedwaitgroup.New(con)
@@ -122,10 +133,14 @@ func New(options *common.Options) {
 
 	close(jobs)
 	swg.Wait()
+	done(pass)
+}
 
-	// fmt.Println(pass)
-	if pass == 0 {
+func done(i int) {
+	if i == 0 {
 		gologger.Warning().Msg("No logs analyzed, did you write log format correctly?")
 	}
 	gologger.Info().Msg("Done!")
+
+	os.Exit(1)
 }
