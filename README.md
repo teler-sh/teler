@@ -85,6 +85,7 @@ All related documentation is on our [Wiki page](https://github.com/kitabisa/tele
 
 - [teler - Protect Your WebApp!](https://dw1.io/files/teler%20-%20Protect%20Your%20WebApp.pdf) Talks were brought to the **OWASP Jakarta: Virtual AppSec Indonesia 2020** event.
 - [Tutorial: Cyber Threat Hunting - Useful Threat Hunting Tools (Part One)](https://youtu.be/0m54WOXO6Gc), Semi Yulianto gave a brief explanation and how to use **teler** in the video.
+- [Empowering Teler HTTP Intrusion Detection as WAF with Fail2ban](https://link.medium.com/OXVZIMkZEeb).
 
 ## Contributors
 
