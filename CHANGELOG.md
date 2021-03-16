@@ -2,9 +2,16 @@
 
 All notable changes to this project should be documented in this file.
 
+### v1.1.1
+
+- Add interrupt handler
+- Set default logger to debug
+- Add notifies if no logs are analyzed
+- Refactoring analyzer threads
+
 ### v1.1.0
 
-- Upgrade dependencies.
+- Upgrade dependencies
 
 ### v1.0.3
 

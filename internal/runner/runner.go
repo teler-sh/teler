@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"os/signal"
 	"regexp"
 
 	"github.com/acarl005/stripansi"
@@ -30,6 +31,7 @@ func removeLBR(s string) string {
 func New(options *common.Options) {
 	var input *os.File
 	var out string
+	var pass int
 
 	metric, promserve, promendpoint := prometheus(options)
 	if metric {
@@ -49,15 +51,25 @@ func New(options *common.Options) {
 	jobs := make(chan *gonx.Entry)
 	gologger.Info().Msg("Analyzing...")
 
+	stop := make(chan os.Signal, 1)
+	signal.Notify(stop, os.Interrupt)
+	go func() {
+		<-stop
+		gologger.Warning().Msg("Interuppted. Exiting...")
+
+		close(jobs)
+		done(pass)
+	}()
+
 	con := options.Concurrency
 	swg := sizedwaitgroup.New(con)
-	for i := 0; i < con; i++ {
-		swg.Add()
-		go func() {
-			defer swg.Done()
+	go func() {
+		for log := range jobs {
+			swg.Add()
+			go func(line *gonx.Entry) {
+				defer swg.Done()
 
-			for log := range jobs {
-				threat, obj := teler.Analyze(options, log)
+				threat, obj := teler.Analyze(options, line)
 
 				if threat {
 					if metric {
@@ -93,9 +105,9 @@ func New(options *common.Options) {
 
 					alert.New(options, common.Version, obj)
 				}
-			}
-		}()
-	}
+			}(log)
+		}
+	}()
 
 	if options.Stdin {
 		input = os.Stdin
@@ -116,10 +128,19 @@ func New(options *common.Options) {
 			break
 		}
 		jobs <- line
+		pass++
 	}
 
 	close(jobs)
-
 	swg.Wait()
+	done(pass)
+}
+
+func done(i int) {
+	if i == 0 {
+		gologger.Warning().Msg("No logs analyzed, did you write log format correctly?")
+	}
 	gologger.Info().Msg("Done!")
+
+	os.Exit(1)
 }
