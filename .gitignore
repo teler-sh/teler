@@ -2,4 +2,3 @@ bin/*
 dist/*
 teler.yaml
 .scannerwork/
-teler/
