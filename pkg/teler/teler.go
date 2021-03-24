@@ -1,6 +1,7 @@
 package teler
 
 import (
+	"fmt"
 	"net/url"
 	"reflect"
 	"regexp"
@@ -216,7 +217,8 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			}
 			refs := strings.Split(data["content"], "\n")
 
-			match = matchers.IsMatch(req.Host, refs)
+			match = matchers.IsMatchFuzz(req.Host, refs)
+			fmt.Println(match)
 			if match {
 				metrics.GetBadReferrer.WithLabelValues(log["http_referer"]).Inc()
 			}
