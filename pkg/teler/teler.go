@@ -34,14 +34,13 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			threat := reflect.ValueOf(&rsc.Threat[i]).Elem()
 			cat := threat.FieldByName("Category").String()
 			con := threat.FieldByName("Content").String()
-			exc := threat.FieldByName("Exclude").Bool()
+
+			if threat.FieldByName("Exclude").Bool() {
+				continue
+			}
 
 			datasets[cat] = map[string]string{}
 			datasets[cat]["content"] = con
-
-			if exc {
-				continue
-			}
 		}
 	}
 
