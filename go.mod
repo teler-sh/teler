@@ -13,6 +13,7 @@ require (
 	github.com/projectdiscovery/gologger v1.1.4
 	github.com/prometheus/client_golang v1.10.0
 	github.com/remeh/sizedwaitgroup v1.0.0
+	github.com/sahilm/fuzzy v0.1.0 // indirect
 	github.com/satyrius/gonx v1.3.0
 	github.com/slack-go/slack v0.8.2
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
