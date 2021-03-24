@@ -20,24 +20,32 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 	var match, status bool
 
 	log := make(map[string]string)
-	rsc := resource.Get()
 
 	fields := reflect.ValueOf(logs).Elem().FieldByName("fields")
 	for _, field := range fields.MapKeys() {
 		log[field.String()] = fields.MapIndex(field).String()
 	}
 
-	for i := 0; i < len(rsc.Threat); i++ {
-		threat := reflect.ValueOf(&rsc.Threat[i]).Elem()
-		cat := threat.FieldByName("Category").String()
-		con := threat.FieldByName("Content").String()
-		exc := threat.FieldByName("Exclude").Bool()
+	if len(datasets) == 0 {
+		datasets = make(map[string]map[string]string)
+		rsc := resource.Get()
+		for i := 0; i < len(rsc.Threat); i++ {
+			threat := reflect.ValueOf(&rsc.Threat[i]).Elem()
+			cat := threat.FieldByName("Category").String()
+			con := threat.FieldByName("Content").String()
+			exc := threat.FieldByName("Exclude").Bool()
 
-		log["category"] = cat
+			datasets[cat] = map[string]string{}
+			datasets[cat]["content"] = con
 
-		if exc {
-			continue
+			if exc {
+				continue
+			}
 		}
+	}
+
+	for cat, data := range datasets {
+		log["category"] = cat
 
 		switch cat {
 		case "Common Web Attack":
@@ -58,7 +66,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 						continue
 					}
 
-					cwa, _ := fastjson.Parse(con)
+					cwa, _ := fastjson.Parse(data["content"])
 					for _, v := range cwa.GetArray("filters") {
 						log["category"] = cat + ": " + string(v.GetStringBytes("description"))
 						log["element"] = "request_uri"
@@ -93,7 +101,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			}
 
 			log["element"] = "request_uri"
-			cves, _ := fastjson.Parse(con)
+			cves, _ := fastjson.Parse(data["content"])
 			for _, cve := range cves.GetArray("templates") {
 				log["category"] = strings.ToTitle(string(cve.GetStringBytes("id")))
 
@@ -169,7 +177,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				break
 			}
 
-			for _, pat := range strings.Split(con, "\n") {
+			for _, pat := range strings.Split(data["content"], "\n") {
 				if match = matchers.IsMatch(pat, log["http_user_agent"]); match {
 					metrics.GetBadCrawler.WithLabelValues(
 						log["remote_addr"],
@@ -187,8 +195,8 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				break
 			}
 
-			ip := "(?m)^" + log["remote_addr"]
-			match = matchers.IsMatch(ip, con)
+			ips := strings.Split(data["content"], "\n")
+			match = matchers.IsMatchFuzz(log["remote_addr"], ips)
 			if match {
 				metrics.GetBadIP.WithLabelValues(log["remote_addr"]).Inc()
 			}
@@ -206,9 +214,9 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			if err != nil {
 				break
 			}
-			ref := "(?m)^" + req.Host
+			refs := strings.Split(data["content"], "\n")
 
-			match = matchers.IsMatch(ref, con)
+			match = matchers.IsMatch(req.Host, refs)
 			if match {
 				metrics.GetBadReferrer.WithLabelValues(log["http_referer"]).Inc()
 			}
@@ -227,7 +235,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			}
 
 			if req.Path != "/" {
-				match = matchers.IsMatch(trimFirst(req.Path), con)
+				match = matchers.IsMatch(trimFirst(req.Path), data["content"])
 			}
 
 			if match {
