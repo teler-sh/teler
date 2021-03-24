@@ -9,11 +9,12 @@ require (
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/kirsle/configdir v0.0.0-20170128060238-e45d2f54772f
+	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/projectdiscovery/gologger v1.1.4
 	github.com/prometheus/client_golang v1.10.0
 	github.com/remeh/sizedwaitgroup v1.0.0
-	github.com/sahilm/fuzzy v0.1.0 // indirect
+	github.com/sahilm/fuzzy v0.1.0
 	github.com/satyrius/gonx v1.3.0
 	github.com/slack-go/slack v0.8.2
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
