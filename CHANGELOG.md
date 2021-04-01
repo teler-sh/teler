@@ -2,6 +2,16 @@
 
 All notable changes to this project should be documented in this file.
 
+### v1.2.2
+
+- Add utility for get datasets
+- Remove debug print
+
+### v1.2.1
+
+- Fix exclude threats logic to set datasets
+- Fix linter
+
 ### v1.1.1
 
 - Add interrupt handler
