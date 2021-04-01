@@ -1,7 +1,6 @@
 package teler
 
 import (
-	"fmt"
 	"net/url"
 	"reflect"
 	"regexp"
@@ -13,7 +12,6 @@ import (
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/pkg/matchers"
 	"ktbs.dev/teler/pkg/metrics"
-	"ktbs.dev/teler/resource"
 )
 
 // Analyze logs from threat resources
@@ -28,20 +26,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 	}
 
 	if len(datasets) == 0 {
-		datasets = make(map[string]map[string]string)
-		rsc := resource.Get()
-		for i := 0; i < len(rsc.Threat); i++ {
-			threat := reflect.ValueOf(&rsc.Threat[i]).Elem()
-			cat := threat.FieldByName("Category").String()
-			con := threat.FieldByName("Content").String()
-
-			if threat.FieldByName("Exclude").Bool() {
-				continue
-			}
-
-			datasets[cat] = map[string]string{}
-			datasets[cat]["content"] = con
-		}
+		getDatasets()
 	}
 
 	for cat, data := range datasets {
@@ -217,7 +202,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			refs := strings.Split(data["content"], "\n")
 
 			match = matchers.IsMatchFuzz(req.Host, refs)
-			fmt.Println(match)
 			if match {
 				metrics.GetBadReferrer.WithLabelValues(log["http_referer"]).Inc()
 			}
