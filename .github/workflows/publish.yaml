@@ -17,7 +17,7 @@ jobs:
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
       - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1.1.0
+        uses: docker/setup-qemu-action@v1.2.0
       
       - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1.3.0
