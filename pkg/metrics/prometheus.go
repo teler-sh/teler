@@ -6,8 +6,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-// Prometheus metric logs insertion
-func Prometheus(data map[string]string) {
+// PrometheusInsert logs into metrics
+func PrometheusInsert(data map[string]string) {
 	var counter prometheus.Counter
 
 	switch {

@@ -58,7 +58,7 @@ func New(options *common.Options) {
 
 					alert.New(options, common.Version, obj)
 					log(options, obj)
-					metrics.Send(obj)
+					metrics.PrometheusInsert(obj)
 				}
 			}(job)
 		}
