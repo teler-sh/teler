@@ -19,9 +19,9 @@ func metric(options *common.Options) {
 	t := v.Type()
 
 	for i := 0; i < v.NumField(); i++ {
-		switch t.Field(i).Name {
-		case "Prometheus":
-			if v.Field(i).FieldByName("Active").Bool() {
+		if v.Field(i).FieldByName("Active").Bool() {
+			switch t.Field(i).Name {
+			case "Prometheus":
 				startPrometheus(options)
 			}
 		}
