@@ -4,7 +4,7 @@ import "github.com/prometheus/client_golang/prometheus"
 
 // Defines its Prometheus metrics variables
 var (
-	GetCWA = prometheus.NewCounterVec(
+	getCWA = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_cwa",
 			Help: "Get lists of Common Web Attack threats",
@@ -12,7 +12,7 @@ var (
 		[]string{"description", "remote_addr", "request_uri", "status"},
 	)
 
-	GetCVE = prometheus.NewCounterVec(
+	getCVE = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_cve",
 			Help: "Get lists of CVE threats",
@@ -20,7 +20,7 @@ var (
 		[]string{"description", "remote_addr", "request_uri", "status"},
 	)
 
-	GetBadCrawler = prometheus.NewCounterVec(
+	getBadCrawler = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_badcrawler",
 			Help: "Get lists of Bad Crawler requests",
@@ -28,7 +28,7 @@ var (
 		[]string{"remote_addr", "http_user_agent", "status"},
 	)
 
-	GetDirBruteforce = prometheus.NewCounterVec(
+	getDirBruteforce = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_dir_bruteforce",
 			Help: "Get lists of Directories Bruteforced",
@@ -36,7 +36,7 @@ var (
 		[]string{"remote_addr", "request_uri", "status"},
 	)
 
-	GetBadIP = prometheus.NewCounterVec(
+	getBadIP = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_badip_count",
 			Help: "Total number of Bad IP Addresses",
@@ -44,7 +44,7 @@ var (
 		[]string{"remote_addr"},
 	)
 
-	GetBadReferrer = prometheus.NewCounterVec(
+	getBadReferrer = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_bad_referrer",
 			Help: "Get lists of Bad Referrer requests",
@@ -64,7 +64,7 @@ var (
 // Init will register a Prometheus metrics with the specified variables
 func Init() {
 	prometheus.MustRegister(
-		GetBadCrawler, GetDirBruteforce, GetBadIP,
-		GetCWA, GetCVE, GetBadReferrer, GetThreatTotal,
+		getBadCrawler, getDirBruteforce, getBadIP,
+		getCWA, getCVE, getBadReferrer, GetThreatTotal,
 	)
 }

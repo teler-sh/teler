@@ -65,13 +65,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 						)
 
 						if match {
-							metrics.GetCWA.WithLabelValues(
-								log["category"],
-								log["remote_addr"],
-								log["request_uri"],
-								log["status"],
-							).Inc()
-
 							break
 						}
 					}
@@ -163,16 +156,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 						if fq >= len(diff.Query()) {
 							match = true
-						}
-
-						if match {
-							metrics.GetCVE.WithLabelValues(
-								log["category"],
-								log["remote_addr"],
-								log["request_uri"],
-								log["status"],
-							).Inc()
-
 							break
 						}
 					}
@@ -191,12 +174,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 			for _, pat := range strings.Split(data["content"], "\n") {
 				if match = matchers.IsMatch(pat, log["http_user_agent"]); match {
-					metrics.GetBadCrawler.WithLabelValues(
-						log["remote_addr"],
-						log["http_user_agent"],
-						log["status"],
-					).Inc()
-
 					break
 				}
 			}
@@ -209,9 +186,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 
 			ips := strings.Split(data["content"], "\n")
 			match = matchers.IsMatchFuzz(log["remote_addr"], ips)
-			if match {
-				metrics.GetBadIP.WithLabelValues(log["remote_addr"]).Inc()
-			}
 		case "Bad Referrer":
 			log["element"] = "http_referer"
 			if isWhitelist(options, log["http_referer"]) {
@@ -229,9 +203,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			refs := strings.Split(data["content"], "\n")
 
 			match = matchers.IsMatchFuzz(req.Host, refs)
-			if match {
-				metrics.GetBadReferrer.WithLabelValues(log["http_referer"]).Inc()
-			}
 		case "Directory Bruteforce":
 			log["element"] = "request_uri"
 
@@ -249,17 +220,10 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 			if req.Path != "/" {
 				match = matchers.IsMatch(trimFirst(req.Path), data["content"])
 			}
-
-			if match {
-				metrics.GetDirBruteforce.WithLabelValues(
-					log["remote_addr"],
-					log["request_uri"],
-					log["status"],
-				).Inc()
-			}
 		}
 
 		if match {
+			metrics.Send(log)
 			return match, log
 		}
 	}
