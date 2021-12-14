@@ -21,7 +21,6 @@ import (
 func New(options *common.Options) {
 	var (
 		input *os.File
-		out   string
 		pass  int
 	)
 
@@ -50,14 +49,12 @@ func New(options *common.Options) {
 
 				threat, obj := teler.Analyze(options, line)
 				if threat {
-					out = fmt.Sprintf("[%s] [%s] [%s] %s\n",
+					fmt.Printf("[%s] [%s] [%s] %s\n",
 						aurora.Cyan(obj["time_local"]),
 						aurora.Green(obj["remote_addr"]),
 						aurora.Yellow(obj["category"]),
 						aurora.Red(obj[obj["element"]]),
 					)
-
-					fmt.Print(out)
 
 					alert.New(options, common.Version, obj)
 					log(options, obj)
