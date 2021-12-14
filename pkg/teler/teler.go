@@ -1,6 +1,8 @@
 package teler
 
 import (
+	"bufio"
+	"net/http"
 	"net/url"
 	"reflect"
 	"regexp"
@@ -16,7 +18,7 @@ import (
 
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
-	var match, status bool
+	var match bool
 
 	log := make(map[string]string)
 
@@ -76,6 +78,12 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				}
 			}
 		case "CVE":
+			var (
+				kind string
+				diff *url.URL
+				raw  *http.Request
+			)
+
 			req, err := url.ParseRequestURI(log["request_uri"])
 			if err != nil {
 				break
@@ -91,32 +99,51 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				log["category"] = strings.ToTitle(string(cve.GetStringBytes("id")))
 
 				for _, r := range cve.GetArray("requests") {
-					method := string(r.GetStringBytes("method"))
-					if method != log["request_method"] {
-						continue
+					switch {
+					case len(r.GetArray("path")) > 0:
+						kind = "path"
+					case len(r.GetArray("raw")) > 0:
+						kind = "raw"
 					}
 
-					for _, m := range r.GetArray("matchers") {
-						for _, s := range m.GetArray("status") {
-							if log["status"] == s.String() {
-								status = true
-							}
+					if kind == "path" {
+						if string(r.GetStringBytes("method")) != log["request_method"] {
+							continue
 						}
 					}
 
-					if !status {
-						break
-					}
+					for _, p := range r.GetArray(kind) {
+						switch kind {
+						case "path":
+							diff, err = url.ParseRequestURI(
+								strings.TrimPrefix(
+									strings.Trim(p.String(), `"`),
+									"{{BaseURL}}",
+								),
+							)
+							if err != nil {
+								continue
+							}
+						case "raw":
+							rawURL := strings.Trim(p.String(), `"`)
+							rawURL = strings.ReplaceAll(rawURL, "\\n", "\n")
+							rawURL = strings.ReplaceAll(rawURL, "\\r", "\r")
+							rawURL += "\r\n\r\n"
 
-					for _, p := range r.GetArray("path") {
-						diff, err := url.ParseRequestURI(
-							strings.TrimPrefix(
-								strings.Trim(p.String(), `"`),
-								"{{BaseURL}}",
-							),
-						)
-						if err != nil {
-							continue
+							raw, err = http.ReadRequest(
+								bufio.NewReader(
+									strings.NewReader(rawURL),
+								),
+							)
+							if err != nil {
+								continue
+							}
+
+							if raw.Method != log["request_method"] {
+								continue
+							}
+
+							diff = raw.URL
 						}
 
 						if len(diff.Path) <= 1 {
