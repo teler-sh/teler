@@ -14,6 +14,7 @@ type Configs struct {
 	} `yaml:"metrics" validate:"nonzero"`
 
 	Logs struct {
+		File file `yaml:"file"`
 		Zinc zinc `yaml:"zinc"`
 	} `yaml:"logs" validate:"nonzero"`
 

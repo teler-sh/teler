@@ -1,13 +1,11 @@
 package runner
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 	"os"
 	"os/signal"
 
-	"github.com/acarl005/stripansi"
 	"github.com/logrusorgru/aurora"
 	"github.com/projectdiscovery/gologger"
 	"github.com/remeh/sizedwaitgroup"
@@ -15,6 +13,7 @@ import (
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/internal/alert"
 	"ktbs.dev/teler/pkg/errors"
+	"ktbs.dev/teler/pkg/logs"
 	"ktbs.dev/teler/pkg/metrics"
 	"ktbs.dev/teler/pkg/teler"
 )
@@ -52,34 +51,17 @@ func New(options *common.Options) {
 
 				threat, obj := teler.Analyze(options, line)
 				if threat {
-					if options.JSON {
-						json, err := json.Marshal(obj)
-						if err != nil {
-							errors.Exit(err.Error())
-						}
-						out = fmt.Sprintf("%s\n", json)
-					} else {
-						out = fmt.Sprintf("[%s] [%s] [%s] %s\n",
-							aurora.Cyan(obj["time_local"]),
-							aurora.Green(obj["remote_addr"]),
-							aurora.Yellow(obj["category"]),
-							aurora.Red(obj[obj["element"]]),
-						)
-					}
+					out = fmt.Sprintf("[%s] [%s] [%s] %s\n",
+						aurora.Cyan(obj["time_local"]),
+						aurora.Green(obj["remote_addr"]),
+						aurora.Yellow(obj["category"]),
+						aurora.Red(obj[obj["element"]]),
+					)
 
 					fmt.Print(out)
 
-					if options.Output != "" {
-						if !options.JSON {
-							out = stripansi.Strip(out)
-						}
-
-						if _, write := options.OutFile.WriteString(out); write != nil {
-							errors.Show(write.Error())
-						}
-					}
-
 					alert.New(options, common.Version, obj)
+					logs.File(options, obj)
 					metrics.Send(obj)
 				}
 			}(log)

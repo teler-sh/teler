@@ -7,3 +7,9 @@ type zinc struct {
 	Pass   string `yaml:"pass"`
 	Index  string `yaml:"index"`
 }
+
+type file struct {
+	Active bool   `yaml:"active"`
+	JSON   bool   `yaml:"json"`
+	Path   string `yaml:"path"`
+}

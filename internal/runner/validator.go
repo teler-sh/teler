@@ -28,18 +28,22 @@ func validate(options *common.Options) {
 		}
 	}
 
-	if options.Output != "" {
-		f, errOutput := os.OpenFile(options.Output,
+	config, errConfig := parsers.GetConfig(options.ConfigFile)
+	if errConfig != nil {
+		errors.Exit(errConfig.Error())
+	}
+
+	if config.Logs.File.Active {
+		if config.Logs.File.Path == "" {
+			errors.Exit(errors.ErrNoFilePath)
+		}
+
+		f, errOutput := os.OpenFile(config.Logs.File.Path,
 			os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		if errOutput != nil {
 			errors.Exit(errOutput.Error())
 		}
-		options.OutFile = f
-	}
-
-	config, errConfig := parsers.GetConfig(options.ConfigFile)
-	if errConfig != nil {
-		errors.Exit(errConfig.Error())
+		options.Output = f
 	}
 
 	// Validates log format

@@ -6,4 +6,5 @@ const (
 	ErrAlertProvider  = "Provider \":platform\" not available; " + ErrCheckConfig
 	ErrNoInputLog     = "No input logs provided"
 	ErrNoInputConfig  = "No config file specified"
+	ErrNoFilePath     = "No file path specified"
 )
