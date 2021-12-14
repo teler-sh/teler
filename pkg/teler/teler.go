@@ -7,13 +7,11 @@ import (
 	"reflect"
 	"regexp"
 	"strings"
-	"unicode/utf8"
 
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/pkg/matchers"
-	"ktbs.dev/teler/pkg/metrics"
 )
 
 // Analyze logs from threat resources
@@ -223,27 +221,9 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		}
 
 		if match {
-			metrics.Send(log)
 			return match, log
 		}
 	}
 
 	return match, log
-}
-
-func trimFirst(s string) string {
-	_, i := utf8.DecodeRuneInString(s)
-	return s[i:]
-}
-
-func isWhitelist(options *common.Options, find string) bool {
-	whitelist := options.Configs.Rules.Threat.Whitelists
-	for i := 0; i < len(whitelist); i++ {
-		match := matchers.IsMatch(whitelist[i], find)
-		if match {
-			return true
-		}
-	}
-
-	return false
 }

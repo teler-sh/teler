@@ -4,15 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"net/http"
 	"os"
 	"os/signal"
-	"regexp"
 
 	"github.com/acarl005/stripansi"
 	"github.com/logrusorgru/aurora"
 	"github.com/projectdiscovery/gologger"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/remeh/sizedwaitgroup"
 	"github.com/satyrius/gonx"
 	"ktbs.dev/teler/common"
@@ -22,31 +19,15 @@ import (
 	"ktbs.dev/teler/pkg/teler"
 )
 
-func removeLBR(s string) string {
-	re := regexp.MustCompile(`\x{000D}\x{000A}|[\x{000A}\x{000B}\x{000C}\x{000D}\x{0085}\x{2028}\x{2029}]`)
-	return re.ReplaceAllString(s, ``)
-}
-
 // New read & pass stdin log
 func New(options *common.Options) {
-	var input *os.File
-	var out string
-	var pass int
+	var (
+		input *os.File
+		out   string
+		pass  int
+	)
 
-	metric, promserve, promendpoint := prometheus(options)
-	if metric {
-		go func() {
-			http.Handle(promendpoint, promhttp.Handler())
-
-			err := http.ListenAndServe(promserve, nil)
-			if err != nil {
-				errors.Exit(err.Error())
-			}
-		}()
-
-		metrics.Init()
-		gologger.Info().Msgf("Listening metrics on http://" + promserve + promendpoint)
-	}
+	go metric(options)
 
 	jobs := make(chan *gonx.Entry)
 	gologger.Info().Msg("Analyzing...")
@@ -70,12 +51,7 @@ func New(options *common.Options) {
 				defer swg.Done()
 
 				threat, obj := teler.Analyze(options, line)
-
 				if threat {
-					if metric {
-						metrics.GetThreatTotal.WithLabelValues(obj["category"]).Inc()
-					}
-
 					if options.JSON {
 						json, err := json.Marshal(obj)
 						if err != nil {
@@ -104,6 +80,7 @@ func New(options *common.Options) {
 					}
 
 					alert.New(options, common.Version, obj)
+					metrics.Send(obj)
 				}
 			}(log)
 		}

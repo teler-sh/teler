@@ -48,4 +48,5 @@ func Send(log map[string]string) {
 	}
 
 	counter.Inc()
+	getThreatTotal.WithLabelValues(log["category"]).Inc()
 }
