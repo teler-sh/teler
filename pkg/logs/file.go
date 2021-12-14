@@ -5,32 +5,33 @@ import (
 	"fmt"
 
 	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/errors"
 )
 
 // File write detected threats into it
-func File(options *common.Options, log map[string]string) {
+func File(options *common.Options, data map[string]string) error {
 	var out string
 	file := options.Configs.Logs.File
 
 	if options.Output != nil {
 		if file.JSON {
-			logJSON, err := json.Marshal(log)
+			logJSON, err := json.Marshal(data)
 			if err != nil {
-				errors.Exit(err.Error())
+				return err
 			}
 			out = fmt.Sprintf("%s\n", logJSON)
 		} else {
 			out = fmt.Sprintf("[%s] [%s] [%s] %s\n",
-				log["time_local"],
-				log["remote_addr"],
-				log["category"],
-				log[log["element"]],
+				data["time_local"],
+				data["remote_addr"],
+				data["category"],
+				data[data["element"]],
 			)
 		}
 
 		if _, write := options.Output.WriteString(out); write != nil {
-			errors.Show(write.Error())
+			return write
 		}
 	}
+
+	return nil
 }

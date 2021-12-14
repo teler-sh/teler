@@ -13,7 +13,6 @@ import (
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/internal/alert"
 	"ktbs.dev/teler/pkg/errors"
-	"ktbs.dev/teler/pkg/logs"
 	"ktbs.dev/teler/pkg/metrics"
 	"ktbs.dev/teler/pkg/teler"
 )
@@ -44,7 +43,7 @@ func New(options *common.Options) {
 	con := options.Concurrency
 	swg := sizedwaitgroup.New(con)
 	go func() {
-		for log := range jobs {
+		for job := range jobs {
 			swg.Add()
 			go func(line *gonx.Entry) {
 				defer swg.Done()
@@ -61,10 +60,10 @@ func New(options *common.Options) {
 					fmt.Print(out)
 
 					alert.New(options, common.Version, obj)
-					logs.File(options, obj)
+					log(options, obj)
 					metrics.Send(obj)
 				}
-			}(log)
+			}(job)
 		}
 	}()
 
