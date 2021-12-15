@@ -1,11 +1,14 @@
 package parsers
 
 type zinc struct {
-	Active bool   `yaml:"active"`
-	SSL    bool   `yaml:"ssl"`
-	User   string `yaml:"user"`
-	Pass   string `yaml:"pass"`
-	Index  string `yaml:"index"`
+	Active     bool   `yaml:"active"`
+	Host       string `yaml:"host"`
+	Port       int    `yaml:"port"`
+	SSL        bool   `yaml:"ssl"`
+	Username   string `yaml:"username"`
+	Password   string `yaml:"password"`
+	Index      string `yaml:"index"`
+	Base64Auth string
 }
 
 type file struct {

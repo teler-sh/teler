@@ -1,6 +1,12 @@
 package runner
 
 import (
+	"bytes"
+	"encoding/base64"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 	"os"
 	"reflect"
 	"strings"
@@ -53,9 +59,78 @@ func validate(options *common.Options) {
 	// Validates notification parts on configuration files
 	notification(options)
 
+	// Do Zinc health check, validate & set credentials
+	if config.Logs.Zinc.Active {
+		options.Configs.Logs.Zinc.Base64Auth = zinc(options)
+	}
+
 	if errVal := validator.Validate(options); errVal != nil {
 		errors.Exit(errVal.Error())
 	}
+}
+
+func zinc(options *common.Options) string {
+	var health, auth map[string]interface{}
+
+	zinc := options.Configs.Logs.Zinc
+	base := "http"
+	if zinc.SSL {
+		base += "s"
+	}
+	base += fmt.Sprint("://", zinc.Host, ":", zinc.Port)
+
+	resp, err := http.Get(fmt.Sprint(base, "/healthz"))
+	if err != nil {
+		errors.Exit(fmt.Sprint(errors.ErrHealthZinc, ": ", err.Error()))
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		errors.Exit(fmt.Sprint(errors.ErrHealthZinc, ": ", err.Error()))
+	}
+
+	if err = json.Unmarshal(body, &health); err != nil {
+		errors.Exit(fmt.Sprint(errors.ErrHealthZinc, ": ", err.Error()))
+	}
+
+	if health["status"] != "ok" {
+		errors.Exit(errors.ErrHealthZinc)
+	}
+
+	b64auth := base64.StdEncoding.EncodeToString([]byte(
+		fmt.Sprint(zinc.Username, ":", zinc.Password),
+	))
+	data, _ := json.Marshal(map[string]string{
+		"_id":           zinc.Username,
+		"base64encoded": b64auth,
+		"password":      zinc.Password,
+	})
+
+	resp, err = http.Post(
+		fmt.Sprint(base, "/api/login"),
+		"application/json",
+		bytes.NewBuffer(data),
+	)
+	if err != nil {
+		errors.Exit(fmt.Sprint(errors.ErrAuthZinc, ": ", err.Error()))
+	}
+	defer resp.Body.Close()
+
+	body, err = ioutil.ReadAll(resp.Body)
+	if err != nil {
+		errors.Exit(fmt.Sprint(errors.ErrAuthZinc, ": ", err.Error()))
+	}
+
+	if err = json.Unmarshal(body, &auth); err != nil {
+		errors.Exit(fmt.Sprint(errors.ErrAuthZinc, ": ", err.Error()))
+	}
+
+	if auth["validated"] == false {
+		errors.Exit(errors.ErrAuthZinc)
+	}
+
+	return b64auth
 }
 
 func notification(options *common.Options) {
