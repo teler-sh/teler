@@ -36,7 +36,7 @@ func validate(options *common.Options) {
 
 	config, errConfig := parsers.GetConfig(options.ConfigFile)
 	if errConfig != nil {
-		errors.Exit(errConfig.Error())
+		errors.Exit(errors.ErrParseConfig + errConfig.Error())
 	}
 
 	if config.Logs.File.Active {
