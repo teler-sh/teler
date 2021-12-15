@@ -8,6 +8,7 @@ All notable changes to this project should be documented in this file.
 - Add Zinc logs engine
 - Refactoring configuration structures
 - Remove `-o/--output` & `--json` flags
+- Add custom threat rules
 
 ### v1.2.2
 
