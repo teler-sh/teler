@@ -21,7 +21,7 @@ func getDatasets() {
 			continue
 		}
 
-		datasets[cat] = map[string]string{}
+		datasets[cat] = make(map[string]string)
 		datasets[cat]["content"] = con
 	}
 }
