@@ -18,20 +18,32 @@ rules:
     # IP address and/or request query values parsed in regExp. 
     # This list applies only to engine defined threats, not to custom threat rules.
     whitelists:
-      # - "(curl|Go-http-client|okhttp)/*"
-      # - "^/wp-login\\.php"
-      # - "https://www\\.facebook\\.com"
-      # - "192\\.168\\.0\\.1"
+      # - (curl|Go-http-client|okhttp)/*
+      # - ^/wp-login\.php
+      # - https?:\/\/www\.facebook\.com
+      # - 192\.168\.0\.1
 
     customs:
-      # - name: Large File Upload
-      #   condition: and # and/or
+      # - name: "Log4j Attack"
+      #   condition: or
       #   rules:
-      #     - element: body_bytes_sent
+      #     - element: "request_uri"
+      #       pattern: \$\{.*:\/\/.*\/?\w+?\}
+
+      #     - element: "http_referer"
+      #       pattern: \$\{.*:\/\/.*\/?\w+?\}
+
+      #     - element: "http_user_agent"
+      #       pattern: \$\{.*:\/\/.*\/?\w+?\}
+
+      # - name: "Large File Upload"
+      #   condition: and
+      #   rules:
+      #     - element: "body_bytes_sent"
       #       selector: true
       #       pattern: \d{6,}
 
-      #     - element: request_method
+      #     - element: "request_method"
       #       pattern: P(OST|UT)
 
 
