@@ -1,9 +1,7 @@
 # To write log format, see https://www.notion.so/kitabisa/Configuration-d7c8fab40366406591875bac631bef3f
 log_format: |
-  $remote_addr - [$remote_addr] $remote_user - [$time_local] 
-  "$request_method $request_uri $request_protocol" $status $body_bytes_sent 
-  "$http_referer" "$http_user_agent" $request_length $request_time 
-  [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id
+  $remote_addr $remote_user - [$time_local] "$request_method $request_uri $request_protocol" 
+  $status $body_bytes_sent "$http_referer" "$http_user_agent"
 
 rules:
   cache: true
@@ -17,12 +15,25 @@ rules:
       # - "Directory Bruteforce"
 
     # It can be user-agent, request path, HTTP referrer,
-    # IP address and/or request query values parsed in regExp
+    # IP address and/or request query values parsed in regExp. 
+    # This list applies only to engine defined threats, not to custom threat rules.
     whitelists:
       # - "(curl|Go-http-client|okhttp)/*"
       # - "^/wp-login\\.php"
       # - "https://www\\.facebook\\.com"
       # - "192\\.168\\.0\\.1"
+
+    customs:
+      # - name: Large File Upload
+      #   condition: and # and/or
+      #   rules:
+      #     - element: body_bytes_sent
+      #       selector: true
+      #       pattern: \d{6,}
+
+      #     - element: request_method
+      #       pattern: P(OST|UT)
+
 
 metrics:
   prometheus:
