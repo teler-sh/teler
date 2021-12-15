@@ -2,8 +2,8 @@ package alert
 
 import (
 	"bytes"
+	"html/template"
 	"strconv"
-	"text/template"
 
 	telegramBot "github.com/go-telegram-bot-api/telegram-bot-api"
 	"ktbs.dev/teler/pkg/errors"
@@ -31,12 +31,12 @@ func toTelegram(token string, chatID string, log map[string]string) {
 func telegramMessage(log map[string]string) string {
 	var buffer bytes.Buffer
 
-	template, err := template.ParseFiles("internal/alert/template/telegram.tmpl")
+	tpl, err := template.ParseFiles("internal/alert/template/telegram.tmpl")
 	if err != nil {
 		errors.Exit(err.Error())
 	}
 
-	err = template.Execute(&buffer, log)
+	err = tpl.Execute(&buffer, log)
 	if err != nil {
 		errors.Exit(err.Error())
 	}
