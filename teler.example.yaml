@@ -1,4 +1,4 @@
-# To write log format, see https://github.com/kitabisa/teler#configuration
+# To write log format, see https://www.notion.so/kitabisa/Configuration-d7c8fab40366406591875bac631bef3f
 log_format: |
   $remote_addr - [$remote_addr] $remote_user - [$time_local] 
   "$request_method $request_uri $request_protocol" $status $body_bytes_sent 
@@ -16,18 +16,35 @@ rules:
       # - "Bad Crawler"
       # - "Directory Bruteforce"
 
-    # It can be user-agent, request path, HTTP referrer, IP address and/or request query values parsed in regExp
+    # It can be user-agent, request path, HTTP referrer,
+    # IP address and/or request query values parsed in regExp
     whitelists:
       # - "(curl|Go-http-client|okhttp)/*"
       # - "^/wp-login\\.php"
       # - "https://www\\.facebook\\.com"
       # - "192\\.168\\.0\\.1"
 
-prometheus:
-  active: false
-  host: "localhost"
-  port: 9099
-  endpoint: "/metrics"
+metrics:
+  prometheus:
+    active: false
+    host: "localhost"
+    port: 9099
+    endpoint: "/metrics"
+
+logs:
+  file:
+    active: false
+    json: false
+    path: "/path/to/output.log"
+
+  zinc:
+    active: false
+    host: "localhost"
+    port: 4080
+    ssl: false
+    username: "admin"
+    password: "Complexpass#123"
+    index: "lorem-ipsum-index"
 
 alert:
   active: false
