@@ -45,6 +45,8 @@ func PrometheusInsert(data map[string]string) {
 			data["request_uri"],
 			data["status"],
 		)
+	default:
+		return
 	}
 
 	counter.Inc()
