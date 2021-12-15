@@ -1,16 +1,18 @@
 name: Review  
 on: 
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
       - development
-    branches-ignore:
-      - dependabot/**
 
 jobs:
   review:
     name: Code Review  
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, 'dependabot/') == false
     steps:  
     - name: Check out code  
       uses: actions/checkout@v2.3.4 
