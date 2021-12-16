@@ -89,6 +89,11 @@ func customs(options *common.Options) {
 		cat[custom[i].Name] = true
 
 		rules := custom[i].Rules
+		if len(rules) < 1 {
+			err = strings.Replace(errors.ErrNoThreatRules, ":category", custom[i].Name, -1)
+			errors.Exit(err)
+		}
+
 		for j := 0; j < len(rules); j++ {
 			matchers.IsBlank(rules[j].Element, "Custom threat rules element")
 			elm := fmt.Sprint("$", rules[j].Element)

@@ -15,6 +15,7 @@ const (
 	ErrNoInputConfig  = "No config file specified"
 	ErrNoInputLog     = "No input logs provided"
 	ErrNoPassZinc     = "No password provided for Zinc log server; " + ErrCheckConfig
+	ErrNoThreatRules  = "No rules for ':category' threat category; " + ErrCheckConfig
 	ErrNoUserZinc     = "No username provided for Zinc log server; " + ErrCheckConfig
 	ErrParseConfig    = "Can't parse config file: "
 )
