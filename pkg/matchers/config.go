@@ -46,3 +46,21 @@ func IsChatID(s string) {
 		errValidate("chat_id")
 	}
 }
+
+// IsCondition validates custom threat rules condition
+func IsCondition(s string) {
+	switch s {
+	case "or", "and":
+	default:
+		errValidate("AND/OR for condition")
+	}
+}
+
+// IsBlank validates nil field value
+func IsBlank(s string, field string) {
+	s = strings.TrimSpace(s)
+	if s == "" {
+		err := strings.Replace(errors.ErrBlankField, ":field", field, -1)
+		errors.Exit(err)
+	}
+}

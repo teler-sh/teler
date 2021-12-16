@@ -56,7 +56,8 @@ func validate(options *common.Options) {
 	matchers.IsLogformat(config.Logformat)
 	options.Configs = config
 
-	// Validates notification parts on configuration files
+	// Validates custom threat rules & notification parts configuration
+	customs(options)
 	notification(options)
 
 	// Do Zinc health check, validate & set credentials
@@ -66,6 +67,41 @@ func validate(options *common.Options) {
 
 	if errVal := validator.Validate(options); errVal != nil {
 		errors.Exit(errVal.Error())
+	}
+}
+
+func customs(options *common.Options) {
+	var err string
+
+	cfg := options.Configs
+	cat := make(map[string]bool)
+
+	custom := cfg.Rules.Threat.Customs
+	for i := 0; i < len(custom); i++ {
+		cond := strings.ToLower(custom[i].Condition)
+		matchers.IsCondition(cond)
+		matchers.IsBlank(custom[i].Name, "Custom threat category")
+
+		if cat[custom[i].Name] {
+			err = strings.Replace(errors.ErrDupeCategory, ":category", custom[i].Name, -1)
+			errors.Exit(err)
+		}
+		cat[custom[i].Name] = true
+
+		rules := custom[i].Rules
+		for j := 0; j < len(rules); j++ {
+			matchers.IsBlank(rules[j].Element, "Custom threat rules element")
+			elm := fmt.Sprint("$", rules[j].Element)
+
+			if !matchers.IsMatch(fmt.Sprint(`\`, elm), cfg.Logformat) {
+				err = strings.Replace(errors.ErrNoElement, ":element", elm, -1)
+				err = strings.Replace(err, ":category", custom[i].Name, -1)
+
+				errors.Exit(err)
+			}
+
+			matchers.IsBlank(rules[j].Pattern, "Custom threat rules pattern")
+		}
 	}
 }
 
