@@ -25,9 +25,6 @@ func ParseOptions() *common.Options {
 	flag.IntVar(&options.Concurrency, "x", 20, "")
 	flag.IntVar(&options.Concurrency, "concurrent", 20, "")
 
-	flag.StringVar(&options.Output, "o", "", "")
-	flag.StringVar(&options.Output, "output", "", "")
-
 	flag.BoolVar(&options.Version, "v", false, "")
 	flag.BoolVar(&options.Version, "version", false, "")
 
@@ -47,8 +44,6 @@ func ParseOptions() *common.Options {
 			"  -c, --config <FILE>         teler configuration file",
 			"  -i, --input <FILE>          Analyze logs from data persistence rather than buffer stream",
 			"  -x, --concurrent <i>        Set the concurrency level to analyze logs (default: 20)",
-			"  -o, --output <FILE>         Save detected threats to file",
-			"      --json                  Display threats in the terminal as JSON format",
 			"      --rm-cache              Removes all cached resources",
 			"  -v, --version               Show current teler version",
 			"",

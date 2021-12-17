@@ -52,7 +52,7 @@ var (
 		[]string{"http_referer"},
 	)
 
-	GetThreatTotal = prometheus.NewCounterVec(
+	getThreatTotal = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
 			Name: "teler_threats_count_total",
 			Help: "Total number of detected threats",
@@ -61,10 +61,10 @@ var (
 	)
 )
 
-// Init will register a Prometheus metrics with the specified variables
-func Init() {
+// Prometheus will register a metrics with the specified variables
+func Prometheus() {
 	prometheus.MustRegister(
 		getBadCrawler, getDirBruteforce, getBadIP,
-		getCWA, getCVE, getBadReferrer, GetThreatTotal,
+		getCWA, getCVE, getBadReferrer, getThreatTotal,
 	)
 }

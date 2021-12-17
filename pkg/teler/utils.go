@@ -2,7 +2,10 @@ package teler
 
 import (
 	"reflect"
+	"unicode/utf8"
 
+	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/pkg/matchers"
 	"ktbs.dev/teler/resource"
 )
 
@@ -18,7 +21,24 @@ func getDatasets() {
 			continue
 		}
 
-		datasets[cat] = map[string]string{}
+		datasets[cat] = make(map[string]string)
 		datasets[cat]["content"] = con
 	}
+}
+
+func trimFirst(s string) string {
+	_, i := utf8.DecodeRuneInString(s)
+	return s[i:]
+}
+
+func isWhitelist(options *common.Options, find string) bool {
+	whitelist := options.Configs.Rules.Threat.Whitelists
+	for i := 0; i < len(whitelist); i++ {
+		match := matchers.IsMatch(whitelist[i], find)
+		if match {
+			return true
+		}
+	}
+
+	return false
 }

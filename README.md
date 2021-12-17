@@ -31,6 +31,12 @@
 
 [![teler](https://user-images.githubusercontent.com/25837540/97096468-f8ccaa00-1696-11eb-8830-0d3a7be45a2d.gif)](#)
 
+> ### :warning: Important notes
+> If you upgrade from prior to v2 frontwards there will be some **break changes** that affect configuration files. 
+> Appropriate adaptations can refer to [teler.example.yaml](https://github.com/kitabisa/teler/blob/master/teler.example.yaml) file.
+>
+> See the exact changes in the [CHANGELOG.md](#changes) file.
+
 ## Table of Contents
 - [Features](#features)
 - [Why teler?](#why-teler)
@@ -51,12 +57,16 @@
 
 * **Monitoring**: We've our own metrics if you want to monitor threats easily, and we use Prometheus for that.
 
+* **Logging**: is also provided in file form or sends detected threats to the Zinc logs search engine.
+
 * **Latest resources**: Collections is continuously up-to-date.
 
 * **Minimal configuration**: You can just run it against your log file, write the log format and let
   teler analyze the log and show you alerts!
 
 * **Flexible log formats**: teler allows any custom log format string! It all depends on how you write the log format in configuration file.
+
+* **Custom threat rules**: Want to reach a wider range of threats instead of engine-based _(default)_ rules? You can customize threat rules!
 
 * **Incremental log processing**: Need data persistence rather than [buffer stream](https://linux.die.net/man/1/stdbuf)?
   teler has the ability to process logs incrementally through the on-disk persistence options.
@@ -128,7 +138,7 @@ All external resources used in this teler are **NOT** provided by us. See all pe
 
 ## Pronunciation
 
-/télér/ bagaimana bisa seorang pemuda itu teler hanya dengan meminum 1 sloki ciu _(?)_
+[`jv_id`](https://www.localeplanet.com/java/jv-ID/index.html) • **/télér/** — bagaimana bisa seorang pemuda itu teler hanya dengan meminum sloki ciu _(?)_
 
 ## Changes
 

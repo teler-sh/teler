@@ -1,9 +1,7 @@
-# To write log format, see https://github.com/kitabisa/teler#configuration
+# To write log format, see https://www.notion.so/kitabisa/Configuration-d7c8fab40366406591875bac631bef3f
 log_format: |
-  $remote_addr - [$remote_addr] $remote_user - [$time_local] 
-  "$request_method $request_uri $request_protocol" $status $body_bytes_sent 
-  "$http_referer" "$http_user_agent" $request_length $request_time 
-  [$proxy_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id
+  $remote_addr $remote_user - [$time_local] "$request_method $request_uri $request_protocol" 
+  $status $body_bytes_sent "$http_referer" "$http_user_agent"
 
 rules:
   cache: true
@@ -16,18 +14,60 @@ rules:
       # - "Bad Crawler"
       # - "Directory Bruteforce"
 
-    # It can be user-agent, request path, HTTP referrer, IP address and/or request query values parsed in regExp
+    # It can be user-agent, request path, HTTP referrer,
+    # IP address and/or request query values parsed in regExp. 
+    # This list applies only to engine defined threats, not to custom threat rules.
     whitelists:
-      # - "(curl|Go-http-client|okhttp)/*"
-      # - "^/wp-login\\.php"
-      # - "https://www\\.facebook\\.com"
-      # - "192\\.168\\.0\\.1"
+      # - (curl|Go-http-client|okhttp)/*
+      # - ^/wp-login\.php
+      # - https?:\/\/www\.facebook\.com
+      # - 192\.168\.0\.1
 
-prometheus:
-  active: false
-  host: "localhost"
-  port: 9099
-  endpoint: "/metrics"
+    customs:
+      # - name: "Log4j Attack"
+      #   condition: or
+      #   rules:
+      #     - element: "request_uri"
+      #       pattern: \$\{.*:\/\/.*\/?\w+?\}
+
+      #     - element: "http_referer"
+      #       pattern: \$\{.*:\/\/.*\/?\w+?\}
+
+      #     - element: "http_user_agent"
+      #       pattern: \$\{.*:\/\/.*\/?\w+?\}
+
+      # - name: "Large File Upload"
+      #   condition: and
+      #   rules:
+      #     - element: "body_bytes_sent"
+      #       selector: true
+      #       pattern: \d{6,}
+
+      #     - element: "request_method"
+      #       pattern: P(OST|UT)
+
+
+metrics:
+  prometheus:
+    active: false
+    host: "localhost"
+    port: 9099
+    endpoint: "/metrics"
+
+logs:
+  file:
+    active: false
+    json: false
+    path: "/path/to/output.log"
+
+  zinc:
+    active: false
+    host: "localhost"
+    port: 4080
+    ssl: false
+    username: "admin"
+    password: "Complexpass#123"
+    index: "lorem-ipsum-index"
 
 alert:
   active: false

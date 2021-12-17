@@ -7,19 +7,21 @@ import (
 	"reflect"
 	"regexp"
 	"strings"
-	"unicode/utf8"
 
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/pkg/matchers"
-	"ktbs.dev/teler/pkg/metrics"
 )
 
 // Analyze logs from threat resources
 func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string) {
-	var match bool
+	var (
+		match    bool
+		selector string
+	)
 
+	cfg := options.Configs
 	log := make(map[string]string)
 
 	fields := reflect.ValueOf(logs).Elem().FieldByName("fields")
@@ -223,27 +225,58 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		}
 
 		if match {
-			metrics.Send(log)
 			return match, log
 		}
 	}
 
-	return match, log
-}
+	log["element"] = ""
+	customs := cfg.Rules.Threat.Customs
 
-func trimFirst(s string) string {
-	_, i := utf8.DecodeRuneInString(s)
-	return s[i:]
-}
+	for i := 0; i < len(customs); i++ {
+		log["category"] = customs[i].Name
 
-func isWhitelist(options *common.Options, find string) bool {
-	whitelist := options.Configs.Rules.Threat.Whitelists
-	for i := 0; i < len(whitelist); i++ {
-		match := matchers.IsMatch(whitelist[i], find)
+		cond := strings.ToLower(customs[i].Condition)
+		if cond == "" {
+			cond = "or"
+		}
+
+		rules := customs[i].Rules
+		rulesCount := len(customs[i].Rules)
+		matchCount := 0
+
+		if rulesCount < 1 {
+			continue
+		}
+
+		for j := 0; j < rulesCount; j++ {
+			if matchers.IsMatch(rules[j].Pattern, log[rules[j].Element]) {
+				if rules[j].Selector {
+					log["element"] = rules[j].Element
+				}
+				selector = rules[j].Element
+
+				matchCount++
+				if cond == "or" {
+					break
+				}
+			}
+		}
+
+		if log["element"] == "" {
+			log["element"] = selector
+		}
+
+		switch {
+		case cond == "and" && matchCount == rulesCount:
+			match = true
+		case cond == "or" && matchCount > 0:
+			match = true
+		}
+
 		if match {
-			return true
+			break
 		}
 	}
 
-	return false
+	return match, log
 }
