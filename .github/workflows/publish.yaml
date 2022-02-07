@@ -12,10 +12,6 @@ jobs:
       - name: "Check out code"
         uses: actions/checkout@v2.3.4
 
-      - name: "Set variables"
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-
       - name: "Set up QEMU"
         uses: docker/setup-qemu-action@v1.2.0
       
@@ -33,8 +29,8 @@ jobs:
         uses: docker/build-push-action@v2.9.0
         with:
           push: true
-          build-args: "VERSION=${{ steps.vars.outputs.tag }}"
-          tags: "${{ github.repository }}:latest,${{ github.repository }}:${{ steps.vars.outputs.tag }}"
+          build-args: "VERSION=${{ github.ref_name }}"
+          tags: "${{ github.repository }}:latest,${{ github.repository }}:${{ github.ref_name }}"
       
       - name: "Image digest"
         run: echo ${{ steps.docker_build.outputs.digest }}
