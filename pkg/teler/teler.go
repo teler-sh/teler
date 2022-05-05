@@ -2,11 +2,13 @@ package teler
 
 import (
 	"bufio"
-	"net/http"
-	"net/url"
+	"path"
 	"reflect"
 	"regexp"
 	"strings"
+
+	"net/http"
+	"net/url"
 
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
@@ -219,8 +221,15 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 				break
 			}
 
+			cont := data["content"]
+
 			if req.Path != "/" {
-				match = matchers.IsMatch(trimFirst(req.Path), data["content"])
+				ext := path.Ext(req.Path)
+				if ext != "" {
+					cont = strings.ReplaceAll(cont, `.%EXT%`, ext)
+				}
+
+				match = matchers.IsMatch(trimFirst(req.Path), cont)
 			}
 		}
 
