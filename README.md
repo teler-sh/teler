@@ -31,11 +31,9 @@
 
 [![teler](https://user-images.githubusercontent.com/25837540/97096468-f8ccaa00-1696-11eb-8830-0d3a7be45a2d.gif)](#)
 
-> ### :warning: Important notes
+> **Note**:
 > If you upgrade from prior to v2 frontwards there will be some **break changes** that affect configuration files. 
-> Appropriate adaptations can refer to [teler.example.yaml](https://github.com/kitabisa/teler/blob/master/teler.example.yaml) file.
->
-> See the exact changes in the [CHANGELOG.md](#changes) file.
+> Appropriate adaptations can refer to [teler.example.yaml](https://github.com/kitabisa/teler/blob/v2/teler.example.yaml) file.
 
 ## Table of Contents
 - [Features](#features)
