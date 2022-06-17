@@ -7,6 +7,7 @@ import (
 	"os/signal"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/panjf2000/ants/v2"
 	"github.com/projectdiscovery/gologger"
 	"github.com/remeh/sizedwaitgroup"
 	"github.com/satyrius/gonx"
@@ -41,26 +42,29 @@ func New(options *common.Options) {
 
 	con := options.Concurrency
 	swg := sizedwaitgroup.New(con)
+
+	p, _ := ants.NewPoolWithFunc(con, func(line interface{}) {
+		threat, obj := teler.Analyze(options, line.(*gonx.Entry))
+		if threat {
+			fmt.Printf("[%s] [%s] [%s] %s\n",
+				aurora.Cyan(obj["time_local"]),
+				aurora.Green(obj["remote_addr"]),
+				aurora.Yellow(obj["category"]),
+				aurora.Red(obj[obj["element"]]),
+			)
+
+			alert.New(options, common.Version, obj)
+			log(options, obj)
+			metrics.PrometheusInsert(obj)
+		}
+		swg.Done()
+	}, ants.WithPreAlloc(true))
+	defer p.Release()
+
 	go func() {
 		for job := range jobs {
 			swg.Add()
-			go func(line *gonx.Entry) {
-				defer swg.Done()
-
-				threat, obj := teler.Analyze(options, line)
-				if threat {
-					fmt.Printf("[%s] [%s] [%s] %s\n",
-						aurora.Cyan(obj["time_local"]),
-						aurora.Green(obj["remote_addr"]),
-						aurora.Yellow(obj["category"]),
-						aurora.Red(obj[obj["element"]]),
-					)
-
-					alert.New(options, common.Version, obj)
-					log(options, obj)
-					metrics.PrometheusInsert(obj)
-				}
-			}(job)
+			_ = p.Invoke(job)
 		}
 	}()
 
