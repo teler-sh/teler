@@ -1,16 +1,14 @@
 package main
 
 import (
-	"runtime"
-
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
+	"go.uber.org/automaxprocs/maxprocs"
 	"ktbs.dev/teler/internal/runner"
 )
 
 func init() {
-	cpu := runtime.NumCPU()
-	runtime.GOMAXPROCS(cpu + 1)
+	_, _ = maxprocs.Set()
 	gologger.DefaultLogger.SetMaxLevel(levels.LevelDebug)
 }
 
