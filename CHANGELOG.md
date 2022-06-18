@@ -2,6 +2,9 @@
 
 All notable changes to this project should be documented in this file.
 
+### v2.0.1
+- Add metrics for custom rules
+
 ### v2.0.0-beta
 
 - Add supporting RAW requests from CVEs templates
