@@ -59,6 +59,14 @@ var (
 		},
 		[]string{"case"},
 	)
+
+	getCustomsRule = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "teler_customs_rule",
+			Help: "Get lists of customs rule",
+		},
+		[]string{"description", "element", "payload"},
+	)
 )
 
 // Prometheus will register a metrics with the specified variables
@@ -66,5 +74,6 @@ func Prometheus() {
 	prometheus.MustRegister(
 		getBadCrawler, getDirBruteforce, getBadIP,
 		getCWA, getCVE, getBadReferrer, getThreatTotal,
+		getCustomsRule,
 	)
 }

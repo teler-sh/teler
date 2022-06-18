@@ -4,11 +4,35 @@ import (
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"ktbs.dev/teler/common"
 )
 
 // PrometheusInsert logs into metrics
-func PrometheusInsert(data map[string]string) {
+func PrometheusInsert(options *common.Options, data map[string]string) {
 	var counter prometheus.Counter
+	cfg := options.Configs
+
+	//Check if teler have customs rules
+	if cfg.Rules.Threat.Customs != nil {
+		for _, customRule := range cfg.Rules.Threat.Customs {
+			if strings.HasPrefix(data["category"], customRule.Name) {
+				for _, rule := range customRule.Rules {
+					counter = getCustomsRule.WithLabelValues(
+						data["category"],
+						rule.Element,
+						data[rule.Element],
+					)
+
+					counter.Inc()
+
+					//if the rule use "or" operator the metrics will only get the fist match
+					if strings.EqualFold(customRule.Condition, "or") {
+						break
+					}
+				}
+			}
+		}
+	}
 
 	switch {
 	case strings.HasPrefix(data["category"], "Common Web Attack"):
