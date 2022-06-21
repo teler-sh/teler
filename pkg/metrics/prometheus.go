@@ -12,7 +12,7 @@ func PrometheusInsert(options *common.Options, data map[string]string) {
 	var counter prometheus.Counter
 	cfg := options.Configs
 
-	//Check if teler have customs rules
+	//Check if user has customs rules
 	if cfg.Rules.Threat.Customs != nil {
 		for _, custom := range cfg.Rules.Threat.Customs {
 			if strings.HasPrefix(data["category"], custom.Name) {
