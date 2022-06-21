@@ -14,9 +14,9 @@ func PrometheusInsert(options *common.Options, data map[string]string) {
 
 	//Check if teler have customs rules
 	if cfg.Rules.Threat.Customs != nil {
-		for _, customRule := range cfg.Rules.Threat.Customs {
-			if strings.HasPrefix(data["category"], customRule.Name) {
-				for _, rule := range customRule.Rules {
+		for _, custom := range cfg.Rules.Threat.Customs {
+			if strings.HasPrefix(data["category"], custom.Name) {
+				for _, rule := range custom.Rules {
 					counter = getCustomsRule.WithLabelValues(
 						data["category"],
 						rule.Element,
@@ -25,7 +25,7 @@ func PrometheusInsert(options *common.Options, data map[string]string) {
 					counter.Inc()
 
 					//if the rule use "or" operator the metrics will only get the fist match
-					if strings.EqualFold(customRule.Condition, "or") {
+					if strings.EqualFold(custom.Condition, "or") {
 						break
 					}
 				}
