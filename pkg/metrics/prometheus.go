@@ -22,7 +22,6 @@ func PrometheusInsert(options *common.Options, data map[string]string) {
 						rule.Element,
 						data[rule.Element],
 					)
-
 					counter.Inc()
 
 					//if the rule use "or" operator the metrics will only get the fist match
