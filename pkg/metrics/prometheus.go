@@ -12,25 +12,19 @@ func PrometheusInsert(options *common.Options, data map[string]string) {
 	var counter prometheus.Counter
 	cfg := options.Configs
 
-	//Check if user has customs rules
-	if cfg.Rules.Threat.Customs != nil {
-		for _, custom := range cfg.Rules.Threat.Customs {
-			if strings.HasPrefix(data["category"], custom.Name) {
-				for _, rule := range custom.Rules {
-					counter = getCustomsRule.WithLabelValues(
-						data["category"],
-						rule.Element,
-						data[rule.Element],
-					)
-					counter.Inc()
+	rules := make(map[string]bool)
+	for _, custom := range cfg.Rules.Threat.Customs {
+		rules[custom.Name] = true
+	}
 
-					//if the rule use "or" operator the metrics will only get the fist match
-					if strings.EqualFold(custom.Condition, "or") {
-						break
-					}
-				}
-			}
-		}
+	switch {
+	case rules[data["category"]]:
+		counter = getCustomsRule.WithLabelValues(
+			data["category"],
+			data["element"],
+			data[data["element"]],
+		)
+		counter.Inc()
 	}
 
 	switch {
