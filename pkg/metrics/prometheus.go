@@ -18,16 +18,6 @@ func PrometheusInsert(options *common.Options, data map[string]string) {
 	}
 
 	switch {
-	case rules[data["category"]]:
-		counter = getCustomsRule.WithLabelValues(
-			data["category"],
-			data["element"],
-			data[data["element"]],
-		)
-		counter.Inc()
-	}
-
-	switch {
 	case strings.HasPrefix(data["category"], "Common Web Attack"):
 		counter = getCWA.WithLabelValues(
 			data["category"],
@@ -61,6 +51,12 @@ func PrometheusInsert(options *common.Options, data map[string]string) {
 			data["remote_addr"],
 			data["request_uri"],
 			data["status"],
+		)
+	case rules[data["category"]]:
+		counter = getCustomsRule.WithLabelValues(
+			data["category"],
+			data["element"],
+			data[data["element"]],
 		)
 	default:
 		return
