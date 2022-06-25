@@ -6,6 +6,7 @@ require (
 	github.com/briandowns/spinner v1.18.1
 	github.com/bwmarrin/discordgo v0.23.2
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
+	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d
 	github.com/kirsle/configdir v0.0.0-20170128060238-e45d2f54772f
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/panjf2000/ants/v2 v2.5.0
@@ -18,6 +19,8 @@ require (
 	github.com/slack-go/slack v0.8.2
 	github.com/valyala/fastjson v1.6.3
 	go.uber.org/automaxprocs v1.5.1
+	goji.io v2.0.2+incompatible
+	golang.org/x/text v0.3.2
 	gopkg.in/validator.v2 v2.0.0-20200605151824-2b28d334fa05
 	gopkg.in/yaml.v2 v2.4.0
 )
@@ -26,7 +29,6 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/fatih/color v1.10.0 // indirect
-	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d // indirect
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
@@ -41,7 +43,6 @@ require (
 	github.com/prometheus/common v0.18.0 // indirect
 	github.com/prometheus/procfs v0.6.0 // indirect
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
-	goji.io v2.0.2+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83 // indirect
 	golang.org/x/net v0.0.0-20200625001655-4c5254603344 // indirect
 	golang.org/x/sys v0.0.0-20210309074719-68d13333faf2 // indirect
