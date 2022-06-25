@@ -55,7 +55,7 @@ func New(options *common.Options) {
 
 			alert.New(options, common.Version, obj)
 			log(options, obj)
-			metrics.PrometheusInsert(obj)
+			metrics.PrometheusInsert(options, obj)
 		}
 		swg.Done()
 	}, ants.WithPreAlloc(true))

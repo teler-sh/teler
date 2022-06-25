@@ -4,11 +4,18 @@ import (
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"ktbs.dev/teler/common"
 )
 
 // PrometheusInsert logs into metrics
-func PrometheusInsert(data map[string]string) {
+func PrometheusInsert(options *common.Options, data map[string]string) {
 	var counter prometheus.Counter
+	cfg := options.Configs
+
+	rules := make(map[string]bool)
+	for _, custom := range cfg.Rules.Threat.Customs {
+		rules[custom.Name] = true
+	}
 
 	switch {
 	case strings.HasPrefix(data["category"], "Common Web Attack"):
@@ -44,6 +51,12 @@ func PrometheusInsert(data map[string]string) {
 			data["remote_addr"],
 			data["request_uri"],
 			data["status"],
+		)
+	case rules[data["category"]]:
+		counter = getCustomsRule.WithLabelValues(
+			data["category"],
+			data["element"],
+			data[data["element"]],
 		)
 	default:
 		return
