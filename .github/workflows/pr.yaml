@@ -32,6 +32,12 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
+      # - name: Run tests
+      #   run: make test
+
+      - name: Compile the project
+        run: make build
+
       - name: GolangCI-Lint
         uses: golangci/golangci-lint-action@v3.1.0
         with:
@@ -42,12 +48,6 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: go
-
-      # - name: Run tests
-      #   run: make test
-
-      - name: Compile the project
-        run: make build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
