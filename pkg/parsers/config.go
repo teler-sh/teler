@@ -9,6 +9,8 @@ type Configs struct {
 		Threat options `yaml:"threat" validate:"nonzero"`
 	} `yaml:"rules" validate:"nonzero"`
 
+	Dashboard dashboard `yaml:"dashboard" validate:"nonzero"`
+
 	Metrics struct {
 		Prometheus prometheus `yaml:"prometheus"`
 	} `yaml:"metrics" validate:"nonzero"`
