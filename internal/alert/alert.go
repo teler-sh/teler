@@ -2,9 +2,9 @@ package alert
 
 import (
 	"reflect"
-	"strings"
 
 	"ktbs.dev/teler/common"
+	"ktbs.dev/teler/pkg/utils"
 )
 
 // New will initialize notification provider & send threat alerts
@@ -12,7 +12,7 @@ func New(options *common.Options, version string, log map[string]string) {
 	config := options.Configs
 
 	if config.Alert.Active {
-		provider := strings.Title(config.Alert.Provider)
+		provider := utils.Title(config.Alert.Provider)
 		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
 
 		switch provider {

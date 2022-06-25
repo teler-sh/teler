@@ -13,6 +13,7 @@ import (
 	"github.com/satyrius/gonx"
 	"ktbs.dev/teler/common"
 	"ktbs.dev/teler/internal/alert"
+	"ktbs.dev/teler/internal/event"
 	"ktbs.dev/teler/pkg/errors"
 	"ktbs.dev/teler/pkg/metrics"
 	"ktbs.dev/teler/pkg/teler"
@@ -42,6 +43,7 @@ func New(options *common.Options) {
 
 	con := options.Concurrency
 	swg := sizedwaitgroup.New(con)
+	sse := event.Run(options, common.Version)
 
 	p, _ := ants.NewPoolWithFunc(con, func(line interface{}) {
 		threat, obj := teler.Analyze(options, line.(*gonx.Entry))
@@ -53,9 +55,10 @@ func New(options *common.Options) {
 				aurora.Red(obj[obj["element"]]),
 			)
 
-			alert.New(options, common.Version, obj)
+			sse.Push(obj)
 			log(options, obj)
 			metrics.PrometheusInsert(options, obj)
+			alert.New(options, common.Version, obj)
 		}
 		swg.Done()
 	}, ants.WithPreAlloc(true))

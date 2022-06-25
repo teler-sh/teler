@@ -46,7 +46,14 @@ rules:
       #     - element: "request_method"
       #       pattern: P(OST|UT)
 
-
+dashboard:
+  active: true
+  host: "localhost"
+  port: 9080
+  username: "wew"
+  password: "w0w!"
+  endpoint: "/events"
+  
 metrics:
   prometheus:
     active: false

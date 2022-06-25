@@ -16,6 +16,7 @@ import (
 	"ktbs.dev/teler/pkg/errors"
 	"ktbs.dev/teler/pkg/matchers"
 	"ktbs.dev/teler/pkg/parsers"
+	"ktbs.dev/teler/pkg/utils"
 )
 
 func validate(options *common.Options) {
@@ -178,7 +179,7 @@ func notification(options *common.Options) {
 	config := options.Configs
 
 	if config.Alert.Active {
-		provider := strings.Title(config.Alert.Provider)
+		provider := utils.Title(config.Alert.Provider)
 		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
 
 		switch provider {

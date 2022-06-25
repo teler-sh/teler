@@ -23,7 +23,7 @@ help:
 build:
 	@echo "Building ${APP_NAME} ${VERSION}"
 	@echo "GOPATH=${GOPATH}"
-	go build -ldflags "-s -w -X ktbs.dev/teler/common.Version=${VERSION}" -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
+	go build -ldflags "-s -w -X ktbs.dev/teler/common.Version=${VERSION}" -buildvcs=false -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
 
 run: build
 	@echo "Running ${APP_NAME} ${VERSION}"
