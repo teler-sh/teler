@@ -87,7 +87,7 @@ func (s *server) static(w http.ResponseWriter, r *http.Request) {
 	t, e := template.ParseFS(res, path.Join("./www", p))
 	if e != nil {
 		w.WriteHeader(http.StatusNotFound)
-		w.Write([]byte(e.Error()))
+		_, _ = w.Write([]byte(e.Error()))
 		return
 	}
 
@@ -105,7 +105,7 @@ func (s *server) static(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if e := t.Execute(w, data); e != nil {
-		w.Write([]byte(e.Error()))
+		_, _ = w.Write([]byte(e.Error()))
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
