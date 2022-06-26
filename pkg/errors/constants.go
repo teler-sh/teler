@@ -9,6 +9,7 @@ const (
 	ErrDupeCategory   = "Duplicated name for ':category' threat category; " + ErrCheckConfig
 	ErrHealthZinc     = "Zinc log server is not running"
 	ErrInsertLogZinc  = "Failed to insert logs to Zinc"
+	ErrInvalidWebhook = "Invalid :provider webhook URL; " + ErrCheckConfig
 	ErrNoElement      = "Can't find ':element' on log format for ':category' threat category; " + ErrCheckConfig
 	ErrNoFilePath     = "No file path specified; " + ErrCheckConfig
 	ErrNoIndexZinc    = "No index provided for Zinc log server; " + ErrCheckConfig

@@ -81,7 +81,13 @@ alert:
   provider: "slack"
 
 notifications:
+  # Only Slack & Discord that can post alerts via webhook,
+  # meaning that if the webhook field is filled & valid in
+  # it'll use the given webhook URL, otherwise it will use
+  # token to authenticate.
+
   slack:
+    webhook: "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
     token: "xoxo-...."
     color: "#ffd21a"
     channel: "G30SPKI"
@@ -91,6 +97,7 @@ notifications:
     chat_id: "-111000"
 
   discord:
+    webhook: "https://discord.com/api/webhooks/0000000000/XXXXX"
     token: "NkWkawkawkawkawka.X0xo.n-kmZwA8aWAA"
     color: "16312092"
     channel: "700000000000000..."

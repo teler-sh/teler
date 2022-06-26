@@ -1,19 +1,18 @@
 package alert
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/bwmarrin/discordgo"
 	"ktbs.dev/teler/pkg/errors"
 )
 
-func toDiscord(token string, channel string, color string, version string, log map[string]string) {
-	discord, err := discordgo.New("Bot " + token)
-	if err != nil {
-		errors.Exit(err.Error())
-	}
-
+// token can be webhook URL if webhooked is true
+func toDiscord(token string, channel string, color string, version string, log map[string]string, webhooked bool) {
 	col, err := strconv.Atoi(color)
 	if err != nil {
 		errors.Show(err.Error())
@@ -73,6 +72,25 @@ func toDiscord(token string, channel string, color string, version string, log m
 		},
 	}
 
-	// nolint:errcheck
-	discord.ChannelMessageSendEmbed(channel, embed)
+	if webhooked {
+		msg := discordgo.MessageSend{
+			Embeds: []*discordgo.MessageEmbed{embed},
+		}
+
+		data, err := json.Marshal(msg)
+		if err != nil {
+			errors.Exit(err.Error())
+		}
+
+		// nolint:errcheck
+		http.Post(token, "application/json", strings.NewReader(string(data)))
+	} else {
+		discord, err := discordgo.New("Bot " + token)
+		if err != nil {
+			errors.Exit(err.Error())
+		}
+
+		// nolint:errcheck
+		discord.ChannelMessageSendEmbed(channel, embed)
+	}
 }
