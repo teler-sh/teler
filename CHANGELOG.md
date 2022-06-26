@@ -2,6 +2,18 @@
 
 All notable changes to this project should be documented in this file.
 
+### v2.0.0-rc
+
+- Add metric for custom threats
+- Add live event dashboard
+- Add incoming webhook for alerts
+- Improve custom threat validation
+- Add Mattermost alert provider
+
+### v2.0.0-beta2
+
+- Improve directory bruteforce threats detection
+
 ### v2.0.0-beta
 
 - Add supporting RAW requests from CVEs templates
