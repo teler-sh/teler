@@ -1,4 +1,4 @@
-FROM golang:1.14.2-alpine3.11 as build
+FROM golang:1.18-buster as build
 
 ARG VERSION
 
