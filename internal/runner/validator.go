@@ -80,7 +80,11 @@ func customs(options *common.Options) {
 	custom := cfg.Rules.Threat.Customs
 	for i := 0; i < len(custom); i++ {
 		cond := strings.ToLower(custom[i].Condition)
+		if cond == "" {
+			cond = "or"
+		}
 		matchers.IsCondition(cond)
+
 		matchers.IsBlank(custom[i].Name, "Custom threat category")
 
 		if cat[custom[i].Name] {
