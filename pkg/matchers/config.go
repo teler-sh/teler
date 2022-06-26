@@ -1,6 +1,7 @@
 package matchers
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -38,6 +39,20 @@ func IsChannel(s string) {
 	if regexp := IsMatch(PatternChannel, s); !regexp {
 		errValidate("channel")
 	}
+}
+
+// IsWebhook validates the webhook URL for Slack & Discord
+func IsWebhook(p string, s string) bool {
+	var pat string
+
+	switch p {
+	case "Slack":
+		pat = fmt.Sprintf(PatternWebhook, `hooks\.slack\.com`, `services\/.+`)
+	case "Discord":
+		pat = fmt.Sprintf(PatternWebhook, `discord\.com`, `api\/webhooks`)
+	}
+
+	return IsMatch(pat, s)
 }
 
 // IsChatID validates the chat_id for Telegram

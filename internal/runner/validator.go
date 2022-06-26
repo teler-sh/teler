@@ -176,6 +176,7 @@ func zinc(options *common.Options) string {
 }
 
 func notification(options *common.Options) {
+	var useWebhook bool
 	config := options.Configs
 
 	if config.Alert.Active {
@@ -184,15 +185,21 @@ func notification(options *common.Options) {
 
 		switch provider {
 		case "Slack", "Discord":
-			matchers.IsColor(field.FieldByName("Color").String())
-			matchers.IsChannel(field.FieldByName("Channel").String())
+			if matchers.IsWebhook(provider, field.FieldByName("Webhook").String()) {
+				useWebhook = true
+			} else {
+				matchers.IsColor(field.FieldByName("Color").String())
+				matchers.IsChannel(field.FieldByName("Channel").String())
+			}
 		case "Telegram":
 			matchers.IsChatID(field.FieldByName("ChatID").String())
 		default:
 			errors.Exit(strings.Replace(errors.ErrAlertProvider, ":platform", config.Alert.Provider, -1))
 		}
 
-		matchers.IsToken(field.FieldByName("Token").String())
+		if !useWebhook {
+			matchers.IsToken(field.FieldByName("Token").String())
+		}
 	}
 }
 
