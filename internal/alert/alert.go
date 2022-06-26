@@ -32,6 +32,7 @@ func New(options *common.Options, version string, log map[string]string) {
 				field.FieldByName("Channel").String(),
 				field.FieldByName("Color").String(),
 				log,
+				webhooked,
 			)
 		case "Telegram":
 			toTelegram(

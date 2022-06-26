@@ -6,8 +6,7 @@ import (
 	"github.com/slack-go/slack"
 )
 
-func toSlack(token string, channel string, color string, log map[string]string) {
-	api := slack.New(token)
+func toSlack(token string, channel string, color string, log map[string]string, webhooked bool) {
 	reason := slack.Attachment{
 		AuthorName: ":warning: teler Alert",
 		Title:      log["category"],
@@ -57,11 +56,16 @@ func toSlack(token string, channel string, color string, log map[string]string) 
 		},
 	}
 
-	// TODO: Displays an error if it does not exceed the rate-limit
-	// nolint:errcheck
-	api.PostMessage(
-		channel,
-		slack.MsgOptionAttachments(reason, request, fields),
-		slack.MsgOptionAsUser(true),
-	)
+	if webhooked {
+		msg := []slack.Attachment{reason, request, fields}
+		slack.PostWebhook(token, &slack.WebhookMessage{Attachments: msg}) // nolint:errcheck
+	} else {
+		// TODO: Displays an error if it does not exceed the rate-limit
+		api := slack.New(token)
+		api.PostMessage( // nolint:errcheck
+			channel,
+			slack.MsgOptionAttachments(reason, request, fields),
+			slack.MsgOptionAsUser(true),
+		)
+	}
 }
