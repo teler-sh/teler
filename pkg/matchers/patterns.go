@@ -5,5 +5,5 @@ const (
 	PatternChannel   = `^([A-Z0-9]{9,18})$`
 	PatternColor     = `^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})|(\d{1,8})$`
 	PatternLogformat = `\$(remote_(addr|user)|request_(method|uri|protocol)|http_(referer|user_agent))`
-	PatternWebhook   = `^https:\/\/%s\/%s\/.+\/.+\/?`
+	PatternWebhook   = `^https?:\/\/%s\/%s\/.+(\/.+)?\/?`
 )

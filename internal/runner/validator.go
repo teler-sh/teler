@@ -188,10 +188,15 @@ func notification(options *common.Options) {
 		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
 
 		switch provider {
-		case "Slack", "Discord":
+		case "Slack", "Discord", "Mattermost":
 			if matchers.IsWebhook(provider, field.FieldByName("Webhook").String()) {
 				useWebhook = true
 			} else {
+				if provider == "Mattermost" {
+					err := strings.Replace(errors.ErrInvalidWebhook, ":provider", provider, -1)
+					errors.Exit(err)
+				}
+
 				matchers.IsChannel(field.FieldByName("Channel").String())
 			}
 

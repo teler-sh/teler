@@ -49,6 +49,12 @@ func New(options *common.Options, version string, log map[string]string) {
 				log,
 				webhooked,
 			)
+		case "Mattermost":
+			toMattermost(
+				token,
+				field.FieldByName("Color").String(),
+				log,
+			)
 		}
 	}
 }
