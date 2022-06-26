@@ -26,8 +26,9 @@ type Configs struct {
 	} `yaml:"alert" validate:"nonzero"`
 
 	Notifications struct {
-		Slack    general  `yaml:"slack"`
-		Telegram telegram `yaml:"telegram"`
-		Discord  general  `yaml:"discord"`
+		Slack      general  `yaml:"slack"`
+		Telegram   telegram `yaml:"telegram"`
+		Discord    general  `yaml:"discord"`
+		Mattermost general  `yaml:"mattermost"`
 	} `yaml:"notifications"`
 }

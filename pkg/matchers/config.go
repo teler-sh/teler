@@ -50,6 +50,8 @@ func IsWebhook(p string, s string) bool {
 		pat = fmt.Sprintf(PatternWebhook, `hooks\.slack\.com`, `services\/.+`)
 	case "Discord":
 		pat = fmt.Sprintf(PatternWebhook, `discord\.com`, `api\/webhooks`)
+	case "Mattermost":
+		pat = fmt.Sprintf(PatternWebhook, `.+`, `hooks`)
 	}
 
 	return IsMatch(pat, s)
