@@ -82,6 +82,7 @@ func toDiscord(token string, channel string, color string, version string, log m
 			errors.Exit(err.Error())
 		}
 
+		// nolint:errcheck
 		http.Post(token, "application/json", strings.NewReader(string(data)))
 	} else {
 		discord, err := discordgo.New("Bot " + token)
