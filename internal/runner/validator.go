@@ -188,9 +188,10 @@ func notification(options *common.Options) {
 			if matchers.IsWebhook(provider, field.FieldByName("Webhook").String()) {
 				useWebhook = true
 			} else {
-				matchers.IsColor(field.FieldByName("Color").String())
 				matchers.IsChannel(field.FieldByName("Channel").String())
 			}
+
+			matchers.IsColor(field.FieldByName("Color").String())
 		case "Telegram":
 			matchers.IsChatID(field.FieldByName("ChatID").String())
 		default:
