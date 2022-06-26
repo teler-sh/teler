@@ -245,10 +245,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 		log["category"] = customs[i].Name
 
 		cond := strings.ToLower(customs[i].Condition)
-		if cond == "" {
-			cond = "or"
-		}
-
 		rules := customs[i].Rules
 		rulesCount := len(customs[i].Rules)
 		matchCount := 0
