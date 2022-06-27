@@ -20,7 +20,7 @@ require (
 	github.com/valyala/fastjson v1.6.3
 	go.uber.org/automaxprocs v1.5.1
 	goji.io v2.0.2+incompatible
-	golang.org/x/text v0.3.3
+	golang.org/x/text v0.3.7
 	gopkg.in/validator.v2 v2.0.0-20200605151824-2b28d334fa05
 	gopkg.in/yaml.v2 v2.4.0
 )
