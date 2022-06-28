@@ -7,7 +7,7 @@ _(Any change needs to be discussed before proceeding. Failure to do so may resul
 <!-- Please provide enough information so that others can review your pull request. -->
 <!-- For more information, see the CONTRIBUTING.md guide. -->
 
-_Explains the information and/ motivation for making this changes..._
+_Explains the information and/or motivation for making this changes..._
 
 
 ### Proposed of changes
@@ -38,8 +38,10 @@ Fixes #
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
 
 - [ ] My code follows the code style of this project.
+- [ ] I have followed the guidelines in our [CONTRIBUTING.md](/.github/CONTRIBUTING.md) document.
+- [ ] My changes is cross-platform compatible (run `make build-all`).
+- [ ] My changes successfully ran and pass linters locally (run `make lint`).
+<!-- - [ ] I have written new tests for my changes.
+  - [ ] My changes successfully ran and pass tests locally. -->
 - [ ] My change requires a change to the documentation.
   - [ ] I have updated the documentation accordingly.
-- [ ] I have followed the guidelines in our [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTING.md) document.
-- [ ] I have written new tests for my changes.
-  - [ ] My changes successfully ran and pass tests locally.
