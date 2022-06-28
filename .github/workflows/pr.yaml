@@ -23,20 +23,33 @@ jobs:
         with:
           go-version: 1.18
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
       - name: Check out code
         uses: actions/checkout@v3
 
       # - name: Run tests
       #   run: make test
 
-      - name: Compile the project
-        run: make build
-
-      - name: GolangCI-Lint
+      - name: Run GolangCI-Lint
         uses: golangci/golangci-lint-action@v3.1.0
         with:
           version: latest
-          args: --tests=0
+          args: --tests=0 --timeout=30m
+
+      - name: Run Semgrep
+        run: |
+          python3 -m pip install semgrep
+          semgrep scan --config auto --dryrun -q --include "**.go"
+
+      - name: Cross-platform checks
+        uses: goreleaser/goreleaser-action@v3
+        with: 
+          version: latest
+          args: build --skip-validate --rm-dist --timeout=30m
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
