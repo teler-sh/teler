@@ -1,14 +1,17 @@
 <p align="center">
-  <a href="#"><img alt="teler" src="https://user-images.githubusercontent.com/25837540/97091757-7200d880-1668-11eb-82c4-e5c4971d2bc8.png" height="400" /></a>
+  <a href="#"><img alt="teler" src="https://user-images.githubusercontent.com/25837540/97091757-7200d880-1668-11eb-82c4-e5c4971d2bc8.png" height="300" /></a>
   <h3 align="center"><b>teler</b></h3>
 </p>
 
-[![Kitabisa SecLab](https://img.shields.io/badge/kitabisa-security%20project-blue)](#)
-[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen)](https://github.com/kitabisa/teler/blob/master/LICENSE)
-[![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org)
-[![Release](https://img.shields.io/github/v/release/kitabisa/teler?color=blueviolet)](https://github.com/kitabisa/teler/releases)
-[![Platform](https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green)](#)
-[![GitHub issues](https://img.shields.io/github/issues/kitabisa/teler)](https://github.com/kitabisa/teler/issues)
+<p align="center">
+  <a href="#"><img alt="Kitabisa Security" src="https://img.shields.io/badge/kitabisa-security%20project-blue" /></a>
+  <a href="/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen" /></a>
+  <a href="http://golang.org"><img alt="made with Go" src="https://img.shields.io/badge/made%20with-Go-brightgreen" /></a>
+  <a href="https://github.com/kitabisa/teler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/kitabisa/teler?color=blueviolet" /></a>
+  <a href="#"><img alt="Platform" src="https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green" /></a>
+  <a href="https://github.com/kitabisa/teler/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/kitabisa/teler" /></a>
+  <h3 align="center"><b>teler</b></h3>
+</p>
 
 <!-- [![Gitter](https://badges.gitter.im/kitabisa-teler/community.svg)](https://gitter.im/kitabisa-teler/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) -->
 <!-- [![Go report](https://goreportcard.com/badge/ktbs.dev/teler)](https://goreportcard.com/report/ktbs.dev/teler) -->
@@ -16,9 +19,9 @@
 <p align="center">
   Real-time HTTP Intrusion Detection
   <br />
-  <a href="https://github.com/kitabisa/teler/blob/master/.github/CONTRIBUTING.md">Contribute</a>
+  <a href="/.github/CONTRIBUTING.md">Contribute</a>
   ·
-  <a href="https://github.com/kitabisa/teler/blob/master/CHANGELOG.md">What's new</a>
+  <a href="/CHANGELOG.md">What's new</a>
   ·
   <a href="https://github.com/kitabisa/teler/issues/new/choose">Report Bug</a>
   ·
@@ -97,7 +100,7 @@ All related documentation about installation, usage & configuration is on our [W
 
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitabisa/teler/issues)
 
-This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/teler/blob/master/.github/CONTRIBUTING.md).
+This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](/.github/CONTRIBUTING.md).
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -142,10 +145,10 @@ All external resources used in this teler are **NOT** provided by us. See all pe
 
 ## Changes
 
-For changes, see the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/master/CHANGELOG.md).
+For changes, see the [CHANGELOG.md](/CHANGELOG.md).
 
 ## License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/teler/blob/master/LICENSE). Kitabisa teler and any contributions are Copyright © by Dwi Siswanto 2020.
+This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](/LICENSE). Kitabisa teler and any contributions are Copyright © by Dwi Siswanto 2020.
 
 [![Stargazers over time](https://starchart.cc/kitabisa/teler.svg)](https://starchart.cc/kitabisa/teler)
