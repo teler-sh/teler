@@ -56,7 +56,7 @@
 
 * **Real-time**: Analyze logs and identify suspicious activity in real-time.
 
-* **Alerting**: teler provides alerting when a threat is detected, push notifications include Slack, Telegram and Discord.
+* **Alerting**: teler provides alerting when a threat is detected, push notifications include Slack, Mattermost, Telegram and Discord.
 
 * **Monitoring**: We've our own metrics if you want to monitor threats easily, and we use Prometheus for that.
 
