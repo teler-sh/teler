@@ -35,7 +35,7 @@ build-all:
 	fi; \
 	goreleaser build --rm-dist --skip-validate --timeout=30m
 
-test: lint build-all
+test: lint build-all clean
 	# @echo "--- Testing ${APP_NAME} ${VERSION}"
 	# go test ./...
 
