@@ -1,6 +1,6 @@
 # Contributing
 
-By participating to this project, you agree to abide our [code of conduct](https://github.com/kitabisa/teler/blob/development/.github/CODE_OF_CONDUCT.md).
+By participating to this project, you agree to abide our [code of conduct](/.github/CODE_OF_CONDUCT.md).
 
 ## Development
 
@@ -13,8 +13,8 @@ For small things like fixing typos in documentation, you can [make edits through
 
 Prerequisites:
 
-- make
-- [Go 1.13+](https://golang.org/doc/install)
+- `make`
+- [Go 1.18+](https://golang.org/doc/install)
 
 Fork and clone **[teler](https://github.com/kitabisa/teler)** repository.
 
@@ -43,10 +43,10 @@ Add your new or updated configuration to `teler.example.yaml` so they will be sh
 
 As you are ready with your code contribution, push your branch to your `teler` fork and open a pull request against the **master** branch.
 
-Please also update the [CHANGELOG.md](https://github.com/kitabisa/teler/blob/development/CHANGELOG.md) to note what you've added or fixed.
+Please also update the [CHANGELOG.md](/CHANGELOG.md) to note what you've added or fixed.
 
 ### Pull request checks
 
-First, please accept our [CLA](https://github.com/kitabisa/teler/blob/development/.github/CONTRIBUTION_LICENSE_AGREEMENT.md).
+By submitting PR to this project, you are accept to our [CLA](/.github/CONTRIBUTION_LICENSE_AGREEMENT.md).
 
-Also, we run a few checks in CI by using GitHub actions, you can see them [here](https://github.com/kitabisa/teler/tree/development/.github/workflows).
+Also, we run a few checks in CI by using GitHub actions, you can see them [here](/.github/workflows/pr.yaml).
