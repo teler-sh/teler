@@ -1,14 +1,8 @@
 name: Pull Request
 on:
   push:
-    paths-ignore:
-      - CHANGELOG.md
-      - README.md
-      - .gitignore
-      - .all-contributorsrc
-      - .github/CONTRIBUTING.md
-      - .github/CODE_OF_CONDUCT.md
-      - .github/CONTRIBUTION_LICENSE_AGREEMENT.md
+    paths:
+      - "**.go"
     tags:
       - v*
     branches:
