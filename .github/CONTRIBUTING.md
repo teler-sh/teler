@@ -33,7 +33,7 @@ When you are satisfied with the changes, we suggest you run:
 ▶ make test
 ```
 
-Which runs all the linters and tests.
+Which runs all the linters and cross-compability checks.
 
 ### Create and/ update configuration for documentations
 
