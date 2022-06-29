@@ -16,7 +16,7 @@ func New(options *common.Options, version string, log map[string]string) {
 	config := options.Configs
 	if config.Alert.Active {
 		provider := utils.Title(config.Alert.Provider)
-		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
+		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider) // nosemgrep
 
 		if matchers.IsWebhook(provider, field.FieldByName("Webhook").String()) {
 			token = field.FieldByName("Webhook").String()

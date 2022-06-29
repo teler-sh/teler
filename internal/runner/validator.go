@@ -46,7 +46,7 @@ func validate(options *common.Options) {
 		}
 
 		f, errOutput := os.OpenFile(config.Logs.File.Path,
-			os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+			os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
 		if errOutput != nil {
 			errors.Exit(errOutput.Error())
 		}
@@ -185,7 +185,7 @@ func notification(options *common.Options) {
 
 	if config.Alert.Active {
 		provider := utils.Title(config.Alert.Provider)
-		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider)
+		field := reflect.ValueOf(&config.Notifications).Elem().FieldByName(provider) // nosemgrep
 
 		switch provider {
 		case "Slack", "Discord", "Mattermost":

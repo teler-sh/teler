@@ -3,12 +3,11 @@ package event
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"mime"
 	"net/http"
-	"path"
 	"path/filepath"
 	"strconv"
-	"text/template"
 
 	"github.com/goji/httpauth"
 	"github.com/projectdiscovery/gologger"
@@ -53,7 +52,7 @@ func Run(options *common.Options, version string) *server {
 	}
 
 	go func() {
-		err := http.ListenAndServe(fmt.Sprint(h, ":", strconv.Itoa(p)), mux)
+		err := http.ListenAndServe(fmt.Sprint(h, ":", strconv.Itoa(p)), mux) // nosemgrep
 		if err != nil {
 			errors.Exit(err.Error())
 		}
@@ -84,10 +83,10 @@ func (s *server) static(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	t, e := template.ParseFS(res, path.Join("./www", p))
+	t, e := template.ParseFS(res, filepath.Join("www", p))
 	if e != nil {
 		w.WriteHeader(http.StatusNotFound)
-		_, _ = w.Write([]byte(e.Error()))
+		_, _ = w.Write([]byte(e.Error())) // nosemgrep
 		return
 	}
 
@@ -105,7 +104,7 @@ func (s *server) static(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if e := t.Execute(w, data); e != nil {
-		_, _ = w.Write([]byte(e.Error()))
+		_, _ = w.Write([]byte(e.Error())) // nosemgrep
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}

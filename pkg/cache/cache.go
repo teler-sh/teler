@@ -41,7 +41,7 @@ func Check() bool {
 		return false
 	}
 
-	if _, err := os.Stat(file); os.IsNotExist(err) {
+	if _, err := os.Stat(file); err != nil {
 		return false
 	}
 

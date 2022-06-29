@@ -49,7 +49,7 @@ func startPrometheus(options *common.Options) {
 	go func() {
 		http.Handle(e, promhttp.Handler())
 
-		err := http.ListenAndServe(s, nil) // nosemgrep: go.lang.security.audit.net.use-tls.use-tls
+		err := http.ListenAndServe(s, nil) // nosemgrep
 		if err != nil {
 			errors.Exit(err.Error())
 		}
