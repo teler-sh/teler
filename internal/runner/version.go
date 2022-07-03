@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"ktbs.dev/teler/common"
+	"teler.app/common"
 )
 
 func showVersion() {

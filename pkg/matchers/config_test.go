@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"ktbs.dev/teler/pkg/errors"
+	"teler.app/pkg/errors"
 )
 
 func TestIsLogformat(t *testing.T) {
@@ -22,21 +22,21 @@ func TestIsLogformat(t *testing.T) {
 	}{
 		{
 			name: "Invalid log format",
-			args: args {
+			args: args{
 				s: "",
 			},
 			wantErr: true,
 		},
 		{
 			name: "Invalid log format: need $ sign",
-			args: args {
+			args: args{
 				s: "remote_addr",
 			},
 			wantErr: true,
 		},
 		{
 			name: "Log format is valid",
-			args: args {
+			args: args{
 				s: "$request_method",
 			},
 			wantErr: false,
@@ -67,21 +67,21 @@ func TestIsToken(t *testing.T) {
 	}{
 		{
 			name: "Invalid token",
-			args: args {
+			args: args{
 				s: "hola",
 			},
 			wantErr: true,
 		},
 		{
 			name: "Token is valid",
-			args: args {
+			args: args{
 				s: "xoxp-0123456789-012345678901-y",
 			},
 			wantErr: false,
 		},
 		{
 			name: "Token is valid",
-			args: args {
+			args: args{
 				s: "012345678:abcdefghijklmnopqrstuvwxyz012345678",
 			},
 			wantErr: false,
@@ -112,21 +112,21 @@ func TestIsHexcolor(t *testing.T) {
 	}{
 		{
 			name: "Invalid hex color code",
-			args: args {
+			args: args{
 				s: "\u2713",
 			},
 			wantErr: true,
 		},
 		{
 			name: "Invalid hex color code",
-			args: args {
+			args: args{
 				s: "#af01",
 			},
 			wantErr: true,
 		},
 		{
 			name: "Hex color code is valid",
-			args: args {
+			args: args{
 				s: "#F00000",
 			},
 			wantErr: false,
@@ -176,14 +176,14 @@ func TestIsChannel(t *testing.T) {
 	}{
 		{
 			name: "Invalid Slack channel ID",
-			args: args {
+			args: args{
 				s: "hola",
 			},
 			wantErr: true,
 		},
 		{
 			name: "Slack channel ID is valid",
-			args: args {
+			args: args{
 				s: randomChannelID(),
 			},
 			wantErr: false,
@@ -214,14 +214,14 @@ func TestIsChatID(t *testing.T) {
 	}{
 		{
 			name: "Invalid Telegram chat_id",
-			args: args {
+			args: args{
 				s: "hola",
 			},
 			wantErr: true,
 		},
 		{
 			name: "Telegram chat_id is valid",
-			args: args {
+			args: args{
 				s: "12345678",
 			},
 			wantErr: false,

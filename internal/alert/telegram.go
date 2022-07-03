@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	telegramBot "github.com/go-telegram-bot-api/telegram-bot-api"
-	"ktbs.dev/teler/pkg/errors"
+	"teler.app/pkg/errors"
 )
 
 func toTelegram(token string, chatID string, log map[string]string) {

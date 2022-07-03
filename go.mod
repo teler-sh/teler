@@ -1,4 +1,4 @@
-module ktbs.dev/teler
+module teler.app
 
 go 1.18
 

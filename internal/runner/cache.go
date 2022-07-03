@@ -2,8 +2,8 @@ package runner
 
 import (
 	"github.com/projectdiscovery/gologger"
-	"ktbs.dev/teler/pkg/cache"
-	"ktbs.dev/teler/pkg/errors"
+	"teler.app/pkg/cache"
+	"teler.app/pkg/errors"
 )
 
 func rmCache() {

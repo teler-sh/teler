@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"ktbs.dev/teler/common"
+	"teler.app/common"
 )
 
 // File write detected threats into it

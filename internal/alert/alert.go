@@ -3,9 +3,9 @@ package alert
 import (
 	"reflect"
 
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/matchers"
-	"ktbs.dev/teler/pkg/utils"
+	"teler.app/common"
+	"teler.app/pkg/matchers"
+	"teler.app/pkg/utils"
 )
 
 // New will initialize notification provider & send threat alerts

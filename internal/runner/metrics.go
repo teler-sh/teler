@@ -8,9 +8,9 @@ import (
 
 	"github.com/projectdiscovery/gologger"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/errors"
-	"ktbs.dev/teler/pkg/metrics"
+	"teler.app/common"
+	"teler.app/pkg/errors"
+	"teler.app/pkg/metrics"
 )
 
 func metric(options *common.Options) {

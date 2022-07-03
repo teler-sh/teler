@@ -12,8 +12,8 @@ import (
 
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/matchers"
+	"teler.app/common"
+	"teler.app/pkg/matchers"
 )
 
 // Analyze logs from threat resources

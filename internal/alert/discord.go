@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
-	"ktbs.dev/teler/pkg/errors"
+	"teler.app/pkg/errors"
 )
 
 // token can be webhook URL if webhooked is true

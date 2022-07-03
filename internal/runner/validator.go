@@ -12,11 +12,11 @@ import (
 	"strings"
 
 	"gopkg.in/validator.v2"
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/errors"
-	"ktbs.dev/teler/pkg/matchers"
-	"ktbs.dev/teler/pkg/parsers"
-	"ktbs.dev/teler/pkg/utils"
+	"teler.app/common"
+	"teler.app/pkg/errors"
+	"teler.app/pkg/matchers"
+	"teler.app/pkg/parsers"
+	"teler.app/pkg/utils"
 )
 
 func validate(options *common.Options) {

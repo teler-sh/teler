@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/cache"
-	"ktbs.dev/teler/pkg/errors"
-	"ktbs.dev/teler/pkg/requests"
+	"teler.app/common"
+	"teler.app/pkg/cache"
+	"teler.app/pkg/errors"
+	"teler.app/pkg/requests"
 )
 
 // ParseOptions will parse args/opts

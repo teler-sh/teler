@@ -2,7 +2,7 @@ package runner
 
 import (
 	"github.com/projectdiscovery/gologger"
-	"ktbs.dev/teler/common"
+	"teler.app/common"
 )
 
 // showBanner is used to show the banner to the user

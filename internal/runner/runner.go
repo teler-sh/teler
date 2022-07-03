@@ -11,12 +11,12 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/remeh/sizedwaitgroup"
 	"github.com/satyrius/gonx"
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/internal/alert"
-	"ktbs.dev/teler/internal/event"
-	"ktbs.dev/teler/pkg/errors"
-	"ktbs.dev/teler/pkg/metrics"
-	"ktbs.dev/teler/pkg/teler"
+	"teler.app/common"
+	"teler.app/internal/alert"
+	"teler.app/internal/event"
+	"teler.app/pkg/errors"
+	"teler.app/pkg/metrics"
+	"teler.app/pkg/teler"
 )
 
 // New read & pass stdin log

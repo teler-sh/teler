@@ -4,7 +4,7 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
 	"go.uber.org/automaxprocs/maxprocs"
-	"ktbs.dev/teler/internal/runner"
+	"teler.app/internal/runner"
 )
 
 func init() {

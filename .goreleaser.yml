@@ -1,6 +1,6 @@
 builds:
   - binary: teler
-    main: cmd/teler/main.go
+    main: main.go
     goos:
       - linux
       - windows
@@ -11,7 +11,7 @@ builds:
       - arm
       - arm64
     ldflags:
-      - -s -w -X ktbs.dev/teler/common.Version=v{{.Version}}
+      - -s -w -X teler.app/common.Version=v{{.Version}}
   
 archives:
   - id: tgz

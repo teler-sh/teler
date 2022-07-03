@@ -14,7 +14,7 @@
 </p>
 
 <!-- [![Gitter](https://badges.gitter.im/kitabisa-teler/community.svg)](https://gitter.im/kitabisa-teler/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) -->
-<!-- [![Go report](https://goreportcard.com/badge/ktbs.dev/teler)](https://goreportcard.com/report/ktbs.dev/teler) -->
+<!-- [![Go report](https://goreportcard.com/badge/teler.app)](https://goreportcard.com/report/teler.app) -->
 
 <p align="center">
   Real-time HTTP Intrusion Detection
@@ -88,7 +88,7 @@ Here is a preview of `teler` with conditions of use as:
 
 ## Documentation
 
-All related documentation about installation, usage & configuration is on our [Wiki page](https://www.notion.so/kitabisa/teler-a1fd9d874e9a4448a45d9d3add434b54).
+All related documentation about installation, usage & configuration is on **[teler.app](https://teler.app)**.
 
 ## Supporting Materials
 

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"reflect"
 
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/errors"
-	"ktbs.dev/teler/pkg/logs"
+	"teler.app/common"
+	"teler.app/pkg/errors"
+	"teler.app/pkg/logs"
 )
 
 func log(options *common.Options, data map[string]string) {

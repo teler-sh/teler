@@ -2,7 +2,7 @@ package event
 
 import (
 	"github.com/r3labs/sse/v2"
-	"ktbs.dev/teler/common"
+	"teler.app/common"
 )
 
 type server struct {

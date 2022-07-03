@@ -14,8 +14,8 @@ import (
 	"github.com/r3labs/sse/v2"
 	"goji.io"
 	"goji.io/pat"
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/errors"
+	"teler.app/common"
+	"teler.app/pkg/errors"
 )
 
 // Run SSE

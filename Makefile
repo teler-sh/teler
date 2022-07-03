@@ -24,7 +24,7 @@ help:
 build:
 	@echo "--- Building ${APP_NAME} ${VERSION}"
 	@echo "GOPATH=${GOPATH}"
-	go build -ldflags "-s -w -X ktbs.dev/teler/common.Version=${VERSION}" -buildvcs=false -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
+	go build -ldflags "-s -w -X teler.app/common.Version=${VERSION}" -buildvcs=false -o ./bin/${APP_NAME} .
 
 build-all:
 	@echo "--- Cross-platform build ${APP_NAME} ${VERSION}"

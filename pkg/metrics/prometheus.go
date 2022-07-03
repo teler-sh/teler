@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"ktbs.dev/teler/common"
+	"teler.app/common"
 )
 
 // PrometheusInsert logs into metrics

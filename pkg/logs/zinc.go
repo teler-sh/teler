@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	e "ktbs.dev/teler/pkg/errors"
+	e "teler.app/pkg/errors"
 )
 
 // Zinc logs insertion

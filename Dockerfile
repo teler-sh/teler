@@ -11,8 +11,8 @@ COPY ./go.mod .
 RUN go mod download
 
 COPY . .
-RUN go build -ldflags "-s -w -X ktbs.dev/teler/common.Version=${VERSION}" \
-	-o ./bin/teler ./cmd/teler 
+RUN go build -ldflags "-s -w -X teler.app/common.Version=${VERSION}" \
+	-o ./bin/teler .
 
 FROM alpine:latest
 

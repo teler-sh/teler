@@ -9,10 +9,10 @@ import (
 	"time"
 
 	"github.com/briandowns/spinner"
-	"ktbs.dev/teler/common"
-	"ktbs.dev/teler/pkg/cache"
-	"ktbs.dev/teler/pkg/errors"
-	"ktbs.dev/teler/resource"
+	"teler.app/common"
+	"teler.app/pkg/cache"
+	"teler.app/pkg/errors"
+	"teler.app/resource"
 )
 
 var (

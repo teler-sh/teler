@@ -3,7 +3,7 @@ package common
 import (
 	"os"
 
-	"ktbs.dev/teler/pkg/parsers"
+	"teler.app/pkg/parsers"
 )
 
 // Options contains the configuration options
