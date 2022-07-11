@@ -1,0 +1,3 @@
+1. Define your teler configuration file in values.yaml:28
+2. Define teler inpur source or any arguments in values.yaml:32
+3. Make sure port defined in values.yaml:52 is same as in teler configuration for dashboard port

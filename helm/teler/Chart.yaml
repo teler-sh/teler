@@ -1,0 +1,27 @@
+apiVersion: v2
+name: teler
+version: 0.1.0
+description: Real-time HTTP Intrusion Detection
+type: application
+keywords:
+  - analyze-logs
+  - ids
+  - intrusion
+  - intrusion-detection
+  - intrusion-detection-system
+  - iocs
+  - log-analyzer
+  - threat
+  - threat-analyzer
+  - threat-hunting
+  - threat-intel
+  - threat-intelligence
+  - threat-rules
+home: https://teler.app
+sources:
+  - https://github.com/kitabisa/teler
+maintainers:
+  - name: Dwi Siswanto
+    email: me@dw1.io
+    url: https://github.com/dwisiswant0
+appVersion: "1.16.0"
