@@ -11,11 +11,13 @@ COPY ./go.mod .
 RUN go mod download
 
 COPY . .
-RUN go build -ldflags "-s -w -X teler.app/common.Version=${VERSION}" \
+RUN CGO_ENABLED=0 go build -ldflags \
+	"-s -w -X teler.app/common.Version=${VERSION}" \
 	-o ./bin/teler .
 
 FROM alpine:latest
 
 COPY --from=build /app/bin/teler /bin/teler
 ENV HOME /
+
 ENTRYPOINT ["/bin/teler"]
