@@ -12,7 +12,7 @@ require (
 	github.com/panjf2000/ants/v2 v2.5.0
 	github.com/projectdiscovery/gologger v1.1.4
 	github.com/prometheus/client_golang v1.10.0
-	github.com/r3labs/sse/v2 v2.8.0
+	github.com/r3labs/sse/v2 v2.8.1
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/sahilm/fuzzy v0.1.0
 	github.com/satyrius/gonx v1.3.0
