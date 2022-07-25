@@ -16,7 +16,7 @@ require (
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/sahilm/fuzzy v0.1.0
 	github.com/satyrius/gonx v1.3.0
-	github.com/slack-go/slack v0.8.2
+	github.com/slack-go/slack v0.11.2
 	github.com/valyala/fastjson v1.6.3
 	go.uber.org/automaxprocs v1.5.1
 	goji.io v2.0.2+incompatible
@@ -38,7 +38,6 @@ require (
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.18.0 // indirect
 	github.com/prometheus/procfs v0.6.0 // indirect
