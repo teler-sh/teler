@@ -3,7 +3,7 @@ module teler.app
 go 1.18
 
 require (
-	github.com/briandowns/spinner v1.18.1
+	github.com/briandowns/spinner v1.19.0
 	github.com/bwmarrin/discordgo v0.25.0
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d
