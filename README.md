@@ -149,6 +149,6 @@ For changes, see the [CHANGELOG.md](/CHANGELOG.md).
 
 ## License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](/LICENSE). Kitabisa teler and any contributions are Copyright © by Dwi Siswanto 2020.
+This program is developed and maintained by members of Kitabisa Security Team, and this is not an officially supported Kitabisa product. This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](/LICENSE). Kitabisa teler and any contributions are copyright © by Dwi Siswanto 2020-2022.
 
 [![Stargazers over time](https://starchart.cc/kitabisa/teler.svg)](https://starchart.cc/kitabisa/teler)
