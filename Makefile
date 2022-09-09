@@ -33,7 +33,7 @@ build-all:
 		echo "       See https://goreleaser.com/install/" >&2; \
 		exit 1; \
 	fi; \
-	goreleaser build --rm-dist --skip-validate --timeout=30m
+	goreleaser build --rm-dist --skip-validate --snapshot --timeout=30m
 
 test: lint build-all clean
 	# @echo "--- Testing ${APP_NAME} ${VERSION}"
