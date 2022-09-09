@@ -15,7 +15,7 @@ require (
 	github.com/r3labs/sse/v2 v2.8.0
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/sahilm/fuzzy v0.1.0
-	github.com/satyrius/gonx v1.3.0
+	github.com/satyrius/gonx v1.4.0
 	github.com/slack-go/slack v0.8.2
 	github.com/valyala/fastjson v1.6.3
 	go.uber.org/automaxprocs v1.5.1
