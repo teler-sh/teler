@@ -15,13 +15,7 @@ jobs:
     if: startsWith(github.head_ref, 'dependabot/') == false
     steps:  
     - name: Check out code  
-      uses: actions/checkout@v3 
-
-    - name: Run sonar-scanner
-      uses: kitabisa/sonarqube-action@development 
-      with: 
-        host: ${{ secrets.SONARQUBE_HOST }} 
-        login: ${{ secrets.SONARQUBE_TOKEN }}
+      uses: actions/checkout@v3
 
     - name: Run Semgrep
       uses: returntocorp/semgrep-action@v1
