@@ -1,4 +1,4 @@
-# To write log format, see https://www.notion.so/kitabisa/Configuration-d7c8fab40366406591875bac631bef3f
+# To write log format, see https://teler.app/configuration/log-format
 log_format: |
   $remote_addr $remote_user - [$time_local] "$request_method $request_uri $request_protocol" 
   $status $body_bytes_sent "$http_referer" "$http_user_agent"
