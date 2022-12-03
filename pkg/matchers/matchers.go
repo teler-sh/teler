@@ -8,11 +8,7 @@ import (
 )
 
 func IsAny(substr string, s string) bool {
-	if strings.Index(s, substr) > 0 {
-		return false
-	}
-
-	return true
+	return strings.Index(s, substr) > 0
 }
 
 func IsMatch(pattern string, s string) bool {
