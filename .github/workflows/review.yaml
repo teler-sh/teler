@@ -1,9 +1,8 @@
 name: Review  
 on: 
   push:
-    branches:
-      - master
-      - v2
+    paths:
+      - '**.go'
   pull_request:
     branches:
       - master
