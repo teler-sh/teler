@@ -103,7 +103,7 @@ func customs(options *common.Options) {
 			matchers.IsBlank(rules[j].Element, "Custom threat rules element")
 			elm := fmt.Sprint("$", rules[j].Element)
 
-			if !matchers.IsMatch(fmt.Sprint(`\`, elm), cfg.Logformat) {
+			if !matchers.IsAny(elm, cfg.Logformat) {
 				err = strings.Replace(errors.ErrNoElement, ":element", elm, -1)
 				err = strings.Replace(err, ":category", custom[i].Name, -1)
 

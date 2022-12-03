@@ -229,7 +229,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					cont = strings.ReplaceAll(cont, `.%EXT%`, ext)
 				}
 
-				match = matchers.IsMatch(trimFirst(req.Path), cont)
+				match = matchers.IsAny(trimFirst(req.Path), cont)
 			}
 		}
 
