@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         filtersCount: document.getElementById('filters-count').getElementsByTagName('span')[0]
     };
     const slugify = (value) => value.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+    const escapeHTML = (string) => {
+        const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+        return string.replace(/[&<>"']/g, function(m) { return map[m]; });
+    };
     const sort = (list) => {      
         signatures = list.getElementsByTagName("li");
         Array.from(signatures)
@@ -70,9 +74,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
         row.classList.add('log', sigId);
         row.id = eventId;
         row.insertCell(0).innerHTML = `<td class="date"><span class="datetime" title="${new Date().toLocaleString}">${new Date().toLocaleTimeString()}</span></td>`;
-        row.insertCell(1).innerHTML = `<td class="category-name"><strong>${data.category}</strong></td>`;
+        row.insertCell(1).innerHTML = `<td class="category-name"><strong>${escapeHTML(data.category)}</strong></td>`;
         row.insertCell(2).innerHTML = `<td class="element"><div>${data.element}</pre></div></td>`;
-        row.insertCell(3).innerHTML = `<td class="matches"><strong>${data[data.element]}</strong></td>`;
+        row.insertCell(3).innerHTML = `<td class="matches"><strong>${escapeHTML(data[data.element])}</strong></td>`;
         row.insertCell(4).innerHTML = `<td class="log-line"><div><pre>${JSON.stringify(data)}</pre></div></td>`;
         settings.matchesCount.textContent = `${document.getElementsByClassName('log').length} threats`;
 
@@ -103,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     const createSignature = (name) => {
         var li = document.createElement('li');
         li.id = slugify(name)
-        li.innerHTML = `<a href="#" class="menu-item" title="${name}">${name}</a>`;
+        li.innerHTML = `<a href="#" class="menu-item" title="${escapeHTML(name)}">${escapeHTML(name)}</a>`;
         li.addEventListener('click', (e) => {
             e.preventDefault();
             filterSignature(li);
