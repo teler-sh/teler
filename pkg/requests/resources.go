@@ -17,15 +17,9 @@ import (
 
 var (
 	rsrc    *resource.Resources
-	exclude bool
 	content []byte
 	errCon  error
-	spin    *spinner.Spinner
 )
-
-func init() {
-	spin = spinner.New(spinner.CharSets[11], 90*time.Millisecond, spinner.WithWriter(os.Stderr))
-}
 
 // Resources is to getting all available resources
 func Resources(options *common.Options) {
@@ -34,8 +28,10 @@ func Resources(options *common.Options) {
 }
 
 func getRules(options *common.Options) {
-	client := Client()
+	var spin = spinner.New(spinner.CharSets[11], 90*time.Millisecond, spinner.WithWriter(os.Stderr))
+	var exclude bool
 
+	client := Client()
 	rules := options.Configs.Rules
 	excludes := rules.Threat.Excludes
 	isCached := rules.Cache
