@@ -52,6 +52,7 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					if err != nil {
 						continue
 					}
+					quote := regexp.QuoteMeta(dec)
 
 					if isWhitelist(options, p+"="+dec) {
 						continue
@@ -61,7 +62,6 @@ func Analyze(options *common.Options, logs *gonx.Entry) (bool, map[string]string
 					for _, v := range cwa.GetArray("filters") {
 						log["category"] = cat + ": " + string(v.GetStringBytes("description"))
 						log["element"] = "request_uri"
-						quote := regexp.QuoteMeta(dec)
 
 						match = matchers.IsMatch(
 							string(v.GetStringBytes("rule")),
