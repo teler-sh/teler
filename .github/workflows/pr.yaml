@@ -1,13 +1,5 @@
 name: Pull Request
 on:
-  push:
-    paths:
-      - "**.go"
-    tags:
-      - v*
-    branches:
-      - master
-      - development
   pull_request:
     branches-ignore:
       - dependabot/**
