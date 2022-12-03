@@ -11,13 +11,14 @@ import (
 
 func getDatasets() {
 	datasets = make(map[string]map[string]string)
-	rsc := resource.Get()
-	for i := 0; i < len(rsc.Threat); i++ {
-		threat := reflect.ValueOf(&rsc.Threat[i]).Elem()
-		cat := threat.FieldByName("Category").String()
-		con := threat.FieldByName("Content").String()
 
-		if threat.FieldByName("Exclude").Bool() {
+	rsc := resource.Get()
+	for _, threat := range rsc.Threat {
+		thr := reflect.ValueOf(threat)
+		cat := thr.FieldByName("Category").String()
+		con := thr.FieldByName("Content").String()
+
+		if thr.FieldByName("Exclude").Bool() {
 			continue
 		}
 
@@ -33,8 +34,8 @@ func trimFirst(s string) string {
 
 func isWhitelist(options *common.Options, find string) bool {
 	whitelist := options.Configs.Rules.Threat.Whitelists
-	for i := 0; i < len(whitelist); i++ {
-		match := matchers.IsMatch(whitelist[i], find)
+	for _, item := range whitelist {
+		match := matchers.IsMatch(item, find)
 		if match {
 			return true
 		}
