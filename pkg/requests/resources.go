@@ -47,8 +47,8 @@ func getRules(options *common.Options) {
 	for i := 0; i < len(rsrc.Threat); i++ {
 		exclude = false
 		threat := reflect.ValueOf(&rsrc.Threat[i]).Elem()
-		fname := threat.FieldByName("Filename").String()
-		cat := threat.FieldByName("Category").String()
+		fname := rsrc.Threat[i].Filename
+		cat := rsrc.Threat[i].Category
 
 		for x := 0; x < len(excludes); x++ {
 			if excludes[x] == cat {
