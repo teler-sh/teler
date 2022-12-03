@@ -1,0 +1,9 @@
+# teler Dashboard
+internal/event/www/
+
+# example configuration
+*.example.yaml
+*.example.conf
+
+# docker
+Dockerfile
