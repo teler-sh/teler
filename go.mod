@@ -9,7 +9,7 @@ require (
 	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d
 	github.com/kirsle/configdir v0.0.0-20170128060238-e45d2f54772f
 	github.com/logrusorgru/aurora v2.0.3+incompatible
-	github.com/panjf2000/ants/v2 v2.5.0
+	github.com/panjf2000/ants/v2 v2.7.0
 	github.com/projectdiscovery/gologger v1.1.4
 	github.com/prometheus/client_golang v1.10.0
 	github.com/r3labs/sse/v2 v2.8.0
