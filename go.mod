@@ -3,7 +3,7 @@ module teler.app
 go 1.18
 
 require (
-	github.com/briandowns/spinner v1.18.1
+	github.com/briandowns/spinner v1.20.0
 	github.com/bwmarrin/discordgo v0.25.0
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d
@@ -45,7 +45,8 @@ require (
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect
 	golang.org/x/net v0.0.0-20210226172049-e18ecbb05110 // indirect
-	golang.org/x/sys v0.0.0-20210309074719-68d13333faf2 // indirect
+	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
+	golang.org/x/term v0.1.0 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/cenkalti/backoff.v1 v1.1.0 // indirect
 )
