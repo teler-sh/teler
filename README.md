@@ -40,6 +40,10 @@
 > If you upgrade from prior to v2 frontwards there will be some **break changes** that affect configuration files. 
 > Appropriate adaptations can refer to [teler.example.yaml](https://github.com/kitabisa/teler/blob/v2/teler.example.yaml) file.
 
+**See also:**
+
+- [kitabisa/teler-waf](https://github.com/kitabisa/teler-waf): teler-waf is a Go HTTP middleware that provide teler IDS functionality to protect against web-based attacks and improve the security of Go-based web applications. It is highly configurable and easy to integrate into existing Go applications.
+
 ## Table of Contents
 - [Features](#features)
 - [Why teler?](#why-teler)
