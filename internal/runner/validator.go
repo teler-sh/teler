@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"reflect"
@@ -131,7 +131,7 @@ func zinc(options *common.Options) string {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		errors.Exit(fmt.Sprint(errors.ErrHealthZinc, ": ", err.Error()))
 	}
@@ -163,7 +163,7 @@ func zinc(options *common.Options) string {
 	}
 	defer resp.Body.Close()
 
-	body, err = ioutil.ReadAll(resp.Body)
+	body, err = io.ReadAll(resp.Body)
 	if err != nil {
 		errors.Exit(fmt.Sprint(errors.ErrAuthZinc, ": ", err.Error()))
 	}

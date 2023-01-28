@@ -1,7 +1,7 @@
 package requests
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -60,7 +60,7 @@ func getRules(options *common.Options) {
 		spin.Suffix = " Getting \"" + cat + "\" resource..."
 
 		if cache.Check() && isCached {
-			content, errCon = ioutil.ReadFile(filepath.Join(cache.Path, fname))
+			content, errCon = os.ReadFile(filepath.Join(cache.Path, fname))
 			if errCon != nil {
 				cache.Purge()
 
@@ -81,7 +81,7 @@ func getRules(options *common.Options) {
 				errors.Exit(err.Error())
 			}
 
-			content, errCon = ioutil.ReadAll(res.Body)
+			content, errCon = io.ReadAll(res.Body)
 			if errCon != nil {
 				errors.Exit(errCon.Error())
 			}

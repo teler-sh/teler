@@ -1,7 +1,7 @@
 package parsers
 
 import (
-	"io/ioutil"
+	"os"
 
 	"gopkg.in/yaml.v2"
 )
@@ -9,7 +9,7 @@ import (
 // GetConfig will parse the config file
 func GetConfig(f string) (*Configs, error) {
 	config := &Configs{}
-	file, err := ioutil.ReadFile(f)
+	file, err := os.ReadFile(f)
 	if err != nil {
 		return nil, err
 	}
