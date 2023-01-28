@@ -17,7 +17,7 @@ require (
 	github.com/sahilm/fuzzy v0.1.0
 	github.com/satyrius/gonx v1.4.0
 	github.com/slack-go/slack v0.8.2
-	github.com/valyala/fastjson v1.6.3
+	github.com/valyala/fastjson v1.6.4
 	go.uber.org/automaxprocs v1.5.1
 	goji.io v2.0.2+incompatible
 	golang.org/x/text v0.6.0
