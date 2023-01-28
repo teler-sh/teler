@@ -8,6 +8,7 @@ require (
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/goji/httpauth v0.0.0-20160601135302-2da839ab0f4d
 	github.com/kirsle/configdir v0.0.0-20170128060238-e45d2f54772f
+	github.com/kitabisa/tailpipe v1.0.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/panjf2000/ants/v2 v2.5.0
 	github.com/projectdiscovery/gologger v1.1.4
