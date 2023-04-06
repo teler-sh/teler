@@ -19,7 +19,7 @@ require (
 	github.com/satyrius/gonx v1.4.0
 	github.com/slack-go/slack v0.8.2
 	github.com/valyala/fastjson v1.6.3
-	go.uber.org/automaxprocs v1.5.1
+	go.uber.org/automaxprocs v1.5.2
 	goji.io v2.0.2+incompatible
 	golang.org/x/text v0.6.0
 	gopkg.in/validator.v2 v2.0.0-20200605151824-2b28d334fa05
