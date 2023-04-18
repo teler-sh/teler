@@ -10,7 +10,7 @@ require (
 	github.com/kirsle/configdir v0.0.0-20170128060238-e45d2f54772f
 	github.com/kitabisa/tailpipe v1.0.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
-	github.com/panjf2000/ants/v2 v2.5.0
+	github.com/panjf2000/ants/v2 v2.7.3
 	github.com/projectdiscovery/gologger v1.1.4
 	github.com/prometheus/client_golang v1.10.0
 	github.com/r3labs/sse/v2 v2.8.0
