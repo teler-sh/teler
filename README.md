@@ -152,6 +152,12 @@ All external resources used in this teler are **NOT** provided by us. See all pe
 
 For changes, see the [CHANGELOG.md](/CHANGELOG.md).
 
+## Community
+
+We use the Google Groups as our dedicated mailing list. Subscribe to [teler-announce](https://groups.google.com/g/teler-announce) via [teler-announce+subscribe@googlegroups.com](mailto:teler-announce+subscribe@googlegroups.com) for important announcements, such as the availability of new releases. This subscription will keep you informed about significant developments related to [teler IDS](https://github.com/kitabisa/teler), [teler WAF](https://github.com/kitabisa/teler-waf), [teler Proxy](https://github.com/kitabisa/teler-proxy), and [teler Resources](https://github.com/kitabisa/teler-resources).
+
+For any [inquiries](https://github.com/kitabisa/teler/discussions/categories/q-a), [discussions](https://github.com/kitabisa/teler/discussions), or [issues](https://github.com/kitabisa/teler/issues) are being tracked here on GitHub. This is where we actively manage and address these aspects of our community engagement.
+
 ## License
 
 This program is developed and maintained by members of Kitabisa Security Team, and this is not an officially supported Kitabisa product. This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](/LICENSE). Kitabisa teler and any contributions are copyright © by Dwi Siswanto 2020-2022.
