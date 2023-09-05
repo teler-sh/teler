@@ -16,7 +16,7 @@ jobs:
     if: startsWith(github.head_ref, 'dependabot/') == false
     steps:  
     - name: Check out code  
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Run Semgrep
       uses: returntocorp/semgrep-action@v1
