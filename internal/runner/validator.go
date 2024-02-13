@@ -11,12 +11,12 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/pkg/errors"
+	"github.com/kitabisa/teler/pkg/matchers"
+	"github.com/kitabisa/teler/pkg/parsers"
+	"github.com/kitabisa/teler/pkg/utils"
 	"gopkg.in/validator.v2"
-	"teler.app/common"
-	"teler.app/pkg/errors"
-	"teler.app/pkg/matchers"
-	"teler.app/pkg/parsers"
-	"teler.app/pkg/utils"
 )
 
 func validate(options *common.Options) {

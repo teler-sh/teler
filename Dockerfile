@@ -12,7 +12,7 @@ RUN go mod download
 
 COPY . .
 RUN CGO_ENABLED=0 go build -ldflags \
-	"-s -w -X teler.app/common.Version=${VERSION}" \
+	"-s -w -X github.com/kitabisa/teler/common.Version=${VERSION}" \
 	-o ./bin/teler .
 
 FROM alpine:latest

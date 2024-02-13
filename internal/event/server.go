@@ -1,8 +1,8 @@
 package event
 
 import (
+	"github.com/kitabisa/teler/common"
 	"github.com/r3labs/sse/v2"
-	"teler.app/common"
 )
 
 type server struct {

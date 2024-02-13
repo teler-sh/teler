@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/kirsle/configdir"
-	"teler.app/pkg/errors"
+	"github.com/kitabisa/teler/pkg/errors"
 )
 
 // Cache defines resources cache file informations

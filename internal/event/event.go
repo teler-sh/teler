@@ -10,12 +10,12 @@ import (
 	"strconv"
 
 	"github.com/goji/httpauth"
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/projectdiscovery/gologger"
 	"github.com/r3labs/sse/v2"
 	"goji.io"
 	"goji.io/pat"
-	"teler.app/common"
-	"teler.app/pkg/errors"
 )
 
 // Run SSE

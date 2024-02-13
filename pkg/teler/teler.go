@@ -10,10 +10,10 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/pkg/matchers"
 	"github.com/satyrius/gonx"
 	"github.com/valyala/fastjson"
-	"teler.app/common"
-	"teler.app/pkg/matchers"
 )
 
 // Analyze logs from threat resources

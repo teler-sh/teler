@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"teler.app/common"
+	"github.com/kitabisa/teler/common"
 )
 
 // File write detected threats into it

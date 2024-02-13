@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"teler.app/pkg/errors"
+	"github.com/kitabisa/teler/pkg/errors"
 )
 
 func TestIsLogformat(t *testing.T) {

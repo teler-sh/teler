@@ -6,11 +6,11 @@ import (
 	"reflect"
 	"strconv"
 
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/pkg/errors"
+	"github.com/kitabisa/teler/pkg/metrics"
 	"github.com/projectdiscovery/gologger"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"teler.app/common"
-	"teler.app/pkg/errors"
-	"teler.app/pkg/metrics"
 )
 
 func metric(options *common.Options) {

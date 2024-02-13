@@ -3,7 +3,7 @@ package common
 import (
 	"os"
 
-	"teler.app/pkg/parsers"
+	"github.com/kitabisa/teler/pkg/parsers"
 )
 
 // Options contains the configuration options
