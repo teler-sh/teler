@@ -11,13 +11,23 @@ builds:
       - arm
       - arm64
     ldflags:
-      - -s -w -X teler.app/common.Version=v{{.Version}}
-  
-archives:
-  - id: tgz
-    format: tar.gz
-    replacements:
-        darwin: macOS
-    format_overrides:
-        - goos: windows
-          format: zip
+      - -s -w -X github.com/kitabisa/teler/common.Version=v{{.Version}}
+
+checksum:
+  name_template: "{{ .ProjectName }}_checksums.txt"
+
+snapshot:
+  name_template: "{{ .Tag }}-{{.ShortCommit}}"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs"
+      - "^chore"
+      - "^style"
+      - "^refactor"
+      - "^test"
+      - Merge pull request
+      - Merge branch
+      - go mod tidy
