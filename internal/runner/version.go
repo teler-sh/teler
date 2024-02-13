@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"teler.app/common"
+	"github.com/kitabisa/teler/common"
 )
 
 func showVersion() {

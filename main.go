@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/kitabisa/teler/internal/runner"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
 	"go.uber.org/automaxprocs/maxprocs"
-	"teler.app/internal/runner"
 )
 
 func init() {

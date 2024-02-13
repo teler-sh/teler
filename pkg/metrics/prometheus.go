@@ -3,8 +3,8 @@ package metrics
 import (
 	"strings"
 
+	"github.com/kitabisa/teler/common"
 	"github.com/prometheus/client_golang/prometheus"
-	"teler.app/common"
 )
 
 // PrometheusInsert logs into metrics

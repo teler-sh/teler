@@ -1,9 +1,9 @@
 package runner
 
 import (
+	"github.com/kitabisa/teler/pkg/cache"
+	"github.com/kitabisa/teler/pkg/errors"
 	"github.com/projectdiscovery/gologger"
-	"teler.app/pkg/cache"
-	"teler.app/pkg/errors"
 )
 
 func rmCache() {

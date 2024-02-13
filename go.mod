@@ -1,4 +1,4 @@
-module teler.app
+module github.com/kitabisa/teler
 
 go 1.18
 

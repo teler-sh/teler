@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"teler.app/pkg/errors"
+	"github.com/kitabisa/teler/pkg/errors"
 )
 
 func errValidate(key string) {

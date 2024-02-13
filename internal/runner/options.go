@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 
-	"teler.app/common"
-	"teler.app/pkg/cache"
-	"teler.app/pkg/errors"
-	"teler.app/pkg/requests"
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/pkg/cache"
+	"github.com/kitabisa/teler/pkg/errors"
+	"github.com/kitabisa/teler/pkg/requests"
 )
 
 // ParseOptions will parse args/opts

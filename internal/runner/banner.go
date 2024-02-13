@@ -1,8 +1,8 @@
 package runner
 
 import (
+	"github.com/kitabisa/teler/common"
 	"github.com/projectdiscovery/gologger"
-	"teler.app/common"
 )
 
 // showBanner is used to show the banner to the user

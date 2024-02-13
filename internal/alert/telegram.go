@@ -7,7 +7,7 @@ import (
 	"strconv"
 
 	tg "github.com/go-telegram-bot-api/telegram-bot-api"
-	"teler.app/pkg/errors"
+	"github.com/kitabisa/teler/pkg/errors"
 )
 
 //go:embed template/*.tmpl

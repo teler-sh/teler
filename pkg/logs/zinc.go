@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	e "teler.app/pkg/errors"
+	e "github.com/kitabisa/teler/pkg/errors"
 )
 
 // Zinc logs insertion

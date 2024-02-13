@@ -7,17 +7,17 @@ import (
 	"os/signal"
 
 	"github.com/kitabisa/tailpipe"
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/internal/alert"
+	"github.com/kitabisa/teler/internal/event"
+	"github.com/kitabisa/teler/pkg/errors"
+	"github.com/kitabisa/teler/pkg/metrics"
+	"github.com/kitabisa/teler/pkg/teler"
 	"github.com/logrusorgru/aurora"
 	"github.com/panjf2000/ants/v2"
 	"github.com/projectdiscovery/gologger"
 	"github.com/remeh/sizedwaitgroup"
 	"github.com/satyrius/gonx"
-	"teler.app/common"
-	"teler.app/internal/alert"
-	"teler.app/internal/event"
-	"teler.app/pkg/errors"
-	"teler.app/pkg/metrics"
-	"teler.app/pkg/teler"
 )
 
 // New read & pass stdin log

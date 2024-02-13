@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"unicode/utf8"
 
-	"teler.app/common"
-	"teler.app/pkg/matchers"
-	"teler.app/resource"
+	"github.com/kitabisa/teler/common"
+	"github.com/kitabisa/teler/pkg/matchers"
+	"github.com/kitabisa/teler/resource"
 )
 
 func getDatasets() {
