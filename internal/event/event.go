@@ -30,6 +30,10 @@ func Run(options *common.Options, version string) *server {
 	}
 	a := httpauth.AuthOptions{Realm: "teler"}
 
+	if !s.options.Configs.Dashboard.Active {
+		return s
+	}
+
 	mux := goji.NewMux()
 
 	user := s.options.Configs.Dashboard.Username
