@@ -1,3 +1,27 @@
+> [!IMPORTANT]  
+> Dear users,
+> 
+> We wanted to share some important updates regarding the development of teler IDS.
+> 
+> 🛑 The development of teler IDS is currently on hold. However, we're thrilled to inform you that we've decided to take a bold step by embarking on a complete refactor, starting from scratch to enhance the overall development process. 🚀
+> 
+> In parallel, we're actively laying down the roadmap for teler IDS v3. 📝<br>
+> What we can reveal at this point is that version 3 will leverage eBPF & [teler-waf](https://github.com/kitabisa/teler-waf) as its support, promising advanced features and capabilities. 🌟
+> 
+> If you have feedback or suggestions regarding the features you'd like to see in teler IDS v3, kindly participate in our anonymous survey 👉 https://s.surveyplanet.com/8he6p7rq
+> 
+> Stay tuned for more updates as we continue to innovate and enhance our intrusion detection system! Tipis-tipis asal menyala abangkuuhh! 🔥🔝🙌🏼
+> 
+> Best!<br>
+> dw1
+>
+> ---
+>
+> <sub>As announced in [teler-announce#Fm8Yjh_4of0](https://groups.google.com/g/teler-announce/c/Fm8Yjh_4of0).</sub>
+
+> [!NOTE]
+> In the meantime, you can install and download the latest **v2** version to continue using it.
+
 <p align="center">
   <a href="#"><img alt="teler" src="https://user-images.githubusercontent.com/25837540/97091757-7200d880-1668-11eb-82c4-e5c4971d2bc8.png" height="300" /></a>
   <h3 align="center"><b>teler</b></h3>
@@ -36,7 +60,7 @@
 |--------- |--------------- |
 | [![teler](https://user-images.githubusercontent.com/25837540/97096468-f8ccaa00-1696-11eb-8830-0d3a7be45a2d.gif)](#) | [![dashboard](https://user-images.githubusercontent.com/25837540/175797412-1921c0e8-c4dc-4e2f-a29d-1c0208a86d22.gif)](#) |
 
-> **Note**:
+> [!NOTE]
 > If you upgrade from prior to v2 frontwards there will be some **break changes** that affect configuration files. 
 > Appropriate adaptations can refer to [teler.example.yaml](https://github.com/kitabisa/teler/blob/v2/teler.example.yaml) file.
 
