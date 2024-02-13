@@ -38,10 +38,10 @@ jobs:
           semgrep scan --config auto --dryrun -q --include "**.go"
 
       - name: Cross-platform checks
-        uses: goreleaser/goreleaser-action@v3
+        uses: goreleaser/goreleaser-action@v5
         with: 
           version: latest
-          args: build --skip-validate --rm-dist --snapshot --timeout=30m
+          args: build --clean --skip=validate --snapshot --timeout=30m
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
